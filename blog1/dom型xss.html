@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#DOM，全称Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。  DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document object文档对象，接着生成各个子文档对象，每个页面元素对应一个文">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/blog1/dom型xss.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#DOM，全称Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。  DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document object文档对象，接着生成各个子文档对象，每个页面元素对应一个文">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/9e698d849005a5eb42cf2f7e1c6ce47a_76215.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/e5a29c1bae7d43d76557598f24daac52_53464.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/43d9027604ede91284564473d2a784b3_38888.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/a637586de8561087cc71de122acbbe94_68339.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/2cb53e18fa3f523adc28f8c725af7411_30694.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/3cead1950f0882f53b1d77ffa53b4821_24291.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/29a922a3f7b85e30d89310df1566c239_50708.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/b37a9062f24bff0486c0e4e127e863ee_34939.png">
+<meta property="og:updated_time" content="2019-10-20T13:35:43.915Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="#DOM，全称Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。  DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document object文档对象，接着生成各个子文档对象，每个页面元素对应一个文">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/9e698d849005a5eb42cf2f7e1c6ce47a_76215.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog1/dom型xss.html" class="article-date">
+  <time datetime="2019-10-20T13:35:43.924Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="DOM，全称Document-Object-Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。-DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document-object文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过JS脚本对文档对象进行编辑从而修改页面的元素。也就是说，客户端的脚本程序可以通过DOM来动态修改页面内容，从客户端获取DOM中的数据并在本地执行。基于这个特性，就可以利用JS脚本来实现XSS漏洞的利用。"><a href="#DOM，全称Document-Object-Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。-DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document-object文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过JS脚本对文档对象进行编辑从而修改页面的元素。也就是说，客户端的脚本程序可以通过DOM来动态修改页面内容，从客户端获取DOM中的数据并在本地执行。基于这个特性，就可以利用JS脚本来实现XSS漏洞的利用。" class="headerlink" title="#DOM，全称Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。  DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document object文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过JS脚本对文档对象进行编辑从而修改页面的元素。也就是说，客户端的脚本程序可以通过DOM来动态修改页面内容，从客户端获取DOM中的数据并在本地执行。基于这个特性，就可以利用JS脚本来实现XSS漏洞的利用。 "></a>#DOM，全称Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。 <img src="/upload/md/9e698d849005a5eb42cf2f7e1c6ce47a_76215.png" alt> DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document object文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过JS脚本对文档对象进行编辑从而修改页面的元素。也就是说，客户端的脚本程序可以通过DOM来动态修改页面内容，从客户端获取DOM中的数据并在本地执行。基于这个特性，就可以利用JS脚本来实现XSS漏洞的利用。 </h2><p>##可能触发DOM型XSS的属性： document.referer属性 window.name属性 location属性 innerHTML属性 documen.write属性<br>##打开靶场： <img src="/upload/md/e5a29c1bae7d43d76557598f24daac52_53464.png" alt> 注意一下小提示 <img src="/upload/md/43d9027604ede91284564473d2a784b3_38888.png" alt> 在聊天框中输入js弹窗语句，失败 我们删除浏览器的cookie，<br>##在url中输入弹框语句，用uncode编码 成功了<br>##通过xss平台构建短链接 <img src="/upload/md/a637586de8561087cc71de122acbbe94_68339.png" alt> 通过编码，我们将其粘贴至url中 <img src="/upload/md/2cb53e18fa3f523adc28f8c725af7411_30694.png" alt> 成功了，语句被加载 <img src="/upload/md/3cead1950f0882f53b1d77ffa53b4821_24291.png" alt> 根据提示，将刚刚的页面地址加到url=后 <img src="/upload/md/29a922a3f7b85e30d89310df1566c239_50708.png" alt> 等待一会，去xss平台看看结果：</p>
+<h3 id="获取到cookie"><a href="#获取到cookie" class="headerlink" title=" 获取到cookie"></a><img src="/upload/md/b37a9062f24bff0486c0e4e127e863ee_34939.png" alt> 获取到cookie</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog1/dom型xss.html" data-id="ck1z1u11g000mycv0p3wogp3u" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

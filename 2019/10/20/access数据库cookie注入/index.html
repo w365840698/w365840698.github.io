@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>access数据库cookie注入 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Microsoft Office Access是由微软发布的关系数据库管理系统。它结合了 MicrosoftJet Database Engine 和 图形用户界面两项特点，是Microsoft Office 的系统程序之一，Microsoft Office Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。它是微软OFFICE的一个成员, MS ACCES">
+<meta property="og:type" content="article">
+<meta property="og:title" content="access数据库cookie注入">
+<meta property="og:url" content="http://yoursite.com/2019/10/20/access数据库cookie注入/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Microsoft Office Access是由微软发布的关系数据库管理系统。它结合了 MicrosoftJet Database Engine 和 图形用户界面两项特点，是Microsoft Office 的系统程序之一，Microsoft Office Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。它是微软OFFICE的一个成员, MS ACCES">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/8360c5e3ae560cdedf16a9f2a51c4435_53575.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/9dfaf49c52b13f70c7c403198f8e1a45_61519.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/4c4b3a64fa722a073488503e72b8f5b6_15682.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/9d705025a61eac4aedd22d18cac2867b_34817.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/6d01579f457e8db7d9158bd4e8b00948_93717.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/98df6ec114f768772c3a271670b2e558_66726.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/26e3b95fb37b4d11a2badf5ecf207e44_10968.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/ca52ae25904b575ab6382bcafedcf494_45999.png">
+<meta property="og:updated_time" content="2019-10-20T13:46:54.116Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="access数据库cookie注入">
+<meta name="twitter:description" content="Microsoft Office Access是由微软发布的关系数据库管理系统。它结合了 MicrosoftJet Database Engine 和 图形用户界面两项特点，是Microsoft Office 的系统程序之一，Microsoft Office Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。它是微软OFFICE的一个成员, MS ACCES">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/8360c5e3ae560cdedf16a9f2a51c4435_53575.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-access数据库cookie注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/access数据库cookie注入/" class="article-date">
+  <time datetime="2019-10-20T13:46:40.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      access数据库cookie注入
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Microsoft-Office-Access是由微软发布的关系数据库管理系统。它结合了-MicrosoftJet-Database-Engine-和-图形用户界面两项特点，是Microsoft-Office-的系统程序之一，Microsoft-Office-Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。"><a href="#Microsoft-Office-Access是由微软发布的关系数据库管理系统。它结合了-MicrosoftJet-Database-Engine-和-图形用户界面两项特点，是Microsoft-Office-的系统程序之一，Microsoft-Office-Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。" class="headerlink" title="Microsoft Office Access是由微软发布的关系数据库管理系统。它结合了 MicrosoftJet Database Engine 和 图形用户界面两项特点，是Microsoft Office 的系统程序之一，Microsoft Office Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。"></a>Microsoft Office Access是由微软发布的关系数据库管理系统。它结合了 MicrosoftJet Database Engine 和 图形用户界面两项特点，是Microsoft Office 的系统程序之一，Microsoft Office Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。</h1><h2 id="它是微软OFFICE的一个成员-MS-ACCESS以它自己的格式将数据存储在基于Access-Jet的数据库引擎里。它还可以直接导入或者链接数据-这些数据存储在其他应用程序和数据库-。软件开发人员和数据架构师可以使用Microsoft-Access开发应用软件-“高级用户”可以使用它来构建软件应用程序。和其他办公应用程序一样，ACCESS支持Visual-Basic宏语言-它是一个面向对象的编程语言-可以引用各种对象，包括DAO-数据访问对象-ActiveX数据对象-以及许多其他的ActiveX组件。可视对象用于显示表和报表，他们的方法和属性是在VBA编程环境下，VBA代码模块可以声明和调用Windows操作系统函数。"><a href="#它是微软OFFICE的一个成员-MS-ACCESS以它自己的格式将数据存储在基于Access-Jet的数据库引擎里。它还可以直接导入或者链接数据-这些数据存储在其他应用程序和数据库-。软件开发人员和数据架构师可以使用Microsoft-Access开发应用软件-“高级用户”可以使用它来构建软件应用程序。和其他办公应用程序一样，ACCESS支持Visual-Basic宏语言-它是一个面向对象的编程语言-可以引用各种对象，包括DAO-数据访问对象-ActiveX数据对象-以及许多其他的ActiveX组件。可视对象用于显示表和报表，他们的方法和属性是在VBA编程环境下，VBA代码模块可以声明和调用Windows操作系统函数。" class="headerlink" title="它是微软OFFICE的一个成员, MS ACCESS以它自己的格式将数据存储在基于Access Jet的数据库引擎里。它还可以直接导入或者链接数据(这些数据存储在其他应用程序和数据库)。软件开发人员和数据架构师可以使用Microsoft Access开发应用软件,“高级用户”可以使用它来构建软件应用程序。和其他办公应用程序一样，ACCESS支持Visual Basic宏语言,它是一个面向对象的编程语言,可以引用各种对象，包括DAO(数据访问对象),ActiveX数据对象,以及许多其他的ActiveX组件。可视对象用于显示表和报表，他们的方法和属性是在VBA编程环境下，VBA代码模块可以声明和调用Windows操作系统函数。"></a>它是微软OFFICE的一个成员, MS ACCESS以它自己的格式将数据存储在基于Access Jet的数据库引擎里。它还可以直接导入或者链接数据(这些数据存储在其他应用程序和数据库)。软件开发人员和数据架构师可以使用Microsoft Access开发应用软件,“高级用户”可以使用它来构建软件应用程序。和其他办公应用程序一样，ACCESS支持Visual Basic宏语言,它是一个面向对象的编程语言,可以引用各种对象，包括DAO(数据访问对象),ActiveX数据对象,以及许多其他的ActiveX组件。可视对象用于显示表和报表，他们的方法和属性是在VBA编程环境下，VBA代码模块可以声明和调用Windows操作系统函数。</h2><hr>
+<p> <img src="/upload/md/8360c5e3ae560cdedf16a9f2a51c4435_53575.png" alt><br> 试着在url栏中注入，<br> <img src="/upload/md/9dfaf49c52b13f70c7c403198f8e1a45_61519.png" alt><br> 被防护了。 既然题目是cookie注入，那么我们就从cookie里提交参数试一下<br> <img src="/upload/md/4c4b3a64fa722a073488503e72b8f5b6_15682.png" alt><br>我们开始利用cookie进行注入<br> <img src="/upload/md/9d705025a61eac4aedd22d18cac2867b_34817.png" alt><br>order by 确定了是10个字段 union+select+1,2,3,4,5,6,7,8,9,10+from+admin<br> <img src="/upload/md/6d01579f457e8db7d9158bd4e8b00948_93717.png" alt><br> 找到了回显点，在把2换成username 7换成password,发现用户名根密码都爆破出来了。<br> <img src="/upload/md/98df6ec114f768772c3a271670b2e558_66726.png" alt><br> 在线cmd解码解出密码<br> <img src="/upload/md/26e3b95fb37b4d11a2badf5ecf207e44_10968.png" alt><br>登录后台，取flag <a href="http://59.63.200.79:8004/admin/login.php" target="_blank" rel="noopener">http://59.63.200.79:8004/admin/login.php</a></p>
+<p><img src="/upload/md/ca52ae25904b575ab6382bcafedcf494_45999.png" alt> #</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/access数据库cookie注入/" data-id="ck1z1u10j0000ycv08gbde2f6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/20/access数据库偏移注入/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          access数据库偏移注入
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/20/post注入/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">post注入</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

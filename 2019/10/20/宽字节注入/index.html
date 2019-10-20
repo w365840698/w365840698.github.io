@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>宽字节注入 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="宽字节注入主要源于程序员设置数据库编码与php编码设置为不同的两种编码，那么就可能产生宽字节注入例如：PHP编码为UTF-8而Mysql的编码设置为set  names ‘gbk’或是set character_set_client=gbk，这样配置会引发编码转换从而导致的注入漏洞(一个gbk编码汉字，占用2个字节，一个utf-8编码的汉字，占用3个字节）注意：set name ‘x’与以下三个语">
+<meta property="og:type" content="article">
+<meta property="og:title" content="宽字节注入">
+<meta property="og:url" content="http://yoursite.com/2019/10/20/宽字节注入/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="宽字节注入主要源于程序员设置数据库编码与php编码设置为不同的两种编码，那么就可能产生宽字节注入例如：PHP编码为UTF-8而Mysql的编码设置为set  names ‘gbk’或是set character_set_client=gbk，这样配置会引发编码转换从而导致的注入漏洞(一个gbk编码汉字，占用2个字节，一个utf-8编码的汉字，占用3个字节）注意：set name ‘x’与以下三个语">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/d72ade462e71a012f48c2cf619a22515_24913.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/17c34b0031c527fcc249704f2fd22335_16028.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/b46fa546bfb5e6a5e96f6a62fb70b579_23625.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/20ea7312743bf7d915d4ec39b5e2a544_54150.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/dd58234ac690a8259f043e0ec6fa1e14_22029.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/50bd419ca3d6fae654dbf229ee79fa02_56691.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/3f6d00225b9dcacc497fcfb33f43f92f_24229.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/7187ed61c361abd3bcb20892747eb11c_24771.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/31c6a5dcedeb34b04fdae4537c571992_88570.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/d9b0d060ba24393c27b112fd650076a2_59886.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/2fab88b69313ca7e6457e10f332800ab_31783.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/bd8bc5983a3d8009af6f3c02f0259394_94609.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/df2e9dfe8e954ec47ab871fc82c7873e_62033.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/3b283fca5ed8021f9ab5df3931289081_35452.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/a96477bb09bc51c27d7bfa82dfe7c300_75811.png">
+<meta property="og:updated_time" content="2019-10-20T13:43:29.862Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="宽字节注入">
+<meta name="twitter:description" content="宽字节注入主要源于程序员设置数据库编码与php编码设置为不同的两种编码，那么就可能产生宽字节注入例如：PHP编码为UTF-8而Mysql的编码设置为set  names ‘gbk’或是set character_set_client=gbk，这样配置会引发编码转换从而导致的注入漏洞(一个gbk编码汉字，占用2个字节，一个utf-8编码的汉字，占用3个字节）注意：set name ‘x’与以下三个语">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/d72ade462e71a012f48c2cf619a22515_24913.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-宽字节注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/宽字节注入/" class="article-date">
+  <time datetime="2019-10-20T13:43:06.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      宽字节注入
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>宽字节注入主要源于程序员设置数据库编码与php编码设置为不同的两种编码，那么就可能产生宽字节注入例如：PHP编码为UTF-8而Mysql的编码设置为set  names ‘gbk’或是set character_set_client=gbk，这样配置会引发编码转换从而导致的注入漏洞(一个gbk编码汉字，占用2个字节，一个utf-8编码的汉字，占用3个字节）注意：set name ‘x’与以下三个语句等价： mysql-&gt;set charater_set_client=x; mysql-&gt;set charater_set_results=x; mysql-&gt;set charater_set_connection=x; 也就是说当你设置了set  names ‘x’时就同时执行了上面3条语句宽字节注入就是PHP发送请求到Mysql时使用了语句set  names ‘gbk’或是set character_set_client=gbk进行了一次编码，但是又由于一些不经意的字符集转换导致了宽字节注入 </p>
+<h2 id="打开靶场-在传参中加入id一条龙：-我们输入的语句被吃掉了一部分-我们发现-的编码是-5c-为了绕过magic-quotes-gpc函数，要引入宽字节注入的概念-繁体字-運-（运）-運的GBK编码是-df-5c-当后台数据库使用了GBK编码，而前端浏览器等使用了utf-8编码时，便可以在特殊符号前加一个-df，这样在数据库中-df-5c就被解析成了-運-，使得后面的语句可以被执行完成注入。-使用-df将转义斜杠吃掉-order-by-得知字段数为3-然后像平常的显错注入一般：-得出flag"><a href="#打开靶场-在传参中加入id一条龙：-我们输入的语句被吃掉了一部分-我们发现-的编码是-5c-为了绕过magic-quotes-gpc函数，要引入宽字节注入的概念-繁体字-運-（运）-運的GBK编码是-df-5c-当后台数据库使用了GBK编码，而前端浏览器等使用了utf-8编码时，便可以在特殊符号前加一个-df，这样在数据库中-df-5c就被解析成了-運-，使得后面的语句可以被执行完成注入。-使用-df将转义斜杠吃掉-order-by-得知字段数为3-然后像平常的显错注入一般：-得出flag" class="headerlink" title="打开靶场  在传参中加入id一条龙：  我们输入的语句被吃掉了一部分.我们发现\的编码是%5c 为了绕过magic_quotes_gpc函数，要引入宽字节注入的概念 繁体字 運 （运） 運的GBK编码是%df%5c 当后台数据库使用了GBK编码，而前端浏览器等使用了utf-8编码时，便可以在特殊符号前加一个%df，这样在数据库中%df%5c就被解析成了 運 ，使得后面的语句可以被执行完成注入。 使用%df将转义斜杠吃掉  order by 得知字段数为3  然后像平常的显错注入一般：   得出flag "></a>打开靶场 <img src="/upload/md/d72ade462e71a012f48c2cf619a22515_24913.png" alt> 在传参中加入id一条龙： <img src="/upload/md/17c34b0031c527fcc249704f2fd22335_16028.png" alt> 我们输入的语句被吃掉了一部分.我们发现\的编码是%5c 为了绕过magic_quotes_gpc函数，要引入宽字节注入的概念 繁体字 運 （运） 運的GBK编码是%df%5c 当后台数据库使用了GBK编码，而前端浏览器等使用了utf-8编码时，便可以在特殊符号前加一个%df，这样在数据库中%df%5c就被解析成了 運 ，使得后面的语句可以被执行完成注入。 使用%df将转义斜杠吃掉 <img src="/upload/md/b46fa546bfb5e6a5e96f6a62fb70b579_23625.png" alt> order by 得知字段数为3 <img src="/upload/md/20ea7312743bf7d915d4ec39b5e2a544_54150.png" alt> 然后像平常的显错注入一般： <img src="/upload/md/dd58234ac690a8259f043e0ec6fa1e14_22029.png" alt> <img src="/upload/md/50bd419ca3d6fae654dbf229ee79fa02_56691.png" alt> 得出flag <img src="/upload/md/3f6d00225b9dcacc497fcfb33f43f92f_24229.png" alt></h2><h2 id="第二关-本以为会是单引号变双引号，结果还是单引号，那干脆直接试试查flag：-第三关-界面顿时高大上，常规跑一套：-试着让他把-吃掉-好吧，这输入框有点东西-我们想想，这里尝试直接使用中文字符来进行注入，输入：運’-and-1-1-为什么输入一个汉字加一个单引号就能成功呢，首先表单会以utf-8编码的方式提交后，而汉字在utf-8编码里是占3个字节的，然后经过addslash-函数的处理，添加了反斜杠后，就多了一个字节，再跟汉字后面的单引号一起就是5个字节，因为这里MySQL数据库是gbk编码，所以中间就会经历utf-8-到-gbk这样一个转换过程，而汉字在gbk编码中占两个字节，因此是每两个字节进行一次编码，因此最后的单引号就逃出来了。-这里不能使用-–-，会报错。-在表单里，注释最好使用-或者-–后面加一个空格来代替加号-。-获取字段数，输入：運’order-by-2-获取当前数据库名，输入：運’-union-select-1-database-获取当前数据库下的表名，输入：-運’-union-select-1-table-name-from-information-schema-tables-where-table-schema-0x7365637572697479-limit-4-1-获取zkaq表的字段名，输入：-運’-union-select-1-column-name-from-information-schema-columns-where-table-name-0x7A6B6171-limit-1-1-获取flag，输入：運’-union-select-1-zKaQ-from-zkaq-limit-8-1"><a href="#第二关-本以为会是单引号变双引号，结果还是单引号，那干脆直接试试查flag：-第三关-界面顿时高大上，常规跑一套：-试着让他把-吃掉-好吧，这输入框有点东西-我们想想，这里尝试直接使用中文字符来进行注入，输入：運’-and-1-1-为什么输入一个汉字加一个单引号就能成功呢，首先表单会以utf-8编码的方式提交后，而汉字在utf-8编码里是占3个字节的，然后经过addslash-函数的处理，添加了反斜杠后，就多了一个字节，再跟汉字后面的单引号一起就是5个字节，因为这里MySQL数据库是gbk编码，所以中间就会经历utf-8-到-gbk这样一个转换过程，而汉字在gbk编码中占两个字节，因此是每两个字节进行一次编码，因此最后的单引号就逃出来了。-这里不能使用-–-，会报错。-在表单里，注释最好使用-或者-–后面加一个空格来代替加号-。-获取字段数，输入：運’order-by-2-获取当前数据库名，输入：運’-union-select-1-database-获取当前数据库下的表名，输入：-運’-union-select-1-table-name-from-information-schema-tables-where-table-schema-0x7365637572697479-limit-4-1-获取zkaq表的字段名，输入：-運’-union-select-1-column-name-from-information-schema-columns-where-table-name-0x7A6B6171-limit-1-1-获取flag，输入：運’-union-select-1-zKaQ-from-zkaq-limit-8-1" class="headerlink" title="第二关  本以为会是单引号变双引号，结果还是单引号，那干脆直接试试查flag：  ## 第三关  界面顿时高大上，常规跑一套：  试着让他把\吃掉  好吧，这输入框有点东西 我们想想，这里尝试直接使用中文字符来进行注入，输入：運’ and 1=1 #  为什么输入一个汉字加一个单引号就能成功呢，首先表单会以utf-8编码的方式提交后，而汉字在utf-8编码里是占3个字节的，然后经过addslash()函数的处理，添加了反斜杠后，就多了一个字节，再跟汉字后面的单引号一起就是5个字节，因为这里MySQL数据库是gbk编码，所以中间就会经历utf-8 到 gbk这样一个转换过程，而汉字在gbk编码中占两个字节，因此是每两个字节进行一次编码，因此最后的单引号就逃出来了。 这里不能使用 –+ ，会报错。 在表单里，注释最好使用 # 或者 –后面加一个空格来代替加号+ 。 获取字段数，输入：運’order by 2#;  获取当前数据库名，输入：運’ union select 1,database() # 获取当前数据库下的表名，输入： 運’ union select 1,table_name from information_schema.tables where table_schema=0x7365637572697479 limit 4,1 # 获取zkaq表的字段名，输入： 運’ union select 1,column_name from information_schema.columns where table_name=0x7A6B6171 limit 1,1 # 获取flag，输入：運’ union select 1,zKaQ from zkaq limit 8,1 # "></a>第二关 <img src="/upload/md/7187ed61c361abd3bcb20892747eb11c_24771.png" alt> 本以为会是单引号变双引号，结果还是单引号，那干脆直接试试查flag： <img src="/upload/md/31c6a5dcedeb34b04fdae4537c571992_88570.png" alt> ## 第三关 <img src="/upload/md/d9b0d060ba24393c27b112fd650076a2_59886.png" alt> 界面顿时高大上，常规跑一套： <img src="/upload/md/2fab88b69313ca7e6457e10f332800ab_31783.png" alt> 试着让他把\吃掉 <img src="/upload/md/bd8bc5983a3d8009af6f3c02f0259394_94609.png" alt> 好吧，这输入框有点东西 我们想想，这里尝试直接使用中文字符来进行注入，输入：運’ and 1=1 # <img src="/upload/md/df2e9dfe8e954ec47ab871fc82c7873e_62033.png" alt> 为什么输入一个汉字加一个单引号就能成功呢，首先表单会以utf-8编码的方式提交后，而汉字在utf-8编码里是占3个字节的，然后经过addslash()函数的处理，添加了反斜杠后，就多了一个字节，再跟汉字后面的单引号一起就是5个字节，因为这里MySQL数据库是gbk编码，所以中间就会经历utf-8 到 gbk这样一个转换过程，而汉字在gbk编码中占两个字节，因此是每两个字节进行一次编码，因此最后的单引号就逃出来了。 这里不能使用 –+ ，会报错。 在表单里，注释最好使用 # 或者 –后面加一个空格来代替加号+ 。 获取字段数，输入：運’order by 2#; <img src="/upload/md/3b283fca5ed8021f9ab5df3931289081_35452.png" alt> 获取当前数据库名，输入：運’ union select 1,database() # 获取当前数据库下的表名，输入： 運’ union select 1,table_name from information_schema.tables where table_schema=0x7365637572697479 limit 4,1 # 获取zkaq表的字段名，输入： 運’ union select 1,column_name from information_schema.columns where table_name=0x7A6B6171 limit 1,1 # 获取flag，输入：運’ union select 1,zKaQ from zkaq limit 8,1 # <img src="/upload/md/a96477bb09bc51c27d7bfa82dfe7c300_75811.png" alt></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/宽字节注入/" data-id="ck1z1u111000cycv01b1yl41s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/20/延时注入/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          延时注入
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/20/盲注/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">盲注</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

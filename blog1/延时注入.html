@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="先说一下几个可能需要用到的函数： # length()函数 返回字符串的长度 substr()截取字符串 ascii()返回字符的ascii码 sleep()将程序挂起一段时间n为n秒 if(exp1,expr2,expr3)判断语句 如果第一个语句正确就执行第二个语句如果错误就执行第三个语句 打开靶场，输入参数看页面回显： 闭合单引号并且注释掉后面的语句  猜字段 使用database函数获取数">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/blog1/延时注入.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="先说一下几个可能需要用到的函数： # length()函数 返回字符串的长度 substr()截取字符串 ascii()返回字符的ascii码 sleep()将程序挂起一段时间n为n秒 if(exp1,expr2,expr3)判断语句 如果第一个语句正确就执行第二个语句如果错误就执行第三个语句 打开靶场，输入参数看页面回显： 闭合单引号并且注释掉后面的语句  猜字段 使用database函数获取数">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/e9ad73396963e9430554d0a641af9d34_12362.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/f86ac68a5545d5e2aa70bef60b293882_21526.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/66840973aec423504a61c79d7a39834b_85392.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/e6fb61021260b874df715d4580201689_41157.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/2d21f0de1e6a168fb2542cd98287ef08_69577.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/01019b1f08c18124500804d87f8247af_87336.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/2ace5b824f42120c8a83ac67742028fb_49944.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/62ecdf837a14f2798ee96f6d855dd58a_90457.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/a6071998a9889e5d21bff105b34d7d09_27065.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/e0d7ebcd7f6fde0b38016b69bff2b25c_75049.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/2fed082ecdd3681192ce863851ac5c5f_16135.png">
+<meta property="og:updated_time" content="2019-10-20T13:12:35.028Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="先说一下几个可能需要用到的函数： # length()函数 返回字符串的长度 substr()截取字符串 ascii()返回字符的ascii码 sleep()将程序挂起一段时间n为n秒 if(exp1,expr2,expr3)判断语句 如果第一个语句正确就执行第二个语句如果错误就执行第三个语句 打开靶场，输入参数看页面回显： 闭合单引号并且注释掉后面的语句  猜字段 使用database函数获取数">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/e9ad73396963e9430554d0a641af9d34_12362.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog1/延时注入.html" class="article-date">
+  <time datetime="2019-10-20T13:12:35.031Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="先说一下几个可能需要用到的函数：-length-函数-返回字符串的长度-substr-截取字符串-ascii-返回字符的ascii码-sleep-将程序挂起一段时间n为n秒-if-exp1-expr2-expr3-判断语句-如果第一个语句正确就执行第二个语句如果错误就执行第三个语句-打开靶场，输入参数看页面回显："><a href="#先说一下几个可能需要用到的函数：-length-函数-返回字符串的长度-substr-截取字符串-ascii-返回字符的ascii码-sleep-将程序挂起一段时间n为n秒-if-exp1-expr2-expr3-判断语句-如果第一个语句正确就执行第二个语句如果错误就执行第三个语句-打开靶场，输入参数看页面回显：" class="headerlink" title="先说一下几个可能需要用到的函数： # length()函数 返回字符串的长度 substr()截取字符串 ascii()返回字符的ascii码 sleep()将程序挂起一段时间n为n秒 if(exp1,expr2,expr3)判断语句 如果第一个语句正确就执行第二个语句如果错误就执行第三个语句 打开靶场，输入参数看页面回显："></a>先说一下几个可能需要用到的函数： # length()函数 返回字符串的长度 substr()截取字符串 ascii()返回字符的ascii码 sleep()将程序挂起一段时间n为n秒 if(exp1,expr2,expr3)判断语句 如果第一个语句正确就执行第二个语句如果错误就执行第三个语句 打开靶场，输入参数看页面回显：</h1><p><img src="/upload/md/e9ad73396963e9430554d0a641af9d34_12362.png" alt> 闭合单引号并且注释掉后面的语句 <img src="/upload/md/f86ac68a5545d5e2aa70bef60b293882_21526.png" alt> 猜字段<br><img src="/upload/md/66840973aec423504a61c79d7a39834b_85392.png" alt> 使用database函数获取数据库名 然而并没有任何回显 盲注开始<br><img src="/upload/md/e6fb61021260b874df715d4580201689_41157.png" alt> 判断数据库名长度<br><a href="/upload/md/5922d93ef88ba9fa5d358010ac65581d_16584.png"></a> 猜解数据库名<br><img src="/upload/md/2d21f0de1e6a168fb2542cd98287ef08_69577.png" alt> 判断数据库中每个表的长度<br><img src="/upload/md/01019b1f08c18124500804d87f8247af_87336.png" alt> 猜解表名<br><img src="/upload/md/2ace5b824f42120c8a83ac67742028fb_49944.png" alt> 判断表中每个字段长度<br><img src="/upload/md/62ecdf837a14f2798ee96f6d855dd58a_90457.png" alt> 猜解字段名<br><img src="/upload/md/a6071998a9889e5d21bff105b34d7d09_27065.png" alt> 查出字段名flag，zkaq 查flag id=1’and if(ascii(substr((select zKaQ from zkaq limit 0,1),1,1))=115,0,sleep(10))–+ Rank2 感觉和Rank1没有什么不同，重复上面的操作就能做出来了 Rank3 和Rank1相似，闭合符号由’变成了” 重复rank1的操作，就能做出来了<br> <img src="/upload/md/e0d7ebcd7f6fde0b38016b69bff2b25c_75049.png" alt> 试试sqlmap工具<br><img src="/upload/md/2fed082ecdd3681192ce863851ac5c5f_16135.png" alt> 用sqlmap跑的flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog1/延时注入.html" data-id="ck1z1u11k000tycv0s7zvjxod" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

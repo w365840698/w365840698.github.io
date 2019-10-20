@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="存储型XSS存储型XSS (你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发) 持久型/存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；存储型XSS会出现在什么地方？ 任何可能插入数据库的地方 比如： 用户注册的时候 留言板 上传文件的文件名 （管理员可见的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/blog1/存储型xss.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="存储型XSS存储型XSS (你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发) 持久型/存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；存储型XSS会出现在什么地方？ 任何可能插入数据库的地方 比如： 用户注册的时候 留言板 上传文件的文件名 （管理员可见的">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/cf7b39f9f4ed16456439b513cfcb3e5f_82522.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/ec200dae8e005b8d659462067c11605a_26413.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/944f17dfb1a0204298d0184664aafe66_17110.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/b09cad3ee6a1f53be19abb7504ec2302_27491.png">
+<meta property="og:updated_time" content="2019-10-20T13:33:31.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="存储型XSS存储型XSS (你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发) 持久型/存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；存储型XSS会出现在什么地方？ 任何可能插入数据库的地方 比如： 用户注册的时候 留言板 上传文件的文件名 （管理员可见的">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/cf7b39f9f4ed16456439b513cfcb3e5f_82522.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog1/存储型xss.html" class="article-date">
+  <time datetime="2019-10-20T13:33:31.523Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="存储型XSS存储型XSS-你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发-持久型-存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；"><a href="#存储型XSS存储型XSS-你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发-持久型-存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；" class="headerlink" title="存储型XSS存储型XSS (你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发) 持久型/存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；"></a>存储型XSS存储型XSS (你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发) 持久型/存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；</h1><h1 id="存储型XSS会出现在什么地方？-任何可能插入数据库的地方-比如：-用户注册的时候-留言板-上传文件的文件名-（管理员可见的）报错信息"><a href="#存储型XSS会出现在什么地方？-任何可能插入数据库的地方-比如：-用户注册的时候-留言板-上传文件的文件名-（管理员可见的）报错信息" class="headerlink" title="存储型XSS会出现在什么地方？ 任何可能插入数据库的地方 比如： 用户注册的时候 留言板 上传文件的文件名 （管理员可见的）报错信息"></a>存储型XSS会出现在什么地方？ 任何可能插入数据库的地方 比如： 用户注册的时候 留言板 上传文件的文件名 （管理员可见的）报错信息</h1><p>#打开靶场： <img src="/upload/md/cf7b39f9f4ed16456439b513cfcb3e5f_82522.png" alt><br>##先信息收集 发现靶场是finecms5.3 当访问页面不存在的方法或对象时，会调用show_404方法，且该方法没有过滤html敏感字符。</p>
+<h3 id="试着在登录页面的url中加入js弹窗语句成功了-通过xss平台在url中加入获取cookie的代码-成功拿到cookie"><a href="#试着在登录页面的url中加入js弹窗语句成功了-通过xss平台在url中加入获取cookie的代码-成功拿到cookie" class="headerlink" title=" 试着在登录页面的url中加入js弹窗语句成功了  通过xss平台在url中加入获取cookie的代码  成功拿到cookie"></a><img src="/upload/md/ec200dae8e005b8d659462067c11605a_26413.png" alt> 试着在登录页面的url中加入js弹窗语句成功了 <img src="/upload/md/944f17dfb1a0204298d0184664aafe66_17110.png" alt> 通过xss平台在url中加入获取cookie的代码 <img src="/upload/md/b09cad3ee6a1f53be19abb7504ec2302_27491.png" alt> 成功拿到cookie</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog1/存储型xss.html" data-id="ck1z1u11k000sycv02yht0lvg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

