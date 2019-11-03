@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>验证码绕过、密码找回漏洞 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本地搭建了一个平台，根据靶场这边的提示  打开相关网页  这里的意思应该是，修改密码的一个界面， 需要核定通过验证码就可以完成密码修改  我们试着随便输入一个验证码1000，然后抓包，分析一下  这边可以看到yzm=1000 我们试着去爆破  当出现不同的length说明爆破成功  然后登入，输入密码，在用户表里可以找到flag">
+<meta property="og:type" content="website">
+<meta property="og:title" content="验证码绕过、密码找回漏洞">
+<meta property="og:url" content="http://yoursite.com/blog1/验证码绕过、密码找回漏洞.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本地搭建了一个平台，根据靶场这边的提示  打开相关网页  这里的意思应该是，修改密码的一个界面， 需要核定通过验证码就可以完成密码修改  我们试着随便输入一个验证码1000，然后抓包，分析一下  这边可以看到yzm=1000 我们试着去爆破  当出现不同的length说明爆破成功  然后登入，输入密码，在用户表里可以找到flag">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/upload/md/4c14494f3c60597f97b8ee82bd87a552_49750.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/5599747e49772c14a3be989d78e73b30_30950.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/f61aaa5629486d3b37548c41bd92e304_38574.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/31acf1a5b47039f5c4a6d4ddfd50d660_23072.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/f1b37b7c97ed46084515d343d7e13bc6_64427.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/c61dacc8ef6fb6463ebef6b918fac421_76196.png">
+<meta property="og:image" content="http://yoursite.com/upload/md/6ed92b359f59d7d68d19a5ae11c59a37_54730.png">
+<meta property="og:updated_time" content="2019-11-03T09:11:18.048Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="验证码绕过、密码找回漏洞">
+<meta name="twitter:description" content="本地搭建了一个平台，根据靶场这边的提示  打开相关网页  这里的意思应该是，修改密码的一个界面， 需要核定通过验证码就可以完成密码修改  我们试着随便输入一个验证码1000，然后抓包，分析一下  这边可以看到yzm=1000 我们试着去爆破  当出现不同的length说明爆破成功  然后登入，输入密码，在用户表里可以找到flag">
+<meta name="twitter:image" content="http://yoursite.com/upload/md/4c14494f3c60597f97b8ee82bd87a552_49750.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog1/验证码绕过、密码找回漏洞.html" class="article-date">
+  <time datetime="2019-11-03T09:03:36.000Z" itemprop="datePublished">2019-11-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      验证码绕过、密码找回漏洞
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/upload/md/4c14494f3c60597f97b8ee82bd87a552_49750.png" alt> 本地搭建了一个平台，根据靶场这边的提示 <img src="/upload/md/5599747e49772c14a3be989d78e73b30_30950.png" alt> 打开相关网页 <img src="/upload/md/f61aaa5629486d3b37548c41bd92e304_38574.png" alt> 这里的意思应该是，修改密码的一个界面， 需要核定通过验证码就可以完成密码修改 <img src="/upload/md/31acf1a5b47039f5c4a6d4ddfd50d660_23072.png" alt> 我们试着随便输入一个验证码1000，然后抓包，分析一下 <img src="/upload/md/f1b37b7c97ed46084515d343d7e13bc6_64427.png" alt> 这边可以看到yzm=1000 我们试着去爆破 <img src="/upload/md/c61dacc8ef6fb6463ebef6b918fac421_76196.png" alt> 当出现不同的length说明爆破成功 <img src="/upload/md/6ed92b359f59d7d68d19a5ae11c59a37_54730.png" alt> 然后登入，输入密码，在用户表里可以找到flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog1/验证码绕过、密码找回漏洞.html" data-id="ck2ixd3zc001gukv0pyg917nh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/03/变量覆盖/">变量覆盖</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/平行越权、垂直越权/">平行越权、垂直越权</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/支付漏洞/">支付漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/验证码绕过、密码找回漏洞/">验证码绕过、密码找回漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/unserialize反序列化漏洞/">unserialize反序列化漏洞</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>本地包含与远程包含 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="文件包含漏洞：即File Inclusion，意思是文件包含（漏洞），是指当服务器开启allow_url_include选项时，就可以通过php的某些特性函数include()，require()和include_once()，require_once()利用url去动态包含文件，此时如果没有对文件来源进行严格审查，就会导致任意文件读取或者任意命令执行。文件包含漏洞分为本地文件包含(Loacl F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="本地包含与远程包含">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/本地包含与远程包含/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="文件包含漏洞：即File Inclusion，意思是文件包含（漏洞），是指当服务器开启allow_url_include选项时，就可以通过php的某些特性函数include()，require()和include_once()，require_once()利用url去动态包含文件，此时如果没有对文件来源进行严格审查，就会导致任意文件读取或者任意命令执行。文件包含漏洞分为本地文件包含(Loacl F">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-03T07:41:38.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="本地包含与远程包含">
+<meta name="twitter:description" content="文件包含漏洞：即File Inclusion，意思是文件包含（漏洞），是指当服务器开启allow_url_include选项时，就可以通过php的某些特性函数include()，require()和include_once()，require_once()利用url去动态包含文件，此时如果没有对文件来源进行严格审查，就会导致任意文件读取或者任意命令执行。文件包含漏洞分为本地文件包含(Loacl F">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-本地包含与远程包含" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/03/本地包含与远程包含/" class="article-date">
+  <time datetime="2019-11-03T07:41:07.000Z" itemprop="datePublished">2019-11-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      本地包含与远程包含
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>文件包含漏洞：即File Inclusion，意思是文件包含（漏洞），是指当服务器开启allow_url_include选项时，就可以通过php的某些特性函数include()，require()和include_once()，require_once()利用url去动态包含文件，此时如果没有对文件来源进行严格审查，就会导致任意文件读取或者任意命令执行。<br>文件包含漏洞分为本地文件包含(Loacl File Inclusion,LFI)与远程文件包含(Remote File Inclusion,RFI)，远程文件包含漏洞是因为开启了php配置中的allow_url_fopen选项（选项开启之后，服务器允许包含一个远程的文件）。服务器通过php的特性（函数）去包含任意文件时，由于要包含的这个文件来源过滤不严，从而可以去包含一个恶意文件，而我们可以构造这个恶意文件来达到自己的目的。</p>
+<p>文件包含的两种类型：</p>
+<p>本地文件包含 当被包含的文件在服务器本地时，就形成本地文件包含；</p>
+<p>远程文件包含 当被包含的文件在第三方服务器时，叫做远程文件包含；</p>
+<p>函数介绍<br>include()<br>当使用该函数包含文件时，只有代码执行到include()函数时才将文件包含进来，发生错误时只给出一个警告，继续向下执行。</p>
+<p>include_once()<br>功能和include()相同，区别在于当重复调用同一文件时，程序只调用一次</p>
+<p>require()<br>require()与include()的区别在于require()执行如果发生错误，函数会输出错误信息，并终止脚本的运行 。使用require()函数包含文件时，只要程序一执行，立即调用文件，而include()只有程序执行到函数时才调用 .require()在php程序执行前执行，会先读入 require 所指定引入的文件，使它变成 PHP 程序网页的一部份。</p>
+<p>require_once()<br>它的功能与require()相同，区别在于当重复调用同一文件时，程序只调用一次。</p>
+<p>我们前面讲了，文件上传漏洞，那么文件上传和文件包含有什么区别呢？<br>文件包含漏洞：攻击者利用了包含的特性，再加上了应用本身对文件控制不严，对include进来的文件不可控，最终造成了攻击者进行任意文件包含。包含进来的文件都以当前脚本文件解析，比如，我们当前测试系统是Apache加php环境，那么被include进来的文件，不管是什么类型，比如说图片，文本文档，这些文件被包含以后，都会被当做php脚本来解析。</p>
+<p>文件上传漏洞：攻击者上传了一个可执行的脚本文件，通过此脚本文件获得了执行服务器端命令的功能。文件上传是否会产生漏洞关键在于服务器怎么来处理，怎么来解析这个文件。如果说服务器处理的模式不够安全，那么就会导致严重的后果，也就是上传了恶意的可执行文件以后，服务器端对此文件进行执行。</p>
+<p>实战靶场<br>漏洞分析<br>本次工具使用照样还是seay</p>
+<p>满足上面的条件即可执行include $_REQUEST[‘target’]，将请求参数target的值作为文件名包含进本页面。前面几条都是可以满足的，看第三条和第四条，第三条是一个黑名单(绕过时注意就ok了)，接着看Core::checkPageValidity($_REQUEST[‘target’])，这应该是一个类，通过全局搜索找到一个core.php</p>
+<p>我们使这个函数返回一个true就行了，第一个if应该是一个白名单，先看后面<br>第二个if只要点击传入参数，或者是一个字符串，就不会返回false，第三个if是进行一个白名单机制验证，只要是在这个白名单中就会返回true，然后是一个url编码和mb_substr()函数,函数介绍如下：</p>
+<p>$_page = urldecode($page);<br>$_page = mb_substr(<br>$_page,<br>0,<br>mb_strpos($_page . ‘?’, ‘?’)<br>);<br>if (in_array($_page, $whitelist)) {<br>return true;<br>}<br>mb_strpos()函数作用是： 查找字符串在另一个字符串中首次出现的位置。<br>而这里这段代码的作用就是截取？号之前的字符串，？之后的丢掉并且通过下一个if判读这段截取下来的字符串是否在白名单内。是的话就返回true。</p>
+<p>要实现文件包含，必须要有被可控包含文件，我们对表修改其字段(比如一句话木马)，可以使其文件中插入一句话木马。然后进行包含。</p>
+<p>然后使用@@datadir之类的函数爆出该数据库和表所在的位置。</p>
+<p>总结<br>1.首先起码要有对数据库和表查和改的权限，不然也做插不了木马，还要查出马儿的路径</p>
+<p>2.然后对源码进行分析，得出绕过过滤机制的办法</p>
+<p>3.包含连接木马得到webshell</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/03/本地包含与远程包含/" data-id="ck2ixd3yw0017ukv04wr7bos6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/03/unserialize反序列化漏洞/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          unserialize反序列化漏洞
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/03/SSRF-服务器端请求伪造/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SSRF - 服务器端请求伪造</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/03/变量覆盖/">变量覆盖</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/平行越权、垂直越权/">平行越权、垂直越权</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/支付漏洞/">支付漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/验证码绕过、密码找回漏洞/">验证码绕过、密码找回漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/unserialize反序列化漏洞/">unserialize反序列化漏洞</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

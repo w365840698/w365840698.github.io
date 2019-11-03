@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>unserialize反序列化漏洞 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="理解序列化要有这种意识： 内存数据是“稍纵即逝”的；——通常，程序执行结束，立即全部销毁。 变量所存储的数据，就是内存数据； 文件是“持久数据”； 数据库也是持久数据； 序列化： 就是，将内存的变量数据，“保存”到文件中的持久数据的过程。 简化就是：将内存变为文件； $s = serialize($变量); //该函数将变量数据进行序列化转换为字符串 file_put_contents(‘./目标">
+<meta property="og:type" content="website">
+<meta property="og:title" content="unserialize反序列化漏洞">
+<meta property="og:url" content="http://yoursite.com/blog1/unserialize反序列化漏洞.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="理解序列化要有这种意识： 内存数据是“稍纵即逝”的；——通常，程序执行结束，立即全部销毁。 变量所存储的数据，就是内存数据； 文件是“持久数据”； 数据库也是持久数据； 序列化： 就是，将内存的变量数据，“保存”到文件中的持久数据的过程。 简化就是：将内存变为文件； $s = serialize($变量); //该函数将变量数据进行序列化转换为字符串 file_put_contents(‘./目标">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007rAy9hgy1g2x35gjhiyj30hc0ldaad.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007rAy9hgy1g2x5xfijj7j30hg0bkgln.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007rAy9hgy1g2x5zx7bftj30n60ov3ys.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007rAy9hgy1g2x9rppoi7j30ma06na9x.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007rAy9hgy1g2xa48yqddj30ja0iedfz.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007rAy9hgy1g2xa6pyq2cj30rq0h00u8.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007rAy9hgy1g2xabkym9gj30bt04n3yb.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007rAy9hly1g2xaogoq1rj30n208kaa1.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007rAy9hgy1g2xbwpiis7j31dz0aqq3e.jpg">
+<meta property="og:updated_time" content="2019-11-03T09:16:03.444Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="unserialize反序列化漏洞">
+<meta name="twitter:description" content="理解序列化要有这种意识： 内存数据是“稍纵即逝”的；——通常，程序执行结束，立即全部销毁。 变量所存储的数据，就是内存数据； 文件是“持久数据”； 数据库也是持久数据； 序列化： 就是，将内存的变量数据，“保存”到文件中的持久数据的过程。 简化就是：将内存变为文件； $s = serialize($变量); //该函数将变量数据进行序列化转换为字符串 file_put_contents(‘./目标">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007rAy9hgy1g2x35gjhiyj30hc0ldaad.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog1/unserialize反序列化漏洞.html" class="article-date">
+  <time datetime="2019-11-03T07:42:11.000Z" itemprop="datePublished">2019-11-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      unserialize反序列化漏洞
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>理解序列化要有这种意识： 内存数据是“稍纵即逝”的；——通常，程序执行结束，立即全部销毁。 变量所存储的数据，就是内存数据； 文件是“持久数据”； 数据库也是持久数据； 序列化： 就是，将内存的变量数据，“保存”到文件中的持久数据的过程。 简化就是：将内存变为文件； $s = serialize($变量); //该函数将变量数据进行序列化转换为字符串 file_put_contents(‘./目标文本文件’, $s); //将$s保存到指定文件 反序列化： 就是，将序列化过存储到文件中的数据，恢复到程序代码的变量表示形式的过程。 简化就是：将文件变为内存； $s = file_get_contents(‘./目标文本文件’); //取得文本文件的内容（之前序列化过的字符串） $变量 = unserialize($s); //将该文本内容，反序列化到指定的变量中 ### 演示序列化与反序列化 <img src="https://tva1.sinaimg.cn/large/007rAy9hgy1g2x35gjhiyj30hc0ldaad.jpg" alt> String(字符串) : s:size:value; Integer(整数型) : i:value; Boolean(布尔型) : b:value;(1或0) Null(空值): N; Array(数组): a:size:{键名;键值;(每个元素重复)} ### 类的序列化 <img src="https://tva1.sinaimg.cn/large/007rAy9hgy1g2x5xfijj7j30hg0bkgln.jpg" alt> Object(对象): O:对象名的长度:对象名:对象数量:{s:属性名长度:属性名;(每个元素重复)} ### 魔术方法 魔术方法是PHP面向对象中特有的特性。它们在特定的情况下被触发，都是以双下划线开头，你可以把它们理解为钩子，利用模式方法可以轻松实现PHP面向对象中重载（Overloading即动态创建类属性和方法）。 <code>__construct()， __destruct()， __call()， __callStatic()， __get()， __set()， __isset()， __unset()， __sleep()， __wakeup()， __toString()， __invoke()， __set_state()， __clone() 、__debugInfo()</code> PHP 将所有以 _<em>（两个下划线）开头的类方法保留为魔术方法。所以在定义类方法时，除了上述魔术方法，建议不要以 _</em> 为前缀。 1.__construct，__destruct __constuct构建对象的时被调用； __destruct明确销毁对象或脚本结束时被调用； 2.__get，__set __set当给不可访问或不存在属性赋值时被调用 __get读取不可访问或不存在属性时被调用 3.__isset，__unset __isset对不可访问或不存在的属性调用isset()或empty()时被调用 __unset对不可访问或不存在的属性进行unset时被调用 4.__call，__callStatic __call调用不可访问或不存在的方法时被调用 __callStatic调用不可访问或不存在的静态方法时被调用 5.__sleep，__wakeup __sleep当使用serialize时被调用，当你不需要保存大对象的所有数据时很有用 __wakeup当使用unserialize时被调用，可用于做些对象的初始化操作 6.__clone 进行对象clone时被调用，用来调整对象的克隆行为 7.__toString 当一个类被转换成字符串时被调用 8.__invoke 当以函数方式调用对象时被调用 9.__set_state 当调用var_export()导出类时，此静态方法被调用。用__set_state的返回值做为var_export的返回值。 10.<strong>debuginfo 当调用var_dump()打印对象时被调用（当你不想打印所有属性）适用于PHP5.6版本 ### 靶场演示 <img src="https://tva1.sinaimg.cn/large/007rAy9hgy1g2x5zx7bftj30n60ov3ys.jpg" alt> 这是一道反序列化的题目，可以看到flag就在这个同级目录中flag.php，前面有一个类，里面定义了一个类readme，并且这里有一个魔术方法\</strong>tostring:当一个类被转换成字符串时被调用。就是当对象被当作字符串输出的时候会触发这个魔法方法。highlight_file是语法的高亮显示。 <img src="https://tva1.sinaimg.cn/large/007rAy9hgy1g2x9rppoi7j30ma06na9x.jpg" alt> 而这段代码的作用是显示源码。而我们的思路就是在source=__FILE__的地方把这个__FILE__换成flag.php就可以把我们的源码显示出来。但是这里的传参并不是我们能够控制的。接着找输出点。 <img src="https://tva1.sinaimg.cn/large/007rAy9hgy1g2xa48yqddj30ja0iedfz.jpg" alt> 这里找到一个我看不太懂的东西。我们去百度一下这个<?=$todo?>是什么意思。 <img src="https://tva1.sinaimg.cn/large/007rAy9hgy1g2xa6pyq2cj30rq0h00u8.jpg" alt> 发现这是<?php echo $todo ?>的缩写。所以找到一个输出点。然后发现这个$todo是$todos遍历出来的。然后控制这个$todos的输出，并且这个$todos是一个数组。也只有数组才能foreach遍历。 <img src="https://tva1.sinaimg.cn/large/007rAy9hgy1g2xabkym9gj30bt04n3yb.jpg" alt> 然后我们来分析一下这个段代码，$c获取cookie，$h截取cookie前32位，$m截取后32位。然后判断md5后的$m是否等于$h，如果等于就会触发$todos获取反序列化$m的值。然后我们思路清楚了，首先构造我们需要传入的payload <img src="https://tva1.sinaimg.cn/large/007rAy9hly1g2xaogoq1rj30n208kaa1.jpg" alt> 然后使得 <code>$m=a:1:{i:0;O:6:&quot;readme&quot;:1:{s:6:&quot;source&quot;;s:8:&quot;flag.php&quot;;}}</code> 而cookie的值分析得出cookie=md5($m)+$m时触发反序列化。 <code>md5($m)=e2d4f7dcc43ee1db7f69e76303d0105c</code> 然后把两端加起来 <code>e2d4f7dcc43ee1db7f69e76303d0105ca:1:{i:0;O:6:&quot;readme&quot;:1:{s:6:&quot;source&quot;;s:8:&quot;flag.php&quot;;}}</code> 最后传入cookie，因为cookie传参也是要url编码的，所以最终payload为 <code>e2d4f7dcc43ee1db7f69e76303d0105ca%3a1%3a%7bi%3a0%3bO%3a6%3a%22readme%22%3a1%3a%7bs%3a6%3a%22source%22%3bs%3a8%3a%22flag.php%22%3b%7d%7d</code> 传入cookie，成功输出flag.php的内容。 <img src="https://tva1.sinaimg.cn/large/007rAy9hgy1g2xbwpiis7j31dz0aqq3e.jpg" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog1/unserialize反序列化漏洞.html" data-id="ck2ixd3yn000tukv0sp62aaxu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/03/变量覆盖/">变量覆盖</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/平行越权、垂直越权/">平行越权、垂直越权</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/支付漏洞/">支付漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/验证码绕过、密码找回漏洞/">验证码绕过、密码找回漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/unserialize反序列化漏洞/">unserialize反序列化漏洞</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

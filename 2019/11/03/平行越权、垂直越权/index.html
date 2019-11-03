@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>平行越权、垂直越权 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="越权，顾名思义，就是超出了权限或权力范围。多数WEB应用都具备权限划分和控制，但是如果权限控制功能设计存在缺陷，那么攻击者就可以通过这些缺陷来访问未经授权的功能或数据，这就是我们通常说的越权漏洞。攻击者越权后就可以进行一些操作，例如查看敏感信息、进行一些增删改查的操作等等。我们一般将越权漏洞分为三种：水平越权、垂直越权和权限框架缺陷。以下是越权漏洞的几种攻击场景。 开始靶场：打开靶场 注册一下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="平行越权、垂直越权">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/平行越权、垂直越权/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="越权，顾名思义，就是超出了权限或权力范围。多数WEB应用都具备权限划分和控制，但是如果权限控制功能设计存在缺陷，那么攻击者就可以通过这些缺陷来访问未经授权的功能或数据，这就是我们通常说的越权漏洞。攻击者越权后就可以进行一些操作，例如查看敏感信息、进行一些增删改查的操作等等。我们一般将越权漏洞分为三种：水平越权、垂直越权和权限框架缺陷。以下是越权漏洞的几种攻击场景。 开始靶场：打开靶场 注册一下：">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-03T09:21:55.628Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="平行越权、垂直越权">
+<meta name="twitter:description" content="越权，顾名思义，就是超出了权限或权力范围。多数WEB应用都具备权限划分和控制，但是如果权限控制功能设计存在缺陷，那么攻击者就可以通过这些缺陷来访问未经授权的功能或数据，这就是我们通常说的越权漏洞。攻击者越权后就可以进行一些操作，例如查看敏感信息、进行一些增删改查的操作等等。我们一般将越权漏洞分为三种：水平越权、垂直越权和权限框架缺陷。以下是越权漏洞的几种攻击场景。 开始靶场：打开靶场 注册一下：">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-平行越权、垂直越权" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/03/平行越权、垂直越权/" class="article-date">
+  <time datetime="2019-11-03T09:20:48.000Z" itemprop="datePublished">2019-11-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      平行越权、垂直越权
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>越权，顾名思义，就是超出了权限或权力范围。多数WEB应用都具备权限划分和控制，但是如果权限控制功能设计存在缺陷，那么攻击者就可以通过这些缺陷来访问未经授权的功能或数据，这就是我们通常说的越权漏洞。攻击者越权后就可以进行一些操作，例如查看敏感信息、进行一些增删改查的操作等等。<br>我们一般将越权漏洞分为三种：水平越权、垂直越权和权限框架缺陷。以下是越权漏洞的几种攻击场景。</p>
+<p>开始靶场：<br>打开靶场</p>
+<p>注册一下：</p>
+<p>抓包：</p>
+<p>改一下shenfen=1，admin=1</p>
+<p>我们发现多了后台管理<br>点击看看</p>
+<p>点击用户管理</p>
+<p>得到flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/03/平行越权、垂直越权/" data-id="ck2ixd3yq000yukv07z5m5eid" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/03/变量覆盖/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          变量覆盖
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/03/支付漏洞/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">支付漏洞</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/03/变量覆盖/">变量覆盖</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/平行越权、垂直越权/">平行越权、垂直越权</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/支付漏洞/">支付漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/验证码绕过、密码找回漏洞/">验证码绕过、密码找回漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/unserialize反序列化漏洞/">unserialize反序列化漏洞</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

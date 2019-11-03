@@ -5,11 +5,11 @@
   
 
   
-  <title>Hexo</title>
+  <title>宽字节注入 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="宽字节注入主要源于程序员设置数据库编码与php编码设置为不同的两种编码，那么就可能产生宽字节注入例如：PHP编码为UTF-8而Mysql的编码设置为set  names ‘gbk’或是set character_set_client=gbk，这样配置会引发编码转换从而导致的注入漏洞(一个gbk编码汉字，占用2个字节，一个utf-8编码的汉字，占用3个字节）注意：set name ‘x’与以下三个语">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="宽字节注入">
 <meta property="og:url" content="http://yoursite.com/blog1/宽字节注入.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="宽字节注入主要源于程序员设置数据库编码与php编码设置为不同的两种编码，那么就可能产生宽字节注入例如：PHP编码为UTF-8而Mysql的编码设置为set  names ‘gbk’或是set character_set_client=gbk，这样配置会引发编码转换从而导致的注入漏洞(一个gbk编码汉字，占用2个字节，一个utf-8编码的汉字，占用3个字节）注意：set name ‘x’与以下三个语">
@@ -29,9 +29,9 @@
 <meta property="og:image" content="http://yoursite.com/upload/md/df2e9dfe8e954ec47ab871fc82c7873e_62033.png">
 <meta property="og:image" content="http://yoursite.com/upload/md/3b283fca5ed8021f9ab5df3931289081_35452.png">
 <meta property="og:image" content="http://yoursite.com/upload/md/a96477bb09bc51c27d7bfa82dfe7c300_75811.png">
-<meta property="og:updated_time" content="2019-10-20T13:09:58.983Z">
+<meta property="og:updated_time" content="2019-10-20T13:43:29.862Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="宽字节注入">
 <meta name="twitter:description" content="宽字节注入主要源于程序员设置数据库编码与php编码设置为不同的两种编码，那么就可能产生宽字节注入例如：PHP编码为UTF-8而Mysql的编码设置为set  names ‘gbk’或是set character_set_client=gbk，这样配置会引发编码转换从而导致的注入漏洞(一个gbk编码汉字，占用2个字节，一个utf-8编码的汉字，占用3个字节）注意：set name ‘x’与以下三个语">
 <meta name="twitter:image" content="http://yoursite.com/upload/md/d72ade462e71a012f48c2cf619a22515_24913.png">
   
@@ -83,12 +83,22 @@
         <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog1/宽字节注入.html" class="article-date">
-  <time datetime="2019-10-20T13:09:58.985Z" itemprop="datePublished">2019-10-20</time>
+  <time datetime="2019-10-20T13:43:06.000Z" itemprop="datePublished">2019-10-20</time>
 </a>
     
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      宽字节注入
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -97,7 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog1/宽字节注入.html" data-id="ck1z1u11j000rycv001wy1dx8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog1/宽字节注入.html" data-id="ck2ixd3yq000xukv0hty6f5by" class="article-share-link">Share</a>
       
       
     </footer>
@@ -123,7 +133,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
     </div>
   </div>
 
@@ -136,23 +146,23 @@
       <ul>
         
           <li>
-            <a href="/2019/10/20/csrf/">csrf</a>
+            <a href="/2019/11/03/变量覆盖/">变量覆盖</a>
           </li>
         
           <li>
-            <a href="/2019/10/20/dom型xss/">dom型xss</a>
+            <a href="/2019/11/03/平行越权、垂直越权/">平行越权、垂直越权</a>
           </li>
         
           <li>
-            <a href="/2019/10/20/存储型xss/">存储型xss</a>
+            <a href="/2019/11/03/支付漏洞/">支付漏洞</a>
           </li>
         
           <li>
-            <a href="/2019/10/20/反射性xss/">反射性xss</a>
+            <a href="/2019/11/03/验证码绕过、密码找回漏洞/">验证码绕过、密码找回漏洞</a>
           </li>
         
           <li>
-            <a href="/2019/10/20/dns注入/">dns注入</a>
+            <a href="/2019/11/03/unserialize反序列化漏洞/">unserialize反序列化漏洞</a>
           </li>
         
       </ul>

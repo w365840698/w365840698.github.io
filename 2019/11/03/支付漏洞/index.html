@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>支付漏洞 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="支付漏洞属于逻辑漏洞，一般也只能做黑盒测试。要挖掘这类漏洞，需要将思维发散，就是不要按常理出牌。这样就有可能找到程序员疏忽的地方。一般测试的点有下面这些： 修改支付的价格 支付三部曲：选购商品，下订单，付款。三个步骤当中随便一个步骤中进行修改价格测试，如果前面两步有验证机制，那么你可在最后一步付款时进行抓包尝试修改金额，如果没有在最后一步做好检验，那么问题就会存在，其修改的金额值你可以尝试小数目或">
+<meta property="og:type" content="article">
+<meta property="og:title" content="支付漏洞">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/支付漏洞/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="支付漏洞属于逻辑漏洞，一般也只能做黑盒测试。要挖掘这类漏洞，需要将思维发散，就是不要按常理出牌。这样就有可能找到程序员疏忽的地方。一般测试的点有下面这些： 修改支付的价格 支付三部曲：选购商品，下订单，付款。三个步骤当中随便一个步骤中进行修改价格测试，如果前面两步有验证机制，那么你可在最后一步付款时进行抓包尝试修改金额，如果没有在最后一步做好检验，那么问题就会存在，其修改的金额值你可以尝试小数目或">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-03T09:15:55.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="支付漏洞">
+<meta name="twitter:description" content="支付漏洞属于逻辑漏洞，一般也只能做黑盒测试。要挖掘这类漏洞，需要将思维发散，就是不要按常理出牌。这样就有可能找到程序员疏忽的地方。一般测试的点有下面这些： 修改支付的价格 支付三部曲：选购商品，下订单，付款。三个步骤当中随便一个步骤中进行修改价格测试，如果前面两步有验证机制，那么你可在最后一步付款时进行抓包尝试修改金额，如果没有在最后一步做好检验，那么问题就会存在，其修改的金额值你可以尝试小数目或">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-支付漏洞" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/03/支付漏洞/" class="article-date">
+  <time datetime="2019-11-03T09:15:00.000Z" itemprop="datePublished">2019-11-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      支付漏洞
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>支付漏洞属于逻辑漏洞，一般也只能做黑盒测试。<br>要挖掘这类漏洞，需要将思维发散，就是不要按常理出牌。这样就有可能找到程序员疏忽的地方。<br>一般测试的点有下面这些：</p>
+<p>修改支付的价格</p>
+<p>支付三部曲：选购商品，下订单，付款。<br>三个步骤当中随便一个步骤中进行修改价格测试，如果前面两步有验证机制，那么你可在最后一步付款时进行抓包尝试修改金额，如果没有在最后一步做好检验，那么问题就会存在，其修改的金额值你可以尝试小数目或者尝试负数。</p>
+<p>修改支付状态</p>
+<p>假设 A订单-0001 完成，此时 B订单-0002未完成<br>付款时尝试把订单B的单号改成订单A</p>
+<p>修改订单中商品的数量<br>修改附属值，比如优惠券</p>
+<p>一般用优惠券进行消费是出现在支付三部曲中的第二个步骤中：确认购买信息，在这个步骤页面当中，你可以选择相关优惠劵，然后直接修改金额大于或等于商品的价格就可以，或者直接修改其为负值进行尝试，最后进行支付，如果对这点没有加以验证，那么问题就会产生，直接支付成功</p>
+<p>越权支付</p>
+<p>比如，存在 user=id(123),这种传参时，尝试改改id,尝试用别人的钱包买自己的包包。</p>
+<p>无限制试用</p>
+<p>比如试用的参数为2，正常购买的参数为1，那么我们购买参数2（试用），会发生什么呢？</p>
+<p>多线程并发</p>
+<p>比如提现功能<br>假设有100块，每次提现10快，可以体现都少次？<br>按照开发人员的思路来说，100/10=10 就是10次嘛，那么对于程序来说呢？那就不一定了。<br>当然，多线程也可以在其它功能处进行测试，比如我之前讲到的试用商品问题，就可以通过多线程进行多几次的使用，比如利用积分兑换礼品，一个账户只能进行总换一次，利用这个问题，可以多几次兑换，一些转账功能，提现功能，购买功能等等很多。</p>
+<p>另外，在挖掘此类漏洞的时候，就是要找到关键的数据包，因为可能一个支付操作有好几个数据包，该情况下就要对数据包进行筛选。<br>而且，支付数据包中会包含很多的敏感信息（如账号、金额、余额、优惠等），要尝试对数据包中的各个参数进行分析。</p>
+<p>打开靶场：</p>
+<p>注册一个账号：</p>
+<p>买一下cf点卡：</p>
+<p>试一试买负数：</p>
+<p>有惊喜：</p>
+<p>好吧，操作有问题了，我们看下余额</p>
+<p>美滋滋，反向购物成功</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/03/支付漏洞/" data-id="ck2ixd3yt0012ukv0kfwtqyc8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/03/平行越权、垂直越权/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          平行越权、垂直越权
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/03/验证码绕过、密码找回漏洞/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">验证码绕过、密码找回漏洞</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/03/变量覆盖/">变量覆盖</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/平行越权、垂直越权/">平行越权、垂直越权</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/支付漏洞/">支付漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/验证码绕过、密码找回漏洞/">验证码绕过、密码找回漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/unserialize反序列化漏洞/">unserialize反序列化漏洞</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

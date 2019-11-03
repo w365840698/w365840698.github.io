@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>正则表达式 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;lt;?php$key=’flag{*}’;$Regular= preg_match(“/zkaq.key.{2,9}:/./(keykey)/i”, trim($_GET[“id”]), $match);if( $Regular ){die(‘key: ‘.$key);}打开靶场，题目如上 简单分析： trim（) 函数处理过的，以get方式传参的id值，这个id的传参经过正则匹配，结果储存到">
+<meta property="og:type" content="website">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="http://yoursite.com/blog1/正则表达式.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="&amp;lt;?php$key=’flag{*}’;$Regular= preg_match(“/zkaq.key.{2,9}:/./(keykey)/i”, trim($_GET[“id”]), $match);if( $Regular ){die(‘key: ‘.$key);}打开靶场，题目如上 简单分析： trim（) 函数处理过的，以get方式传参的id值，这个id的传参经过正则匹配，结果储存到">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://www.zkaq.org/upload/md/6f7dbfd6c97b90006df8093096711f9f_22869.png">
+<meta property="og:updated_time" content="2019-10-14T01:03:47.228Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式">
+<meta name="twitter:description" content="&amp;lt;?php$key=’flag{*}’;$Regular= preg_match(“/zkaq.key.{2,9}:/./(keykey)/i”, trim($_GET[“id”]), $match);if( $Regular ){die(‘key: ‘.$key);}打开靶场，题目如上 简单分析： trim（) 函数处理过的，以get方式传参的id值，这个id的传参经过正则匹配，结果储存到">
+<meta name="twitter:image" content="https://www.zkaq.org/upload/md/6f7dbfd6c97b90006df8093096711f9f_22869.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog1/正则表达式.html" class="article-date">
+  <time datetime="2019-10-14T01:02:44.000Z" itemprop="datePublished">2019-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      正则表达式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&lt;?php<br>$key=’flag{*<em>}’;<br>$Regular= preg_match(“/zkaq.key.{2,9}:/./(key</em>key)/i”, trim($_GET[“id”]), $match);<br>if( $Regular ){<br>die(‘key: ‘.$key);<br>}<br>打开靶场，题目如上</p>
+<p>简单分析：</p>
+<p>trim（) 函数处理过的，以get方式传参的id值，这个id的传参经过正则匹配，结果储存到$match</p>
+<p>2.preg_match() 函数</p>
+<p>preg_match() 函数用于进行正则表达式匹配，成功返回 1 ，否则返回 0 。</p>
+<p>preg_match() 函数第一次匹配成功后就会停止匹配</p>
+<p>3..根据/zkaq.key.{2,9}:/./(key*key)/i 正则表达式，我们可以就可以构造出需要匹配检索的对象trim($_GET[“id”])</p>
+<p>/ ：PHP中使用正则表达式匹配一定要加/</p>
+<p>. ：匹配任意字符</p>
+<p>：匹配前面的子表达式任意次<br>{2,9} ：最少匹配2次且最多匹配9次</p>
+<p>\ ：将下一个字符标记符、或一个向后引用、或一个八进制转义符</p>
+<p>/ ：/一般用于 正则的开始和结束,/是特殊字符 所以中途要使用/就得用\符号来转义了</p>
+<p>i ：不区分大小写<br>所以我决定构造以下id：<br>id=zkaqkey24://keykey<br>然后回车键入<br><img src="https://www.zkaq.org/upload/md/6f7dbfd6c97b90006df8093096711f9f_22869.png" alt><br>成功出现了flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog1/正则表达式.html" data-id="ck2ixd3z8001cukv0xd99xcmv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/03/变量覆盖/">变量覆盖</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/平行越权、垂直越权/">平行越权、垂直越权</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/支付漏洞/">支付漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/验证码绕过、密码找回漏洞/">验证码绕过、密码找回漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/unserialize反序列化漏洞/">unserialize反序列化漏洞</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
